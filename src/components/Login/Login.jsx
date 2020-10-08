@@ -3,10 +3,11 @@ import { Redirect } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form'
 import { required } from '../../Utils/Validators/validators';
 import { Input } from '../Common/FormsControl/FormsControl';
+import style from '../Common/FormsControl/FormsControl.module.css'
 
 const LoginForm = (props) => {
     return (
-        <form onSubmit = {props.handleSubmit}>
+        <form onSubmit = {props.handleSubmit} >
             <div>
                 <Field placeholder = {"Login"} 
                        name = {"email"}
@@ -25,9 +26,13 @@ const LoginForm = (props) => {
                        name = {"rememberMe"} 
                        type={"checkbox"} />remember me
             </div>
+            {props.error && <div className = {style.formCommonError}>
+                {props.error}
+            </div>}
             <div>
                 <button>Sign in</button>
             </div>
+            
         </form>)
      
 }
