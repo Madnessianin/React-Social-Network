@@ -1,6 +1,5 @@
 
-const SEND_MESSAGE = "SEND_MESSAGE",
-      UPDATE_NEW_MESSAGE_TEXT = "UPDATE_NEW_MESSAGE_TEXT";
+const SEND_MESSAGE = "social-network/dialogs/SEND_MESSAGE"
 
 let initialState = {
     dialogs : [
@@ -42,7 +41,7 @@ const dialogsReducer = (state = initialState, action) => {
     
 }
 
-export const sendMessage= (newMessageText) => ({type: SEND_MESSAGE, newMessageText});
+export const sendMessage = (newMessageText) => ({type: SEND_MESSAGE, newMessageText});
 
 
 export default dialogsReducer;

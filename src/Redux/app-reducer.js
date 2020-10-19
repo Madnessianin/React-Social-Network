@@ -1,0 +1,35 @@
+import { stopSubmit } from 'redux-form';
+import {authAPI} from '../api/Api.js'
+import { setAuth } from './auth-reducer.js';
+
+const INITIALIZED_SUCCSESS = "social-network/app/INITIALIZED_SUCCSESS";
+
+
+let initialState = {
+    initialized: false
+};
+
+const appReducer = (state = initialState, action) => {
+    switch(action.type) {
+        case INITIALIZED_SUCCSESS: {
+            return {
+                ...state,
+                initialized : true
+            };
+        }
+        default :
+            return state;
+    }
+}
+
+
+export const initializedSucsess = () => ({type: INITIALIZED_SUCCSESS});
+
+export const initializeApp = () => async (dispatch) => {
+        let promise = await dispatch(setAuth());
+        dispatch(initializedSucsess())
+}
+
+
+
+export default appReducer;

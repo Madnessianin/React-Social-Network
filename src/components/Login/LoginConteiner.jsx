@@ -1,12 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import {login} from '../../Redux/auth-reducer'
+import { getIsAuth, getLogin } from '../../Redux/auth-selectors';
 import Login from './Login';
 
 
 const mapStateToProps = (state) => ({
-    isAuth: state.authPage.isAuth,
-    login: state.authPage.login
+    isAuth: getIsAuth(state),
+    login: getLogin(state)
 });
 const mapDispatchToProps = {login}
 

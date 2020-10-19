@@ -1,0 +1,14 @@
+.selectPage {
+    font-weight: bold;
+    color: #00d7b2;
+}
+
+.paginator {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.inner span {
+    margin: 0 5px;
+}

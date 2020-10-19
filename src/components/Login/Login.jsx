@@ -4,10 +4,11 @@ import { Field, reduxForm } from 'redux-form'
 import { required } from '../../Utils/Validators/validators';
 import { Input } from '../Common/FormsControl/FormsControl';
 import style from '../Common/FormsControl/FormsControl.module.css'
+import classes from './Login.module.css'
 
 const LoginForm = (props) => {
     return (
-        <form onSubmit = {props.handleSubmit} >
+        <form className={classes.formInner} onSubmit = {props.handleSubmit} >
             <div>
                 <Field placeholder = {"Login"} 
                        name = {"email"}
@@ -49,8 +50,8 @@ const Login = (props) => {
         return <Redirect to = {"/profile"} />
     }
     
-    return <div>
-        <h1>Login</h1>
+    return <div className = {classes.form}>
+        <h1 className={classes.formTitle}>Social network</h1>
         <LoginFormConteiner onSubmit = {onSubmit} />
     </div> 
 }

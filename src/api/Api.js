@@ -8,20 +8,17 @@ let instance = axios.create({
 })
 
 export const usersAPI = {
-    getUsers(currentPage, pageSize) {
-        return instance.get(`users?page=${currentPage}&count=${pageSize}`)
-        .then((response) => {
-            return response.data;           
-    });
+    async getUsers(currentPage, pageSize) {
+        let response = await instance.get(`users?page=${currentPage}&count=${pageSize}`)
+        return response.data;           
     }
 }
 
 export const authAPI = {
-    getAuth() {
-        return instance.get(`auth/me`)
-        .then((response) => {
-            return response.data
-        });
+    async getAuth() {
+        let response = await instance.get(`auth/me`)
+        return response.data
+        
     },
     postAuth(data) {
         return instance.post(`/auth/login`, data)
@@ -33,32 +30,25 @@ export const authAPI = {
 }
 
 export const followAPI = {
-    postUser(id) {
-        return instance.post(`follow/${id}`, {})
-        .then((response) => {
-            return response.data
-        });
+    async postUser(id) {
+        let response = await instance.post(`follow/${id}`, {})
+        return response.data
+        
     },
-    deleteUser(id) {
-        return instance.delete(`follow/${id}`)
-        .then((response) => {
-            return response.data
-        });
+    async deleteUser(id) {
+        let response = await instance.delete(`follow/${id}`)
+        return response.data
     }
 }
 
 export const profileAPI = {
-    getUserProfile(id) {
-        return instance.get(`profile/` + id)
-        .then((response) => {
-            return response.data
-        });
+    async getUserProfile(id) {
+        let response = await instance.get(`profile/` + id)
+        return response.data
     },
-    getStatust(id) {
-        return instance.get(`profile/status/` + id)
-        .then((response) => {
-            return response.data
-        });
+    async getStatust(id) {
+        let response = await instance.get(`profile/status/` + id)
+        return response.data
     },
     updateStatus(status) {
         return instance.put(`profile/status`, {status : status})

@@ -1,6 +1,10 @@
 .postsBlock {
     padding: 10px;
 }
+.post {
+    color: #fff;
+}
 .posts {
     margin-top: 10px;
+    color: #fff;
 }

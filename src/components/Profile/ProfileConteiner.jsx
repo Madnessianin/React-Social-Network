@@ -5,6 +5,7 @@ import {getUser, getStatus, updateStatus} from '../../Redux/profile-reducer'
 import { withRouter } from 'react-router-dom';
 import { withAuthRedirect } from '../Hoc/withAuthRedirect';
 import { compose } from 'redux';
+import { getAutorizedUserId, getProfile, getUserStatus } from '../../Redux/profile-selectors';
 
 class ProfileConteiner extends React.Component {
     
@@ -28,9 +29,9 @@ class ProfileConteiner extends React.Component {
 
 
 let mapStateToProps = (state) => ({
-  profile: state.profilePage.profile,
-  status : state.profilePage.status,
-  autorizedUserId : state.authPage.userId
+  profile: getProfile(state),
+  status : getUserStatus(state),
+  autorizedUserId : getAutorizedUserId(state)
 })
 
 let mapDispatchToProps = {getUser, getStatus, updateStatus}

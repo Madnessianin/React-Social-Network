@@ -28,8 +28,8 @@ const SendNewMessageRedux = reduxForm({form : 'addMessage'})(SendNewMessage)
 
 const Dialogs = (props) => {
     let state = props.dialogsPage;
-    let dialogsElements = state.dialogs.map( dialog => <DialogItem name={dialog.name} id={dialog.id} />),
-        messagesElements = state.messages.map( message => <Messege message={message.message}/> ),
+    let dialogsElements = props.dialogs.map( dialog => <DialogItem name={dialog.name} id={dialog.id} />),
+        messagesElements = props.messages.map( message => <Messege message={message.message}/> ),
         addMessage = (data) => {
             props.sendMessage(data.newMessageText);
         }
