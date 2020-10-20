@@ -16,18 +16,18 @@ const Paginator = ({totalCount, pageSize, currentPage, onPageChanged, portionSiz
     
     return (
         <div className = {style.paginator}>
-            {portionNumber > 1 && <button onClick = {() => {
+            {portionNumber > 1 && <button className = {style.button_left} onClick = {() => {
                                                 setPortionNumber(portionNumber - 1)
-                                                onPageChanged(leftPortionPageNumber - 1)}}>prev</button>}
+                                                onPageChanged(leftPortionPageNumber - 1)}}></button>}
             <div className ={style.inner} >
                 {pages.filter(page => page >= leftPortionPageNumber && page <= rightPortionPageNumber)
                 .map(page => {
                 return <span className = {currentPage === page && style.selectPage}
                 onClick = {(event) => {onPageChanged(page);}}>{page}</span>})}
             </div>
-            {portionCount > portionNumber && <button onClick = {() => {
+            {portionCount > portionNumber && <button className = {style.button_right} onClick = {() => {
                                                 setPortionNumber(portionNumber + 1)
-                                                onPageChanged(rightPortionPageNumber + 1)}}>next</button>}
+                                                onPageChanged(rightPortionPageNumber + 1)}}></button>}
         </div>
     )
 } 

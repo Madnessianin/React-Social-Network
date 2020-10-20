@@ -10,5 +10,27 @@
 }
 
 .inner span {
+    cursor: pointer;
     margin: 0 5px;
+}
+.inner span:last-child {
+    margin-right: 10px;
+}
+.paginator button {
+    cursor: pointer;
+    width: 15px;
+    height: 16px;
+    background-color: transparent;
+    border: none;
+    border-top: 3px solid #fff;
+    border-left: 3px solid #fff;
+}
+.paginator button:focus {
+    outline: 0;
+}
+.button_left {
+    transform: rotate(-45deg) translateX(-3px);
+}
+.button_right {
+    transform: rotate(135deg) translateX(3px);
 }
