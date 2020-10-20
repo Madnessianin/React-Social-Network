@@ -1,6 +1,25 @@
 .user_photo {
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
 }
-
+.inner {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
+    margin: 0 20px;
+}
+.item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 5px 0;
+    background-color: #303985;
+    border-radius: 10px;
+}
+.item div {
+    width: 98%;
+    margin: 2px auto;
+    text-align: center;
+}  
