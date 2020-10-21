@@ -15,24 +15,20 @@ const User = ({user, follow, unfollow, followingIsProgress}) => {
                         <img src = {user.photos.small != null ? user.photos.small : userPhoto} className = {style.user_photo} />
                     </NavLink>
                 </div>
-            <div>
-            { user.followed 
-                        ? <button disabled = {followingIsProgress.some(id => id === user.id)} 
-                        onClick = {() => {unfollow(user.id)}} >Unfollow</button>
-                        : <button disabled = {followingIsProgress.some(id => id === user.id)} 
-                        onClick = {() => {follow(user.id)}}>Follow</button>
-                    }
+                <div>{user.name}</div>
+                <div>{ user.followed 
+                            ? <button disabled = {followingIsProgress.some(id => id === user.id)} 
+                            onClick = {() => {unfollow(user.id)}} >Unfollow</button>
+                            : <button disabled = {followingIsProgress.some(id => id === user.id)} 
+                            onClick = {() => {follow(user.id)}}>Follow</button>
+                        }
                 </div>
-            </div>
-            <div>
-                <div>
-                    <div>{user.name}</div>
-                    <div>{user.status}</div>
+                <div>{user.status == null || user.status.length >= 20
+                        ? "------"
+                        : user.status}
                 </div>
-                <div>
-                    <div>{"user.location.country"}</div>
-                    <div>{"user.location.city"}</div>
-                </div>
+                <div>{"user.location.country"}</div>
+                <div>{"user.location.city"}</div>
             </div>
         </div>
     )
