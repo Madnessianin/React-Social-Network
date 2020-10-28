@@ -63,6 +63,10 @@ export const profileAPI = {
             }
         })
         return response.data
+    },
+    async dispachProfileInfo(profile) {
+        let response = await instance.put(`profile`, profile)
+        return response
     }
 
 }

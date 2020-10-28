@@ -37,7 +37,7 @@ class MyPosts extends React.PureComponent {
     this.props.addPost(data.newPostText);
   }        
     return (
-      <div className={classes.postsBlock}>
+      <div>
         <h3>My posts</h3>
         <AddPostFormRedux onSubmit={addPost} />
         <div className={classes.posts}>
