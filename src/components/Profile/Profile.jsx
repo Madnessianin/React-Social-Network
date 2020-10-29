@@ -62,7 +62,7 @@ const ProfileInfo = ({profile, status, updateStatus}) => {
           .map(key => {
             return <Contact key = {key} contactKey = {key} contactValue = {profile.contacts[key]} />
           })}
-    </div>
+      </div>
   </div>
   )
 }

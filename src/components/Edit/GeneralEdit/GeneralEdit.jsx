@@ -1,11 +1,17 @@
 import React from 'react'
 import { useState } from 'react';
-import ProfileDataReduxForm from './ProfileDataForm/ProfileDataForm';
+import ContactReduxForm from '../ContactForm/ContactForm';
+import ProfileDataReduxForm from '../ProfileDataForm/ProfileDataForm';
 
 
 const Edit = (props) => {
     let [saveChange, setSaveChange] = useState(false)
     const onSubmit = (data) => {
+        console.log(data)
+        props.saveProfileInfo(data)
+    }
+    const onSubmitContact = (data) => {
+        console.log(data)
         props.saveProfileInfo(data)
     }
     return (
@@ -14,6 +20,9 @@ const Edit = (props) => {
         <ProfileDataReduxForm initialValues = {props.profile} 
                               onSubmit = {onSubmit} 
                               changeSaved = {()=>{setSaveChange(true)}}/>
+        <ContactReduxForm onSubmit = {onSubmitContact}
+                          initialValues = {props.profile}
+                          contacts = {props.profile.contacts} />
     </div>
     )
 }

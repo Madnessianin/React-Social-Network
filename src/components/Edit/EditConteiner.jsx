@@ -1,13 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router-dom'
+import { Redirect, Route } from 'react-router-dom'
 
 import { getProfile } from '../../Redux/profile-selectors'
 import {saveProfileInfo} from '../../Redux/profile-reducer'
-import Edit from './Edit'
+import Edit from './GeneralEdit/GeneralEditConteiner'
+import NavBarEdit from './NavBarEdit/NavBarEdit'
 
 
-import ProfileDataReduxForm from './ProfileDataForm/ProfileDataForm'
+
 
 class EditConteiner extends React.Component {
     
@@ -15,8 +16,16 @@ class EditConteiner extends React.Component {
         if (this.props.profile == null){
             return <Redirect to="/profile" />
         }
-        return <Edit profile = {this.props.profile}
-                     saveProfileInfo = {this.props.saveProfileInfo} />
+        return (
+        <div>
+            <NavBarEdit />
+            <div>
+                <Route path = "/edit" render = {()=> <Edit profile = {this.props.profile}
+                                                           saveProfileInfo = {this.props.saveProfileInfo} />} />
+            </div>
+        </div>
+        )
+        
     }
 }
 
