@@ -4,12 +4,8 @@ import ContactReduxForm from '../ContactForm/ContactForm';
 import ProfileDataReduxForm from '../ProfileDataForm/ProfileDataForm';
 
 
-const Edit = (props) => {
+const ContactEdit = (props) => {
     let [saveChange, setSaveChange] = useState(false)
-    const onSubmit = (data) => {
-        console.log(data)
-        props.saveProfileInfo(data)
-    }
     const onSubmitContact = (data) => {
         console.log(data)
         props.saveProfileInfo(data)
@@ -17,9 +13,6 @@ const Edit = (props) => {
     return (
     <div>
         {saveChange && <div>Change saved!</div>}
-        <ProfileDataReduxForm initialValues = {props.profile} 
-                              onSubmit = {onSubmit} 
-                              changeSaved = {()=>{setSaveChange(true)}}/>
         <ContactReduxForm onSubmit = {onSubmitContact}
                           initialValues = {props.profile}
                           contacts = {props.profile.contacts} />
@@ -27,4 +20,4 @@ const Edit = (props) => {
     )
 }
 
-export default Edit;
+export default ContactEdit;

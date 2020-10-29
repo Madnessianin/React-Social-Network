@@ -1,6 +1,6 @@
 import React from 'react';
 import logo from './logo.svg';
-import './App.css';
+import style from'./App.module.css';
 import NavBar from './components/NavBar/NavBar';
 import { Route,  withRouter } from 'react-router-dom';
 import News from './components/News/News';
@@ -35,17 +35,19 @@ class App extends React.Component {
     return (
       <div>
         <HeaderConteiner />
-        <div className = "app-wrapper">
+        <div className = {style.appWrapper}>
           <NavBar />
-          <div className = "app-wrapper-content">
-            <Route path = "/profile/:userId?" render = {withSuspense(ProfileConteiner)}/> 
-            <Route path = "/dialogs" render = {withSuspense(DialogsConteiner)}/> 
-            <Route path = "/news" component = {News}/>
-            <Route path = "/music" component = {Music}/>
-            <Route path = "/users" render = {withSuspense(UsersConteiner)}/> 
-            <Route path = "/settings" component = {Settings}/>
-            <Route path = "/login" render = {() => <LoginConteiner />}/>
-            <Route path = "/edit" render = {() => <EditConteiner />} />
+          <div className = {style.content}>
+            <div className = {style.contentInner}>
+              <Route path = "/profile/:userId?" render = {withSuspense(ProfileConteiner)}/>
+              <Route path = "/dialogs" render = {withSuspense(DialogsConteiner)}/> 
+              <Route path = "/news" component = {News}/>
+              <Route path = "/music" component = {Music}/>
+              <Route path = "/users" render = {withSuspense(UsersConteiner)}/> 
+              <Route path = "/settings" component = {Settings}/>
+              <Route path = "/login" render = {() => <LoginConteiner />}/>
+              <Route path = "/edit" render = {() => <EditConteiner />} />
+            </div>
           </div>
         </div>
     </div>
