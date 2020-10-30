@@ -1,12 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { BrowserRouter, Redirect, Route } from 'react-router-dom'
+import { BrowserRouter, Redirect, Route, useRouteMatch } from 'react-router-dom'
 
 import { getProfile } from '../../Redux/profile-selectors'
 import {saveProfileInfo} from '../../Redux/profile-reducer'
 import GeneralEdit from './GeneralEdit/GeneralEdit'
 import NavBarEdit from './NavBarEdit/NavBarEdit'
 import ContactEdit from './ContactEdit/ContactEdit'
+import style from './EditConteiner.module.css'
 
 
 
@@ -17,15 +18,16 @@ class EditConteiner extends React.Component {
         if (this.props.profile == null){
             return <Redirect to="/profile" />
         }
+        /* let { path, url } = useRouteMatch(); */
         return (
-        <div>
+        <div className = {style.inner}>
             <NavBarEdit />
-            <BrowserRouter basename = '/edit'>
-                <Route path = "/" render = {()=> <GeneralEdit profile = {this.props.profile}
+            <div className = {style.content}>
+                <Route path = "/edit/general" render = {()=> <GeneralEdit profile = {this.props.profile}
                                                                   saveProfileInfo = {this.props.saveProfileInfo} />} />
-                <Route path = "/contacts" render = {()=> <ContactEdit contacts = {this.props.profile.contacts}
+                <Route path = "/edit/contacts" render = {()=> <ContactEdit profile = {this.props.profile}
                                                                   saveProfileInfo = {this.props.saveProfileInfo} />} />
-            </BrowserRouter>
+            </div>
         </div>
         )
         

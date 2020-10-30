@@ -8,7 +8,7 @@ const ContactEdit = (props) => {
     let [saveChange, setSaveChange] = useState(false)
     const onSubmitContact = (data) => {
         console.log(data)
-        props.saveProfileInfo(data)
+        //props.saveProfileInfo(data)
     }
     return (
     <div>

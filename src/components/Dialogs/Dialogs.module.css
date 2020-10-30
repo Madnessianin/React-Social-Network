@@ -1,6 +1,9 @@
 .dialogs {
     display: grid;
-    grid-template-columns: 2fr 10fr;
+    grid-template-columns: 3fr 5fr;
+    border-radius: 15px;
+    background-color: #212437;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .5);
 }
 .dialogs_inner {
     padding: 10px;

@@ -1,0 +1,14 @@
+.item a {
+    padding-left: 10px;
+    text-decoration: none;
+    color: #fff;
+    border-left: 3px solid transparent;
+    transition: color .2s linear, border .2s linear;
+}
+.item a:hover{
+    color: #00d7b2;
+}
+.item a.active {
+    border-left: 3px solid #00d7b2;
+    color: #00d7b2;
+}

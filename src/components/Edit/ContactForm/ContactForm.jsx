@@ -21,7 +21,7 @@ const ContactForm = ({handleSubmit, contacts, changeSaved}) => {
     )
 }
 
-const ContactReduxForm = reduxForm({form: 'profileInfo'})(ContactForm)
+const ContactReduxForm = reduxForm({form: 'contactsInfo'})(ContactForm)
 
 export default ContactReduxForm;
 

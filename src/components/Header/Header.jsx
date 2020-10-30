@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import Settings from '../Settings/Settings';
 import style from'./Header.module.css';
-
+import logo from '../../assets/images/logo192.png'
 
 
 
@@ -13,7 +13,7 @@ const Header = (props) => {
     return <header className={style.header}>
         <div className = {style.wrapper}>
             <div className = {style.inner}>
-                <img className = {style.img} src="https://i.pinimg.com/originals/33/b8/69/33b869f90619e81763dbf1fccc896d8d.jpg" />
+                <img className = {style.img} src={logo} />
                 <div className={style.login_block}> {
                     props.isAuth ? <div>{props.login} <button onClick = {() => {setMenuMode(!menuMode)}} 
                                                               className = {style.btn}></button></div>

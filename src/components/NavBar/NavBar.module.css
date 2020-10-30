@@ -16,4 +16,4 @@ transition: color .2s linear;
 }
   .item a.active {
       color: #00d7b2;
-  }
+}

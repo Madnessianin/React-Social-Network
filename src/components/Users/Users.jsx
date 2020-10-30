@@ -6,7 +6,7 @@ import User from "./User/User";
 
 const Users = (props) => {
     
-    return <div>
+    return <div className = {style.users}>
         <Paginator totalCount = {props.totalUsersCount}
                    pageSize = {props.pageSize} 
                    currentPage = {props.currentPage}

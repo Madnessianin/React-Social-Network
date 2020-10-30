@@ -1,3 +1,9 @@
+.users {
+    padding: 10px;
+    border-radius: 15px;
+    background-color: #212437;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+}
 .user_photo {
     width: 120px;
     height: 120px;
