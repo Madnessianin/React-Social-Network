@@ -31,7 +31,7 @@ class MyPosts extends React.PureComponent {
   } */
 
   render() {
-  let postsElements = this.props.posts.map(post => <Post message={post.message} likeCounts={post.likesCount} />)
+  let postsElements = this.props.posts.map(post => <div key = {post.id}><Post message={post.message} likeCounts={post.likesCount} /></div>)
   
   let addPost = (data) => {
     this.props.addPost(data.newPostText);

@@ -1,0 +1,54 @@
+.inner {
+    display: grid;
+    grid-template-columns: 8fr 2fr;
+    grid-template-areas: 
+    "c n";
+    grid-gap: 10px;
+    
+}
+.content {
+    grid-area: c;
+    border-radius: 15px;
+    background-color: #212437;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+}
+
+.form {
+    padding: 20px;
+}
+.formWrapper {
+    
+}
+
+.formItem {
+    display: grid;
+    grid-template-columns: 3fr 5fr;
+    grid-gap: 20px;
+    margin-bottom: 5px;
+    width: 100%;
+}
+
+.formLabel {
+    text-align: right;
+}
+.formBtn {
+    position: relative;
+    left: 35%;
+    font-size: 16px;
+    font-weight: 400;
+    cursor: pointer;
+    width: 150px;
+    margin-top: 20px;
+    padding: 5px 10px;
+    color: #fff;
+    background-color: #383d5c;
+    border-radius: 5px;
+    border: 1px solid #383d5c;
+    transition: color .2s linear;
+}
+.formBtn:hover {
+    color: #00d7b2;
+}
+.formBtn:focus {
+    outline: 0;
+}

@@ -1,15 +1,19 @@
 .dialogs {
     display: grid;
+    grid-template-columns: 8fr 2fr;
+    grid-template-areas:
+    "c n";
+    
+    
+}
+.inner {
+    grid-area: c;
+    display: grid;
     grid-template-columns: 3fr 5fr;
+    padding: 10px;
     border-radius: 15px;
     background-color: #212437;
     box-shadow: 0 0 10px rgba(0, 0, 0, .5);
-}
-.dialogs_inner {
-    padding: 10px;
-}
-.messages {
-    padding: 10px;
 }
 .avatar {
     display: flex;

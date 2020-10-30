@@ -22,7 +22,7 @@ const Paginator = ({totalCount, pageSize, currentPage, onPageChanged, portionSiz
             <div className ={style.inner} >
                 {pages.filter(page => page >= leftPortionPageNumber && page <= rightPortionPageNumber)
                 .map(page => {
-                return <span className = {currentPage === page && style.selectPage}
+                return <span key = {page} className = {currentPage === page && style.selectPage}
                 onClick = {(event) => {onPageChanged(page);}}>{page}</span>})}
             </div>
             {portionCount > portionNumber && <button className = {style.button_right} onClick = {() => {

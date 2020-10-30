@@ -13,10 +13,10 @@ const Users = (props) => {
                    onPageChanged = {props.onPageChanged}/>
     
         <div className = {style.inner}>
-            {props.users.map( user => <User user = {user}
+            {props.users.map( user => <div key = {user.id}><User user = {user}
                                             follow = {props.follow}
                                             unfollow = {props.unfollow}
-                                            followingIsProgress = {props.followingIsProgress} />)}
+                                            followingIsProgress = {props.followingIsProgress} /></div>)}
         </div>
         
 

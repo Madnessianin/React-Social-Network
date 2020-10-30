@@ -1,5 +1,5 @@
 import React from 'react';
-import classes from './Dialogs.module.css';
+import style from './Dialogs.module.css';
 import DialogItem from './DialogItem/DialogItem';
 import Messege from './Message/Message';
 import { Field, reduxForm } from 'redux-form';
@@ -28,22 +28,24 @@ const SendNewMessageRedux = reduxForm({form : 'addMessage'})(SendNewMessage)
 
 const Dialogs = (props) => {
     let state = props.dialogsPage;
-    let dialogsElements = props.dialogs.map( dialog => <DialogItem name={dialog.name} id={dialog.id} />),
-        messagesElements = props.messages.map( message => <Messege message={message.message}/> ),
+    let dialogsElements = props.dialogs.map( dialog => <div key = {dialog.id}><DialogItem name={dialog.name} id={dialog.id} /></div>),
+        messagesElements = props.messages.map( message => <div key = {message.id}><Messege message={message.message}/></div> ),
         addMessage = (data) => {
             props.sendMessage(data.newMessageText);
         }
     
     return (
-    <div className={classes.dialogs}>
-        <div className={classes.dialogs_inner}>
-            {dialogsElements}
+    <div className={style.dialogs}>
+        <div className = {style.inner}>
+            <div className={style.items}>
+                {dialogsElements}
+            </div>
+            <div className={style.messages}>
+                <div>{messagesElements}</div>
+                <SendNewMessageRedux onSubmit={addMessage} />
+            </div>
+
         </div>
-        <div className={classes.messages}>
-            <div>{messagesElements}</div>
-            <SendNewMessageRedux onSubmit={addMessage} />
-        </div>
-        
     </div>
     ) 
 }
