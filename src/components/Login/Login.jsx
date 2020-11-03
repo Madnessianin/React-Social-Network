@@ -28,6 +28,11 @@ const LoginForm = (props) => {
                        name = {"rememberMe"} 
                        type={"checkbox"} />remember me
             </div>
+            {props.captchaURL && <div>
+                <img className = {style.captcha} src={props.captchaURL} />
+                <Field component={Input} 
+                       name = {"captcha"} />
+            </div>}
             {props.error && <div className = {classes.formCommonError}>
                 {props.error}
             </div>}
@@ -54,7 +59,7 @@ const Login = (props) => {
     return <div className = {style.form}>
         <img className={style.logo} src = {logo} />
         <h1 className={style.formTitle}>Social network</h1>
-        <LoginFormConteiner onSubmit = {onSubmit} />
+        <LoginFormConteiner onSubmit = {onSubmit} captchaURL={props.captchaURL} />
     </div> 
 }
 export default Login;

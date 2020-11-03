@@ -1,21 +1,24 @@
 import React from 'react'
 import { useState } from 'react';
 import ContactReduxForm from '../ContactForm/ContactForm';
-import ProfileDataReduxForm from '../ProfileDataForm/ProfileDataForm';
 import style from '../Edit.module.css'
+import Changes from '../../Common/Changes/Changes';
 
 const ContactEdit = (props) => {
     let [saveChange, setSaveChange] = useState(false)
     const onSubmitContact = (data) => {
-        props.saveProfileInfo(data)
+        props.saveProfileInfo(data, 'contactsInfo').then(
+            () => {
+                setSaveChange(true)
+            }
+        )
     }
     return (
     <div className = {style.form}>
-        {saveChange && <div>Change saved!</div>}
+        {(saveChange && <Changes />)}
         <ContactReduxForm onSubmit = {onSubmitContact}
                           initialValues = {props.profile}
-                          contacts = {props.profile.contacts}
-                          changeSaved = {()=>{setSaveChange(true)}} />
+                          contacts = {props.profile.contacts} />
     </div>
     )
 }

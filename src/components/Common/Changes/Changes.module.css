@@ -1,0 +1,15 @@
+
+.change {
+    margin-bottom: 20px;
+    font-size: 16px;
+    font-weight: 400;
+    text-align: center;
+    color: #00d7b2;
+}
+.change i::before {
+    width: 100px;
+    height: 100px;
+}
+.changeLegend {
+    margin-left: 10px;
+}

@@ -6,3 +6,7 @@ export const getIsAuth = (state) => {
 export const getLogin = (state) => {
     return state.authPage.login
 }
+
+export const getCaptcha = (state) => {
+    return state.authPage.captchaURL
+}

@@ -3,14 +3,17 @@ import { Field, reduxForm } from 'redux-form'
 import { Input } from '../../Common/FormsControl/FormsControl'
 import style from '../Edit.module.css'
 
-const ContactForm = ({handleSubmit, contacts, changeSaved}) => {
+
+const ContactForm = (props) => {
+    
     return (
-        <form className = {style.formWrapper} onSubmit = {handleSubmit}>
+        <form className = {style.formWrapper} onSubmit = {props.handleSubmit}>
+            
             <div className = {style.formInner}>
-                {Object.keys(contacts).map(key => {
+                {Object.keys(props.contacts).map(key => {
                     return (
                     <div className = {style.formItem} key={key}>
-                        <label className = {style.formLabel} for = {key}>{key + " :"}</label> 
+                        <label className = {style.formLabel} htmlFor = {key}>{key + " :"}</label> 
                         <Field  name = {"contacts." + key}
                                 placeholder = {key}
                                 component = {Input}/>
@@ -19,7 +22,7 @@ const ContactForm = ({handleSubmit, contacts, changeSaved}) => {
                 })}
             </div>
             <div>
-                <button className = {style.formBtn} onClick={changeSaved}>Save change</button>
+                <button className = {style.formBtn}>Save change</button>
             </div>
         </form>
     )

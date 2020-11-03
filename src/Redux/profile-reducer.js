@@ -1,3 +1,4 @@
+import { stopSubmit, SubmissionError } from "redux-form";
 import { profileAPI } from "../api/Api";
 
 const ADD_POST = "social-network/profile/ADD_POST",
@@ -76,12 +77,22 @@ export const savePhoto = (photo) => async (dispatch) => {
     }
 }
 
-export const saveProfileInfo = (profile) => async (dispatch, getState) => {
+export const saveProfileInfo = (profile, nameForm) => async (dispatch, getState) => {
 
     let response = await profileAPI.dispachProfileInfo(profile)
-    console.log(response)
     if (response.resultCode === 0) {
         dispatch(getUser(getState().auth.id))
+    } else {
+        if (response.data.messages.length > 0) {
+            let contacts = {}
+            for (let error in response.data.messages) {
+            let errorName = response.data.messages[error].slice(response.data.messages[error].indexOf('>') + 1, -1).toLowerCase()
+            contacts[errorName] = response.data.messages[error].slice(0, response.data.messages[error].indexOf('(') )
+        }  
+        dispatch(stopSubmit(nameForm, {"contacts": contacts}))
+        return Promise.reject(response.data.messages[0])
+        }
+        
     }
 }
 
