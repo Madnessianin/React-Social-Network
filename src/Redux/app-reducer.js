@@ -1,5 +1,3 @@
-import { stopSubmit } from 'redux-form';
-import {authAPI} from '../api/Api.js'
 import { setAuth } from './auth-reducer.js';
 
 const INITIALIZED_SUCCSESS = "social-network/app/INITIALIZED_SUCCSESS";

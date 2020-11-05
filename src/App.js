@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import style from'./App.module.css';
 import NavBar from './components/NavBar/NavBar';
 import { Redirect, Route,  Switch,  withRouter } from 'react-router-dom';

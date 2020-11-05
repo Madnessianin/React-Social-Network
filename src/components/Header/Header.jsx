@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import Settings from '../Settings/Settings';
 import style from'./Header.module.css';
 import logo from '../../assets/images/logo192.png'
 
@@ -17,7 +16,7 @@ const Header = (props) => {
                 <div className={style.login_block}> {
                     props.isAuth ? <div>{props.login} <button onClick = {() => {setMenuMode(!menuMode)}} 
                                                               className = {style.btn}></button></div>
-                    : <NavLink to={"/login"} >Login</NavLink>}
+                    : <NavLink to={"/login"} onClick = {() => {setMenuMode(false)}}>Login</NavLink>}
                 </div>
             </div>
             {menuMode ? <Menu logout = {props.logout} leftToMenuMode = {() => {setMenuMode(false)}} /> : <></>}
@@ -27,18 +26,17 @@ const Header = (props) => {
 
 const Menu = ({leftToMenuMode, logout}) => {
     return (
-        <div className = {style.menu} onBlur = {leftToMenuMode}>
-            <div className = {style.link}>
+        <dl className = {style.menu} onBlur = {leftToMenuMode}>
+            <dd className = {style.link}>
                 <NavLink onClick = {leftToMenuMode} to="/profile">Profile</NavLink>
-            </div>
-            <div className = {style.link}>
+            </dd>
+            <dd className = {style.link}>
                 <NavLink onClick = {leftToMenuMode} to="/settings">Settings</NavLink>
-            </div>
-            <div className = {style.out}>
+            </dd>
+            <dd className = {style.out}>
                 <a className= {style.outBtn} onClick = {logout}>Out</a>
-            </div>
-            
-        </div>
+            </dd>
+        </dl>
     )
 }
 

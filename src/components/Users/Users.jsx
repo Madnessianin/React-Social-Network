@@ -5,7 +5,6 @@ import User from "./User/User";
 
 
 const Users = (props) => {
-    
     return <div className = {style.users}>
         <Paginator totalCount = {props.totalUsersCount}
                    pageSize = {props.pageSize} 
@@ -13,10 +12,11 @@ const Users = (props) => {
                    onPageChanged = {props.onPageChanged}/>
     
         <div className = {style.inner}>
-            {props.users.map( user => <div key = {user.id}><User user = {user}
+            {props.users.map( user => <User key = {user.id} user = {user}
                                             follow = {props.follow}
                                             unfollow = {props.unfollow}
-                                            followingIsProgress = {props.followingIsProgress} /></div>)}
+                                            followingIsProgress = {props.followingIsProgress} 
+                                            autorizedUserId = {props.autorizedUserId}/>)}
         </div>
         
 

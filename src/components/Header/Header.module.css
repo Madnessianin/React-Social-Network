@@ -44,6 +44,7 @@
   color: #fff;
 }
 .menu {
+  margin: 0;
   position: absolute;
   z-index: 2;
   top: 90%;
@@ -53,6 +54,9 @@
   border: 1px solid #4e547c;
   border-radius: 5px;
   background-color: #212437;
+}
+.menu dd {
+  margin-left: 0;
 }
 .link {
   padding-bottom: 10px;

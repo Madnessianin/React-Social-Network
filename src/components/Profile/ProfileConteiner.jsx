@@ -22,16 +22,17 @@ class ProfileConteiner extends React.Component {
     this.checkProfile()
   }
   componentDidUpdate (prevProps, prevState) {
-    if (this.props.match.params.userId !== prevProps.match.params.userId){
+    if (this.props.match.params.userId != prevProps.match.params.userId){
       this.checkProfile()
     }
   }
 
-    render() {   
+    render() {
+      let isOwner = !this.props.match.params.userId || this.props.match.params.userId == this.props.autorizedUserId   
       return (<Profile {...this.props} 
         profile = {this.props.profile} 
         status = {this.props.status}
-        isOwner = {!this.props.match.params.userId}
+        isOwner = {isOwner}
         updateStatus = {this.props.updateStatus}
         savePhoto = {this.props.savePhoto} />)
    }

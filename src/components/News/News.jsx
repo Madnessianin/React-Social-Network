@@ -1,8 +1,9 @@
 import React from 'react';
-import classes from './News.module.css';
+import { withAuthRedirect } from '../Hoc/withAuthRedirect';
+
 
 const News = () => {
     return <div></div>
 }
 
-export default News;
+export default withAuthRedirect(News);

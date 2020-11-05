@@ -9,7 +9,6 @@ import classes from '../Common/FormsControl/FormsControl.module.css';
 const LoginForm = (props) => {
     return (
         <form className={style.formInner} onSubmit = {props.handleSubmit} >
-            <legend></legend>
             <div>
                 <Field placeholder = {"Login"} 
                        name = {"email"}

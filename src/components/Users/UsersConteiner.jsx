@@ -9,6 +9,7 @@ import {usersAPI} from '../../api/Api.js'
 import { withAuthRedirect } from "../Hoc/withAuthRedirect";
 import { compose } from "redux";
 import {getAllUsers, getCurrentPage, getFollowingIsProgress, getIsFetching, getPageSize, getTotalUsersCount} from "../../Redux/users-selectors"
+import { getAutorizedUserId } from "../../Redux/profile-selectors";
 
 class UsersConteiner extends React.Component {
 
@@ -21,7 +22,6 @@ class UsersConteiner extends React.Component {
         this.props.getUsers(page, this.props.pageSize);
     }
     render() {
-        
     return <>
             {this.props.isFetching ? <Preloader /> : null}
             <Users totalUsersCount = {this.props.totalUsersCount}
@@ -31,7 +31,8 @@ class UsersConteiner extends React.Component {
                   users = {this.props.users}
                   follow = {this.props.follow}
                   unfollow = {this.props.unfollow}
-                  followingIsProgress = {this.props.followingIsProgress}/>
+                  followingIsProgress = {this.props.followingIsProgress}
+                  autorizedUserId = {this.props.autorizedUserId}/>
     </>
     }
 }
@@ -44,7 +45,8 @@ let mapStateToProps = (state) => {
         totalUsersCount : getTotalUsersCount(state),
         currentPage : getCurrentPage(state),
         isFetching : getIsFetching(state),
-        followingIsProgress : getFollowingIsProgress(state)
+        followingIsProgress : getFollowingIsProgress(state),
+        autorizedUserId : getAutorizedUserId(state)
     }
 }
 

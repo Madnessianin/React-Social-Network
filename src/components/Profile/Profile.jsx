@@ -69,6 +69,12 @@ const ProfileInfo = ({profile, status, updateStatus}) => {
 
 
 const Contact = ({contactKey, contactValue}) => {
-return <div>{contactKey}: {contactValue}</div>
+return (
+  <div className = {style.contactsItem}>
+    <label>{contactKey}: </label>
+    <a className = {style.link} 
+       href = {contactValue} 
+       target = {"_blank"}>{contactValue}</a>
+  </div>)
 }
 export default Profile;

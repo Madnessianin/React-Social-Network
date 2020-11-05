@@ -29,9 +29,22 @@
     border-bottom: 1px solid #383d5c;
 }
 .contacts {
+    display: flex;
+    justify-content: left;
+    flex-wrap: wrap;
     margin: 10px;
 }
-
+.contactsItem {
+    width: 100%;
+}
+.link {
+    text-decoration: none;
+    color: #fff;
+    transition: color .2s linear;
+}
+.link:hover {
+    color: #00d7b2;
+}
 .editMode {
     margin-top: 20px;  
 }

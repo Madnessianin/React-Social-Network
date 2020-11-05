@@ -1,8 +1,9 @@
 import React from 'react';
-import classes from './Settings.module.css';
+import { withAuthRedirect } from '../Hoc/withAuthRedirect';
+
 
 const Settings = () => {
     return <div></div>
 }
 
-export default Settings;
+export default withAuthRedirect(Settings);
