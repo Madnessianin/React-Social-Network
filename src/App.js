@@ -2,7 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import style from'./App.module.css';
 import NavBar from './components/NavBar/NavBar';
-import { Route,  withRouter } from 'react-router-dom';
+import { Redirect, Route,  Switch,  withRouter } from 'react-router-dom';
 import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
@@ -24,8 +24,17 @@ const ProfileConteiner = React.lazy(() => import('./components/Profile/ProfileCo
 
 class App extends React.Component {
   
+  catchAllUnhandeledErrors = (PromiseRejectionEvent) => {
+    console.error(PromiseRejectionEvent)
+  }
+
   componentDidMount () {
     this.props.initializeApp()
+    window.addEventListener("unhandledrejection", this.catchAllUnhandeledErrors)
+  }
+
+  componentWillUnmount () {
+    window.removeEventListener("unhandledrejection", this.catchAllUnhandeledErrors)
   }
   
   render () {
@@ -39,14 +48,17 @@ class App extends React.Component {
           <NavBar />
           <div className = {style.content}>
             <div className = {style.contentInner}>
-              <Route path = "/profile/:userId?" render = {withSuspense(ProfileConteiner)}/>
-              <Route path = "/dialogs" render = {withSuspense(DialogsConteiner)}/> 
-              <Route path = "/news" component = {News}/>
-              <Route path = "/music" component = {Music}/>
-              <Route path = "/users" render = {withSuspense(UsersConteiner)}/> 
-              <Route path = "/settings" component = {Settings}/>
-              <Route path = "/login" render = {() => <LoginConteiner />}/>
-              <Route path = "/edit" render = {() => <EditConteiner />} />
+              <Switch >
+                <Route exact path = "/" render = {()=><Redirect to = {"/profile"}/>}/>
+                <Route path = "/profile/:userId?" render = {withSuspense(ProfileConteiner)}/>
+                <Route path = "/dialogs" render = {withSuspense(DialogsConteiner)}/> 
+                <Route path = "/news" component = {News}/>
+                <Route path = "/music" component = {Music}/>
+                <Route path = "/users" render = {withSuspense(UsersConteiner)}/> 
+                <Route path = "/settings" component = {Settings}/>
+                <Route path = "/login" render = {() => <LoginConteiner />}/>
+                <Route path = "/edit" render = {() => <EditConteiner />} />
+              </Switch>
             </div>
           </div>
         </div>

@@ -1,5 +1,5 @@
 import React from 'react'
-import {Route} from 'react-router-dom'
+import {Redirect, Route, Switch} from 'react-router-dom'
 import ContactEdit from './ContactEdit/ContactEdit'
 import style from './Edit.module.css'
 import GeneralEdit from './GeneralEdit/GeneralEdit'
@@ -13,10 +13,13 @@ const Edit = (props) => {
         <div className = {style.inner}>
         <NavBarEdit />
         <div className = {style.content}>
-            <Route path = "/edit/general" render = {()=> <GeneralEdit profile = {props.profile}
-                                                              saveProfileInfo = {props.saveProfileInfo} />} />
-            <Route path = "/edit/contacts" render = {()=> <ContactEdit profile = {props.profile}
-                                                              saveProfileInfo = {props.saveProfileInfo} />} />
+            <Switch >
+                <Route exact path = "/edit" render = {()=><Redirect to = {"/edit/general"}/>}/>
+                <Route path = "/edit/general" render = {()=> <GeneralEdit profile = {props.profile}
+                                                                saveProfileInfo = {props.saveProfileInfo} />} />
+                <Route path = "/edit/contacts" render = {()=> <ContactEdit profile = {props.profile}
+                                                                saveProfileInfo = {props.saveProfileInfo} />} />
+        </Switch>
         </div>
     </div>
     )
