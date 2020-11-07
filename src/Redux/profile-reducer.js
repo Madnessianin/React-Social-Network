@@ -85,9 +85,9 @@ export const saveProfileInfo = (profile, nameForm) => async (dispatch, getState)
     } else {
         if (response.data.messages.length > 0) {
             let contacts = {}
-            for (let error in response.data.messages) {
-            let errorName = response.data.messages[error].slice(response.data.messages[error].indexOf('>') + 1, -1).toLowerCase()
-            contacts[errorName] = response.data.messages[error].slice(0, response.data.messages[error].indexOf('(') )
+            for (let error of response.data.messages) {
+            let errorName = error.slice(error.indexOf('>') + 1, -1).toLowerCase()
+            contacts[errorName] = error.slice(0, error.indexOf('(') )
         }  
         dispatch(stopSubmit(nameForm, {"contacts": contacts}))
         return Promise.reject(response.data.messages[0])
