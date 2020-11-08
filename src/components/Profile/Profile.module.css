@@ -45,17 +45,7 @@
 .link:hover {
     color: #00d7b2;
 }
-.editMode {
-    margin-top: 20px;  
-}
-.editMode a {
-    padding: 10px;
-    text-decoration: none;
-    color: #fff;
-    background-color: #383d5c;
-    border-radius: 5px;
-    transition: color .2s linear;
-}
+
 
 .editMode a:hover {
     color: #00d7b2;;

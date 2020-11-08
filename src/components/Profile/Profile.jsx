@@ -1,7 +1,7 @@
 import React from 'react';
 import Preloader from '../Common/Preloader/Preloader';
 import style from './Profile.module.css';
-
+import styleBtn from '../Common/Button/Button.module.css'
 import ProfileStatusWithHooks from './ProfileStatus/ProfileStatusWithHooks';
 import userPhoto from '../../assets/images/user.png'
 import MyPostsConteiner from './MyPosts/MyPostsConteiner';
@@ -25,7 +25,7 @@ const Profile = (props) => {
               <div>
                 {props.isOwner && <input onChange = {onMainPhotoSelected} type = {"file"} />}
               </div>
-              <div className = {style.editMode}>
+              <div className = {styleBtn.wrapperBtn}>
                   {props.isOwner && <NavLink to = "/edit">EditMode</NavLink>}
               </div>
 
