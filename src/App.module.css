@@ -1,11 +1,18 @@
-
-.appWrapper {
+.appInner {
   display: grid;
   grid-template-areas: 
+  "h"
+  "w";
+  grid-template-rows: 70px 1fr;
+}
+.appWrapper {
+  grid-area: w;
+  display: grid;
+  grid-template-areas: 
+  "h h"
   "n c";
   grid-template-columns: 2fr 10fr;
-  grid-gap: 10px;
-  width: 1200px;
+  width: 80%;
   margin: 10px auto 0;
   color: #fff;
 }

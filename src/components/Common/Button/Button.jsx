@@ -1,16 +1,14 @@
 import React from 'react'
-import { Redirect } from 'react-router-dom'
+import { NavLink, Redirect } from 'react-router-dom'
 import style from './Button.module.css'
 
 const Button = (props) => {
-    let onClickChanged = () => {
-        if (props.isRedirect) {
-            return <Redirect to = {"/edit"}/>
-        }
-    }
+    
     return (
         <div className = {style.wrapperBtn}>
-            <button className = {style.btn} onClick = {onClickChanged}>{props.textBtn}</button>
+            {props.link 
+            ? <NavLink to = {props.link}>{props.textBtn}</NavLink>
+            :<button className = {style.btn} type = {props.type} >{props.textBtn}</button>}
         </div>
     )
 }

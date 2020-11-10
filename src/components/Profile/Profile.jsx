@@ -1,11 +1,10 @@
 import React from 'react';
 import Preloader from '../Common/Preloader/Preloader';
 import style from './Profile.module.css';
-import styleBtn from '../Common/Button/Button.module.css'
 import ProfileStatusWithHooks from './ProfileStatus/ProfileStatusWithHooks';
 import userPhoto from '../../assets/images/user.png'
 import MyPostsConteiner from './MyPosts/MyPostsConteiner';
-import { NavLink } from 'react-router-dom';
+import Button from '../Common/Button/Button';
 
 const Profile = (props) => {
     let onMainPhotoSelected = (event) => {
@@ -22,38 +21,38 @@ const Profile = (props) => {
             
             <div className = {style.item}>
               <img className = {style.avatar} src = {props.profile.photos.large || userPhoto} alt = ""/>
-              <div>
+              <div className = {style.loadPhoto}>
                 {props.isOwner && <input onChange = {onMainPhotoSelected} type = {"file"} />}
               </div>
-              <div className = {styleBtn.wrapperBtn}>
-                  {props.isOwner && <NavLink to = "/edit">EditMode</NavLink>}
-              </div>
 
+              {props.isOwner && <Button textBtn = {"Edit mode"} 
+                                        link = {'/edit'} />}
             </div>
 
             <div className = {style.item}>
               <div>
                 <ProfileInfo profile = {props.profile}
                              status = {props.status}
-                             updateStatus = {props.updateStatus} />
+                             updateStatus = {props.updateStatus}
+                             isOwner = {props.isOwner} />
               </div>
 
-              <div>
-                <MyPostsConteiner />
-              </div>
+              {props.isOwner && <div><MyPostsConteiner /></div>}
+              
             </div>
 
           </div>
         </div>
     ) 
 }
-const ProfileInfo = ({profile, status, updateStatus}) => {
+const ProfileInfo = ({profile, status, updateStatus, isOwner}) => {
   return ( 
   <div>
     <div className = {style.name}>{profile.fullName}</div>
       <div className = {style.status}>
         <ProfileStatusWithHooks status = {status} 
-                                updateStatus = {updateStatus} />
+                                updateStatus = {updateStatus}
+                                isOwner = {isOwner} />
       </div>
       <div>About: {profile.aboutMe}</div>
       <div>LookingForAJob: {profile.lookingForAJob ? "yes" : "no"}</div>

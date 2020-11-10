@@ -5,6 +5,7 @@ import { Textarea } from '../../Common/FormsControl/FormsControl';
 import style from './MyPosts.module.css';
 import Post from './Posts/Post';
 import styleBtn from '../../Common/Button/Button.module.css'
+import Button from '../../Common/Button/Button';
 
 const maxLength15 =  maxLengthCreator(15)
 const AddPostForm = (props) => {
@@ -16,9 +17,11 @@ const AddPostForm = (props) => {
                placeholder = {"Enter new post text"} 
                validate = {[required, maxLength15]}/>
       </div>
-      <div className = {styleBtn.wrapperBtn}>
+      <Button textBtn = {"Add posts"}
+              type = {"submit"} />
+      {/* <div className = {styleBtn.wrapperBtn}>
         <button className = {styleBtn.btn} >Add posts</button>
-      </div>
+      </div> */}
     </form>
   )
 }

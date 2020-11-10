@@ -4,14 +4,21 @@ import { useState } from 'react';
 
 
 const ProfileStatusWithHooks = (props) => {
-    
+    return (
+        <div>
+            {props.isOwner ? <Status {...props} /> : <span>{props.status || "--"}</span>}
+        </div>
+    )
+}
+
+const Status = (props) => {
     let [editMode, setEditMode] = useState(false),
         [status, setStatus] = useState(props.status)
     
     useEffect(() => {
         setStatus(props.status)
     }, [props.status])
-
+    
     return (
         <div>
             {!editMode &&

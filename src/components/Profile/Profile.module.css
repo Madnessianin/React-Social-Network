@@ -1,13 +1,13 @@
 .profile {
-    border-radius: 15px;
-    background-color: #212437;
-    box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+    
 }
 
 .inner {
     display: grid;
     grid-template-columns: 250px 1fr;
-    padding: 10px;
+    padding: 15px;
+    background-color: #1f2861d5;
+    border-radius: 10px;
 }
 .avatar {
     width: 200px;
@@ -47,6 +47,3 @@
 }
 
 
-.editMode a:hover {
-    color: #00d7b2;;
-}

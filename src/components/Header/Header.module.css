@@ -1,18 +1,20 @@
 .header {
-  height: 60px;
-  background-color: #212437;
+  grid-area: h;
+  padding-top: 5px;
+  border-bottom: 1px solid #4e547c;
+  border-top: none;
 }
 .inner {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 80%;
+  margin: 0 auto;
   
 }
 .wrapper {
   position: relative;
-  z-index: 1;
-  width: 1200px;
-  margin: 0 auto; 
+  z-index: 1; 
 }
 .img {
   width: 45px;
@@ -86,4 +88,20 @@
 
 .outBtn:focus {
   outline: 0;
+}
+.avatar {
+  width: 45px;
+  height: 45px;
+  margin-right: 10px;
+  border-radius: 50%;
+}
+.nickName {
+  display: flex;
+  align-items: center;
+}
+.login {
+  font-size: 16px;
+  font-weight: 400;
+  margin: 0;
+  margin-right: 10px;
 }

@@ -14,3 +14,7 @@ export const getAutorizedUserId = (state) => {
 export const getPosts = (state) => {
     return state.profilePage.posts
 }
+
+export const getProfilePhoto = (state) => {
+    return state.profilePage.profile.photos.large
+}
