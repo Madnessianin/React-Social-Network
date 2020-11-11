@@ -1,14 +1,15 @@
 .wrapperBtn {
-    margin-top: 15px;  
+    margin-bottom: 15px;
 }
 .btn, 
 .wrapperBtn a {
-    display: inline-block;
+    display: block;
     text-decoration: none;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 400;
     padding: 10px;
+    margin: 0 auto;
     border: none;
     color: #fff;
     background-color: #383d5c;

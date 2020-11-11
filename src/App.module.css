@@ -9,7 +9,6 @@
   grid-area: w;
   display: grid;
   grid-template-areas: 
-  "h h"
   "n c";
   grid-template-columns: 2fr 10fr;
   width: 80%;

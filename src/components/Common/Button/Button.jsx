@@ -8,7 +8,7 @@ const Button = (props) => {
         <div className = {style.wrapperBtn}>
             {props.link 
             ? <NavLink to = {props.link}>{props.textBtn}</NavLink>
-            :<button className = {style.btn} type = {props.type} >{props.textBtn}</button>}
+            :<button onClick = {props.onClick} className = {style.btn} type = {props.type} >{props.textBtn}</button>}
         </div>
     )
 }
