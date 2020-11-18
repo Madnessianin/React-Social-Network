@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { BrowserRouter, Redirect, Route, useRouteMatch } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 
 import { getProfile } from '../../Redux/profile-selectors'
 import {saveProfileInfo} from '../../Redux/profile-reducer'

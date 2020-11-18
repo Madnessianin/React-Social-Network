@@ -1,6 +1,8 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
+import { required } from '../../../Utils/Validators/validators'
 import Button from '../Button/Button'
+import { Textarea } from '../FormsControl/FormsControl'
 import style from './EditForm.module.css'
 
 
@@ -9,8 +11,9 @@ const FormEdit = (props) => {
     <form className = {style.form} onSubmit = {props.handleSubmit}>
         <div className = {style.formInner}>
             <Field placeholder = {"Enter new question...."}
-                name = {"text"}
-                component = {"textarea"}/>
+                name = {props.identifierText}
+                component = {Textarea}
+                validate = {[required]}/>
         </div>
         <div className = {style.btn}>
             <Button textBtn = {"Save question"} type = {"submit"} />
@@ -18,6 +21,6 @@ const FormEdit = (props) => {
     </form>
     )
 }
-const FormEditConteiner = reduxForm({form: "addQuestion"})(FormEdit)
+const FormEditConteiner = reduxForm()(FormEdit)
 
 export default FormEditConteiner;

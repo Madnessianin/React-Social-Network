@@ -3,10 +3,10 @@
 }
 .btn, 
 .wrapperBtn a {
-    display: block;
+    display: inline-block;
     text-decoration: none;
     cursor: pointer;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 400;
     padding: 10px;
     margin: 0 auto;

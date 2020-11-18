@@ -1,5 +1,5 @@
 import React from 'react';
-import { addPost } from '../../../Redux/profile-reducer';
+import { addPost, likeDislikeSucsess } from '../../../Redux/profile-reducer';
 import MyPosts from './MyPosts';
 import { connect } from 'react-redux';
 import { getPosts } from '../../../Redux/profile-selectors';
@@ -15,7 +15,8 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchYoProps =  {
-  addPost
+  addPost,
+  likeDislikeSucsess
 }
 const MyPostsConteiner = connect(mapStateToProps, mapDispatchYoProps)(MyPosts);
 

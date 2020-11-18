@@ -1,24 +1,27 @@
 .form {
-    width: 100%;
-    padding: 30px 30px 60px;
-    background-color: #181c3a;
+    padding: 15px 15px 40px;
+    background: #111436;
     border-radius: 10px;
     position: relative;
 }
+
 .form textarea {
-    width: 97%;
+    width: 99%;
     height: 50px;
     margin: 10px;
     resize: none;
     border: none;
-    border-bottom: 1px solid #262c5a;
+    border-bottom: 1px solid #00d7b2;
     background-color: transparent;
 }
 .form textarea,
 .form textarea::placeholder {
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 400;
     color: #fff;
+}
+.form textarea:focus {
+    outline: none;
 }
 .btn {
     position: absolute;

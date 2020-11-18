@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { Field, reduxForm } from 'redux-form'
-import Changes from '../../Common/Changes/Changes'
-import { Input, Textarea } from '../../Common/FormsControl/FormsControl'
-import style from '../Edit.module.css'
+import Changes from '../../../Common/Changes/Changes'
+import { Input, Textarea } from '../../../Common/FormsControl/FormsControl'
+import style from '../../Edit.module.css'
 
 const ProfileDataForm = (props) => {
     let [saveChange, setSaveChange] = useState(false)

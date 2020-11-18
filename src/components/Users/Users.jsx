@@ -2,6 +2,7 @@ import React from "react"
 import style from './Users.module.css'
 import Paginator from "../Common/Paginator/Paginator";
 import User from "./User/User";
+import Preloader from "../Common/Preloader/Preloader";
 
 
 const Users = (props) => {
@@ -10,7 +11,7 @@ const Users = (props) => {
                    pageSize = {props.pageSize} 
                    currentPage = {props.currentPage}
                    onPageChanged = {props.onPageChanged}/>
-    
+        {props.isFetching ? <div className = {style.preloader}><Preloader /></div> : null}
         <div className = {style.inner}>
             {props.users.map( user => <User key = {user.id} user = {user}
                                             follow = {props.follow}

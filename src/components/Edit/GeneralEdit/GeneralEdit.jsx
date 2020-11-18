@@ -1,6 +1,7 @@
 import React from 'react'
-import ProfileDataReduxForm from '../ProfileDataForm/ProfileDataForm';
+
 import style from '../Edit.module.css'
+import ProfileDataReduxForm from './ProfileDataForm/ProfileDataForm'
 
 const GeneralEdit = (props) => {
     

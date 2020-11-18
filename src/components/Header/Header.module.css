@@ -89,19 +89,7 @@
 .outBtn:focus {
   outline: 0;
 }
-.avatar {
-  width: 45px;
-  height: 45px;
-  margin-right: 10px;
-  border-radius: 50%;
-}
 .nickName {
   display: flex;
   align-items: center;
-}
-.login {
-  font-size: 16px;
-  font-weight: 400;
-  margin: 0;
-  margin-right: 10px;
 }

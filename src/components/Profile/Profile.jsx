@@ -5,6 +5,7 @@ import ProfileStatusWithHooks from './ProfileStatus/ProfileStatusWithHooks';
 import userPhoto from '../../assets/images/user.png'
 import MyPostsConteiner from './MyPosts/MyPostsConteiner';
 import Button from '../Common/Button/Button';
+import { useState } from 'react';
 
 const Profile = (props) => {
     let onMainPhotoSelected = (event) => {
@@ -12,6 +13,7 @@ const Profile = (props) => {
         props.savePhoto(event.target.files[0])
       }
     }
+    let [addPostode, setAddPostMode] = useState(false)
     if(!props.profile) {
       return <Preloader />
     } 
@@ -20,25 +22,31 @@ const Profile = (props) => {
           <div className={style.inner}> 
             
             <div className = {style.item}>
-              <img className = {style.avatar} src = {props.profile.photos.large || userPhoto} alt = ""/>
-              <div className = {style.loadPhoto}>
-                {props.isOwner && <input onChange = {onMainPhotoSelected} type = {"file"} />}
+              <div className = {style.wrapper}>
+                <img className = {style.avatar} src = {props.profile.photos.large || userPhoto} alt = ""/>
+                <div className = {style.loadPhoto}>
+                  {props.isOwner && <input onChange = {onMainPhotoSelected} type = {"file"} />}
+                </div>
               </div>
-
-              {props.isOwner && <Button textBtn = {"Edit mode"} 
-                                        link = {'/edit'} />}
+                {props.isOwner && <Button textBtn = {"Edit mode"} 
+                                          link = {'/edit'} />}
             </div>
 
             <div className = {style.item}>
-              <div>
-                <ProfileInfo profile = {props.profile}
-                             status = {props.status}
-                             updateStatus = {props.updateStatus}
-                             isOwner = {props.isOwner} />
-              </div>
+              <div className = {style.itemInner}>
 
-              {props.isOwner && <div><MyPostsConteiner /></div>}
-              
+                <div className = {style.wrapper}>
+                    <ProfileInfo profile = {props.profile}
+                                status = {props.status}
+                                updateStatus = {props.updateStatus}
+                                isOwner = {props.isOwner} />
+                </div>
+                
+                <div>
+                  {props.isOwner && <MyPostsConteiner />}
+                </div>
+
+              </div>
             </div>
 
           </div>
@@ -47,7 +55,7 @@ const Profile = (props) => {
 }
 const ProfileInfo = ({profile, status, updateStatus, isOwner}) => {
   return ( 
-  <div>
+  <div className = {style.info}>
     <div className = {style.name}>{profile.fullName}</div>
       <div className = {style.status}>
         <ProfileStatusWithHooks status = {status} 

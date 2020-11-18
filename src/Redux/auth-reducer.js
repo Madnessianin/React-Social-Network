@@ -1,8 +1,9 @@
 import { stopSubmit } from 'redux-form';
-import {authAPI, securityAPI} from '../api/Api.js'
+import {authAPI, profileAPI, securityAPI} from '../api/Api.js'
 
 const SET_USER_DATA = "social-network/auth/SET_USER_DATA",
-      SET_CAPTCHA_URL = "social-network/auth/SET_CAPTCHA_URL";
+      SET_CAPTCHA_URL = "social-network/auth/SET_CAPTCHA_URL",
+      SET_AUTORIZED_USER_PHOTO = "social-network/auth/SET_AUTORIZED_USER_PHOTO";
 
 
 let initialState = {
@@ -10,8 +11,10 @@ let initialState = {
     email: null,
     login: null,
     isAuth : false,
-    captchaURL : null
+    captchaURL : null,
+    userPhoto: null
 };
+
 
 const authReducer = (state = initialState, action) => {
     switch(action.type) {
@@ -27,6 +30,12 @@ const authReducer = (state = initialState, action) => {
                 captchaURL: action.captcha
             }
         }
+        case SET_AUTORIZED_USER_PHOTO : {
+            return {
+                ...state,
+                userPhoto: action.photo
+            }
+        }
         default :
             return state;
     }
@@ -35,16 +44,20 @@ const authReducer = (state = initialState, action) => {
 
 export const setAuthUserData = (userId, email, login, isAuth) => ({type: SET_USER_DATA, data : {userId ,email, login, isAuth}});
 export const setCaptchaURL = (captcha) => ({type: SET_CAPTCHA_URL, captcha})
-
+export const setAuthUserPhoto = (photo) => ({type: SET_AUTORIZED_USER_PHOTO, photo})
 
 export const setAuth = () => async (dispatch) => {
     let response = await authAPI.getAuth()
     if (response.resultCode === 0) {
         let {id, email, login} = response.data;
         dispatch(setAuthUserData(id, email, login, true));
+        dispatch(getAuthUserPhoto(id))
     }
-    
-    
+}
+
+export const getAuthUserPhoto = (id) => async (dispatch) => {
+    let profile = await profileAPI.getUserProfile(id)
+    dispatch(setAuthUserPhoto(profile.photos.large))
 }
 
 export const login = (data) => async (dispatch) => {

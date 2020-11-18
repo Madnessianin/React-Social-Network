@@ -4,10 +4,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10px;
+  padding: 15px;
+  margin: 15px;
   border-radius: 15px;
   background-color: #212437;
-  box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+  background:  #111436;
 }
 .formTitle {
   margin-right: 100px;

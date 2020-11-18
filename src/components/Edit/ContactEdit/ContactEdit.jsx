@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react';
-import ContactReduxForm from '../ContactForm/ContactForm';
+import ContactReduxForm from './ContactForm/ContactForm';
 import style from '../Edit.module.css'
 import Changes from '../../Common/Changes/Changes';
 

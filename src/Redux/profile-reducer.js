@@ -4,12 +4,13 @@ import { profileAPI } from "../api/Api";
 const ADD_POST = "social-network/profile/ADD_POST",
       SET_USER_PROFILE = "social-network/profile/SET_USER_PROFILE",
       SET_USER_STATUS = "social-network/profile/SET_USER_STATUS",
-      SAVE_PHOTO_SUCSESS = "social-network/profile/SAVE_PHOTO_SUCSESS"
+      SAVE_PHOTO_SUCSESS = "social-network/profile/SAVE_PHOTO_SUCSESS",
+      LIKEDISLAKEPOST = "social-network/profile/LIKEDISLAKEPOST"
 
 let initialState = {
     posts : [
-        {id : "1", message : 'Hi, how are you?', likesCount : '15'},
-        {id : "2", message : 'It`s my first post', likesCount : '10'}
+        {id : "1", message : 'Hi, how are you?', likesCount : '15', isLikes: false},
+        {id : "2", message : 'It`s my first post', likesCount : '10', isLikes: false}
     ],
     profile : null,
     status: "" 
@@ -23,7 +24,7 @@ const profileReducer = (state = initialState, action) => {
                 ...state,
                 posts: [
                     ...state.posts,
-                    {id : "3", message : action.newPostText, likesCount : "0" }]
+                    {id : "3", message : action.newPostText, likesCount : "0", isLikes: false }]
             };
         }
         case SET_USER_PROFILE: {
@@ -43,6 +44,30 @@ const profileReducer = (state = initialState, action) => {
                 ...state, profile: {...state.profile, photos: action.photos}
             }
         }
+        case LIKEDISLAKEPOST: {
+            return {
+                ...state,
+                posts: state.posts.map(post => {
+                    if (post.id == action.postId) {
+                        if (action.isLikes) {
+                            return {
+                                ...post, 
+                                likesCount: parseInt(post.likesCount) - 1,
+                                isLikes: false
+                            }
+                        } else {
+                            return {
+                                ...post, 
+                                likesCount: parseInt(post.likesCount) + 1,
+                                isLikes: true
+                            }
+                        } 
+                    }
+                    return post
+                })
+            }
+        }
+        
         default :
             return state;
     } 
@@ -53,6 +78,7 @@ export const addPost = (newPostText) =>  ({type: ADD_POST, newPostText});
 export const setUsersProfile = (profile) =>  ({type: SET_USER_PROFILE, profile});
 export const setUserStatus = (status) => ({type: SET_USER_STATUS, status})
 export const savePhotosSucsess = (photos) => ({type: SAVE_PHOTO_SUCSESS, photos})
+export const likeDislikeSucsess = (postId, isLike) => ({type: LIKEDISLAKEPOST, postId, isLike})
 
 export const getUser = (userId) => async (dispatch) => {
     let data = await profileAPI.getUserProfile(userId)

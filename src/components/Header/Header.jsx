@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import style from'./Header.module.css';
 import logo from '../../assets/images/logo192.png'
 import userPhoto from '../../assets/images/user.png'
+import PhotoLoginConteiner from '../PhotoLogin/PhotoLoginConteiner';
 
 
 
@@ -13,10 +14,9 @@ const Header = (props) => {
         <div className = {style.wrapper}>
             <div className = {style.inner}>
                 <img className = {style.img} src={logo} />
-                <div className={style.login_block}> {
-                    console.log(props.login)}
-                    {props.isAuth && props.profile
-                    ? <NicknameWithPhoto photo = {props.profile.photos.large}
+                <div className={style.login_block}>
+                    {props.isAuth 
+                    ? <NicknameWithPhoto photo = {props.userPhoto}
                                          login = {props.login} 
                                          inToMenuMode = {() => {setMenuMode(!menuMode)}} />
                     : <NavLink to={"/login"} onClick = {() => {setMenuMode(false)}}>Login</NavLink>}
@@ -30,8 +30,7 @@ const Header = (props) => {
 const NicknameWithPhoto = ({photo, inToMenuMode, login}) => {
     return (
         <div className = {style.nickName}>
-            <img className = {style.avatar} src = {photo || userPhoto} alt = ""/>
-            <h6 className = {style.login} >{login}</h6> 
+            <PhotoLoginConteiner />
             <button onClick = {inToMenuMode}  className = {style.btn}></button>
         </div>
     )
