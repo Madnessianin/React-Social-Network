@@ -7,7 +7,6 @@ import { useEffect } from 'react';
 import cn from 'classnames'
 
 const Post = (props) => {
-
     let [likePost, setLikePost] = useState(props.likePost)
     useEffect(()=>{
       setLikePost(props.likePost)
@@ -21,7 +20,7 @@ const Post = (props) => {
       <div className = {style.messages}>
         {props.message}
       </div>
-      {/* console.log(likePost) */}
+      
       <div className = {style.likes} >
         <button className = {cn(style.ButtonLike, likePost ? style.colorLike : '')} onClick = {()=>{
                       setLikePost(!likePost)

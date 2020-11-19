@@ -53,14 +53,14 @@ const profileReducer = (state = initialState, action) => {
                             return {
                                 ...post, 
                                 likesCount: parseInt(post.likesCount) - 1,
-                                isLikes: false
+                                isLikes: !action.isLikes
                             }
                         } else {
                             return {
                                 ...post, 
                                 likesCount: parseInt(post.likesCount) + 1,
-                                isLikes: true
-                            }
+                                isLikes: !action.isLikes
+                            }  
                         } 
                     }
                     return post
@@ -78,7 +78,7 @@ export const addPost = (newPostText) =>  ({type: ADD_POST, newPostText});
 export const setUsersProfile = (profile) =>  ({type: SET_USER_PROFILE, profile});
 export const setUserStatus = (status) => ({type: SET_USER_STATUS, status})
 export const savePhotosSucsess = (photos) => ({type: SAVE_PHOTO_SUCSESS, photos})
-export const likeDislikeSucsess = (postId, isLike) => ({type: LIKEDISLAKEPOST, postId, isLike})
+export const likeDislikeSucsess = (postId, isLikes) => ({type: LIKEDISLAKEPOST, postId, isLikes})
 
 export const getUser = (userId) => async (dispatch) => {
     let data = await profileAPI.getUserProfile(userId)

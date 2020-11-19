@@ -57,3 +57,51 @@
     font-size: 18px;
     font-weight: 600;
 }
+.wrapperInput {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 12px;
+    background-color: #383d5c;
+    border-radius: 10px;
+    
+}
+
+.wrapperInput i {
+    margin-right: 5px;
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+}
+.inputFile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.inputLabel {
+    display: inline-block;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    
+    transition: color .2s linear;
+    
+}
+
+.inputFile:focus + .inputLabel ,
+.inputFile +.inputLabel:hover {
+    color: #00d7b2;
+}
+
+.wrapperBtn {
+    margin-top: 15px;
+    padding: 15px;
+    background: #111436;
+    border-radius: 10px;
+}

@@ -7,11 +7,12 @@ import FormEditConteiner from '../../Common/Form/EditForm';
 class MyPosts extends React.PureComponent {
     
   render() {
+  console.log(this.props.posts)
   let postsElements = this.props.posts.map(post => <Post key = {post.id}
                                                          postId = {post.id} 
                                                          message = {post.message} 
                                                          likeCounts = {post.likesCount}
-                                                         likePost = {post.isLike}
+                                                         likePost = {post.isLikes}
                                                          likeDislike = {this.props.likeDislikeSucsess} />)
   let addPost = (data) => {
     this.props.addPost(data.newPostText);

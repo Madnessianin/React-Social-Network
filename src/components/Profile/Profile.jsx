@@ -6,6 +6,7 @@ import userPhoto from '../../assets/images/user.png'
 import MyPostsConteiner from './MyPosts/MyPostsConteiner';
 import Button from '../Common/Button/Button';
 import { useState } from 'react';
+import { submit } from 'redux-form';
 
 const Profile = (props) => {
     let onMainPhotoSelected = (event) => {
@@ -25,11 +26,11 @@ const Profile = (props) => {
               <div className = {style.wrapper}>
                 <img className = {style.avatar} src = {props.profile.photos.large || userPhoto} alt = ""/>
                 <div className = {style.loadPhoto}>
-                  {props.isOwner && <input onChange = {onMainPhotoSelected} type = {"file"} />}
+                  {props.isOwner && <LoadFile onMainPhotoSelected = {onMainPhotoSelected} />}
                 </div>
               </div>
-                {props.isOwner && <Button textBtn = {"Edit mode"} 
-                                          link = {'/edit'} />}
+                {props.isOwner && <div className = {style.wrapperBtn}><Button textBtn = {"Edit mode"} 
+                                               link = {'/edit'} /></div>}
             </div>
 
             <div className = {style.item}>
@@ -74,6 +75,15 @@ const ProfileInfo = ({profile, status, updateStatus, isOwner}) => {
   )
 }
 
+const LoadFile = (props) => {
+  return (
+      <div className = {style.wrapperInput}>
+          <i className="fas fa-download"></i>
+          <input className = {style.inputFile} onChange = {props.onMainPhotoSelected} id = "file" name = {"file"} type = {"file"} />
+          <label className = {style.inputLabel} htmlFor = {"file"}>Choose file</label>
+      </div>
+  )
+}
 
 const Contact = ({contactKey, contactValue}) => {
 return (
