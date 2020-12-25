@@ -55,7 +55,7 @@
   padding: 10px;
   border: 1px solid #4e547c;
   border-radius: 5px;
-  background-color: #212437;
+  background-color: #111436;
 }
 .menu dd {
   margin-left: 0;
@@ -92,4 +92,19 @@
 .nickName {
   display: flex;
   align-items: center;
+}
+
+.link a, 
+.out a {
+  font-size: 18px;
+  font-weight: 600;
+}
+.menu dd i {
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff
+}
+
+.menu dd a {
+  margin-left: 10px;
 }

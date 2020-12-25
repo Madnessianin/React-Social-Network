@@ -40,12 +40,15 @@ const Menu = ({leftToMenuMode, logout}) => {
     return (
         <dl className = {style.menu} onBlur = {leftToMenuMode}>
             <dd className = {style.link}>
+                <i class="fas fa-user"></i>
                 <NavLink onClick = {leftToMenuMode} to="/profile">Profile</NavLink>
             </dd>
             <dd className = {style.link}>
+                <i class="fas fa-cog"></i>
                 <NavLink onClick = {leftToMenuMode} to="/settings">Settings</NavLink>
             </dd>
             <dd className = {style.out}>
+                <i class="fas fa-sign-out-alt"></i>
                 <a className= {style.outBtn} onClick = {logout}>Out</a>
             </dd>
         </dl>

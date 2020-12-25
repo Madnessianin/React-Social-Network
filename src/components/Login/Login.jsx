@@ -6,26 +6,34 @@ import { Input } from '../Common/FormsControl/FormsControl';
 import style from './Login.module.css'
 import logo from '../../assets/images/logo192.png'
 import classes from '../Common/FormsControl/FormsControl.module.css';
+import Button from '../Common/Button/Button';
 const LoginForm = (props) => {
     return (
         <form className={style.formInner} onSubmit = {props.handleSubmit} >
-            <div>
+            <div className = {style.field}>
                 <Field placeholder = {"Login"} 
                        name = {"email"}
                        component = {Input}
                        validate = {[required]} />
             </div>
-            <div>
+            <div className = {style.field}>
                 <Field placeholder = {"password"} 
                        name = {"password"} 
                        component = {Input}
                        type = {"password"}
                        validate = {[required]} />
             </div>
-            <div>
-                <Field component={Input} 
-                       name = {"rememberMe"} 
-                       type={"checkbox"} />remember me
+            <div className = {style.inner}>
+                <Button textBtn = {"Sign in"} type = {"submit"} />
+                <div className = {style.checkbox}>
+                    <Field component={Input} 
+                        name = {"rememberMe"}
+                        id = {"rememberMe"} 
+                        type={"checkbox"} />
+                    <label className = {style.checkboxLabel} htmlFor = {"rememberMe"}>remember me</label>
+                </div>
+                
+                
             </div>
             {props.captchaURL && <div>
                 <img className = {style.captcha} src={props.captchaURL} />
@@ -35,9 +43,7 @@ const LoginForm = (props) => {
             {props.error && <div className = {classes.formCommonError}>
                 {props.error}
             </div>}
-            <div>
-                <button>Sign in</button>
-            </div>
+            
             
         </form>)
      

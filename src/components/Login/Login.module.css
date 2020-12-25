@@ -19,7 +19,7 @@
   margin-right: 50px;
 }
 .formInner {
-  padding: 30px;
+  padding: 15px 20px;
   background-color: #3e4366;
   border-radius: 15px;
   box-shadow: 0 0 10px rgba(0, 0, 0, .5);
@@ -27,4 +27,39 @@
 .captcha {
   width: 150px;
   height: 50px;
+}
+
+.field {
+  margin-bottom: 15px;
+}
+.field input {
+  width: 270px;
+  height: 37px;
+  border-radius: 5px;
+  border: 0;
+}
+
+.inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.checkbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+}
+
+.checkbox input {
+  width: 15px;
+  height: 15px;
+  margin: 3px 10px 0 0;
+}
+.checkboxLabel {
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 2px;
 }

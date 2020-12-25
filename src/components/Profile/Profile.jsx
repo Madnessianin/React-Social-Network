@@ -57,7 +57,7 @@ const Profile = (props) => {
 const ProfileInfo = ({profile, status, updateStatus, isOwner}) => {
   return ( 
   <div className = {style.info}>
-    <div className = {style.name}>{profile.fullName}</div>
+    <h3 className = {style.name}>{profile.fullName}</h3>
       <div className = {style.status}>
         <ProfileStatusWithHooks status = {status} 
                                 updateStatus = {updateStatus}

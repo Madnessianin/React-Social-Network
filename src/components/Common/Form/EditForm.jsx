@@ -10,13 +10,13 @@ const FormEdit = (props) => {
     return (
     <form className = {style.form} onSubmit = {props.handleSubmit}>
         <div className = {style.formInner}>
-            <Field placeholder = {"Enter new question...."}
+            <Field placeholder = {"Enter new text...."}
                 name = {props.identifierText}
                 component = {Textarea}
                 validate = {[required]}/>
         </div>
         <div className = {style.btn}>
-            <Button textBtn = {"Save question"} type = {"submit"} />
+            <Button textBtn = {"Add post"} type = {"submit"} />
         </div>
     </form>
     )
