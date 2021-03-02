@@ -1,33 +1,29 @@
-import { setAuth } from './auth-reducer.js';
+import { setAuth } from "./auth-reducer.js";
 
 const INITIALIZED_SUCCSESS = "social-network/app/INITIALIZED_SUCCSESS";
 
-
-let initialState = {
-    initialized: false
+const initialState = {
+  initialized: false,
 };
 
 const appReducer = (state = initialState, action) => {
-    switch(action.type) {
-        case INITIALIZED_SUCCSESS: {
-            return {
-                ...state,
-                initialized : true
-            };
-        }
-        default :
-            return state;
+  switch (action.type) {
+    case INITIALIZED_SUCCSESS: {
+      return {
+        ...state,
+        initialized: true,
+      };
     }
-}
+    default:
+      return state;
+  }
+};
 
-
-export const initializedSucsess = () => ({type: INITIALIZED_SUCCSESS});
+export const initializedSucsess = () => ({ type: INITIALIZED_SUCCSESS });
 
 export const initializeApp = () => async (dispatch) => {
-        let promise = await dispatch(setAuth());
-        dispatch(initializedSucsess())
-}
-
-
+  let promise = await dispatch(setAuth());
+  dispatch(initializedSucsess());
+};
 
 export default appReducer;

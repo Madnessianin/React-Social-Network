@@ -10,11 +10,10 @@
   align-items: center;
   width: 80%;
   margin: 0 auto;
-  
 }
 .wrapper {
   position: relative;
-  z-index: 1; 
+  z-index: 1;
 }
 .img {
   width: 45px;
@@ -66,7 +65,7 @@
 .link a {
   text-decoration: none;
   color: #fff;
-  transition: color .2s linear;
+  transition: color 0.2s linear;
 }
 .outBtn:hover,
 .link a:hover {
@@ -83,7 +82,7 @@
   color: #fff;
   background: transparent;
   border: none;
-  transition: color .2s linear;
+  transition: color 0.2s linear;
 }
 
 .outBtn:focus {
@@ -94,7 +93,7 @@
   align-items: center;
 }
 
-.link a, 
+.link a,
 .out a {
   font-size: 18px;
   font-weight: 600;
@@ -102,7 +101,7 @@
 .menu dd i {
   font-size: 18px;
   font-weight: 600;
-  color: #fff
+  color: #fff;
 }
 
 .menu dd a {

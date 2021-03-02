@@ -1,36 +1,36 @@
 .selectPage {
-    font-weight: bold;
-    color: #00d7b2;
+  font-weight: bold;
+  color: #00d7b2;
 }
 
 .paginator {
-    display: flex;
-    justify-content: center;
-    margin: 20px 0;
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
 }
 
 .inner span {
-    cursor: pointer;
-    margin: 0 5px;
+  cursor: pointer;
+  margin: 0 5px;
 }
 .inner span:last-child {
-    margin-right: 10px;
+  margin-right: 10px;
 }
 .paginator button {
-    cursor: pointer;
-    width: 15px;
-    height: 16px;
-    background-color: transparent;
-    border: none;
-    border-top: 3px solid #fff;
-    border-left: 3px solid #fff;
+  cursor: pointer;
+  width: 15px;
+  height: 16px;
+  background-color: transparent;
+  border: none;
+  border-top: 3px solid #fff;
+  border-left: 3px solid #fff;
 }
 .paginator button:focus {
-    outline: 0;
+  outline: 0;
 }
 .button_left {
-    transform: rotate(-45deg) translateX(-3px);
+  transform: rotate(-45deg) translateX(-3px);
 }
 .button_right {
-    transform: rotate(135deg) translateX(3px);
+  transform: rotate(135deg) translateX(3px);
 }

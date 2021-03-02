@@ -1,38 +1,36 @@
 .users {
-    padding: 10px;
-    border-radius: 15px;
-    margin: 15px;
-    padding: 15px;
-    background:  #111436;
-    
+  padding: 10px;
+  border-radius: 15px;
+  margin: 15px;
+  padding: 15px;
+  background: #111436;
 }
 .user_photo {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
 }
 .inner {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 15px;
-    
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 15px;
 }
 .item {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    padding: 5px 0;
-    background-color: #303985;
-    border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 5px 0;
+  background-color: #303985;
+  border-radius: 10px;
 }
 .item div {
-    width: 98%;
-    margin: 2px auto;
-    text-align: center;
-} 
+  width: 98%;
+  margin: 2px auto;
+  text-align: center;
+}
 
 .preloader {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }

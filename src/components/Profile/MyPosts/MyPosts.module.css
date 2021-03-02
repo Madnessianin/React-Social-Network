@@ -1,15 +1,14 @@
-
 .post {
-    color: #fff;
+  color: #fff;
 }
 .posts {
-    color: #fff;
-    border-radius: 10px;
+  color: #fff;
+  border-radius: 10px;
 }
 .inner {
-    display: grid;
-    grid-gap: 15px;
-    width: 100%;
+  display: grid;
+  grid-gap: 15px;
+  width: 100%;
 }
 
 /* .form {

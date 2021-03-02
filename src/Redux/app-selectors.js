@@ -1,4 +1,3 @@
-
 export const getInitialized = (state) => {
-    return state.app.initialized
-}
+  return state.app.initialized;
+};

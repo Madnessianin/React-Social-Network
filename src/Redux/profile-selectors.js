@@ -1,21 +1,19 @@
-
 export const getProfile = (state) => {
-    return state.profilePage.profile
-}
-
+  return state.profilePage.profile;
+};
 
 export const getUserStatus = (state) => {
-    return state.profilePage.status
-}
+  return state.profilePage.status;
+};
 
 export const getAutorizedUserId = (state) => {
-    return state.authPage.userId
-}
+  return state.authPage.userId;
+};
 
 export const getPosts = (state) => {
-    return state.profilePage.posts
-}
+  return state.profilePage.posts;
+};
 
 export const getProfilePhoto = (state) => {
-    return state.profilePage.profile.photos.large
-}
+  return state.profilePage.profile.photos.large;
+};

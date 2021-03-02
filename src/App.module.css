@@ -1,15 +1,14 @@
 .appInner {
   display: grid;
-  grid-template-areas: 
-  "h"
-  "w";
+  grid-template-areas:
+    "h"
+    "w";
   grid-template-rows: 70px 1fr;
 }
 .appWrapper {
   grid-area: w;
   display: grid;
-  grid-template-areas: 
-  "n c";
+  grid-template-areas: "n c";
   grid-template-columns: 2fr 10fr;
   width: 80%;
   margin: 10px auto 0;
@@ -19,4 +18,3 @@
 .content {
   grid-area: c;
 }
-

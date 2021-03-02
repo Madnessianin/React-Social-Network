@@ -1,110 +1,107 @@
 .profile {
-    
 }
 
 .inner {
-    display: grid;
-    grid-template-columns: 250px 1fr;
-    grid-gap: 15px;
-    margin: 15px;
-    background-color: transparent;
-    border-radius: 10px;
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  grid-gap: 15px;
+  margin: 15px;
+  background-color: transparent;
+  border-radius: 10px;
 }
 .avatar {
-    width: 100%;
-    height: 100%;
-    border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
 }
 
 .wrapper {
-    padding: 15px;
-    background:  #111436;
-    border-radius: 10px;
+  padding: 15px;
+  background: #111436;
+  border-radius: 10px;
 }
 .itemInner {
-    display: grid;
-    grid-template-rows: 393px 1fr;
-    grid-gap: 15px;
+  display: grid;
+  grid-template-rows: 393px 1fr;
+  grid-gap: 15px;
 }
 .name {
-    margin: 0;
-    font-size: 25px;
-    font-weight: 400;
+  margin: 0;
+  font-size: 25px;
+  font-weight: 400;
 }
 .status {
-    font-size: 16px;
-    font-weight: 400;
-    margin-bottom: 10px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #383d5c;
+  font-size: 16px;
+  font-weight: 400;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #383d5c;
 }
 .contacts {
-    display: flex;
-    justify-content: left;
-    flex-wrap: wrap;
-    margin: 10px;
+  display: flex;
+  justify-content: left;
+  flex-wrap: wrap;
+  margin: 10px;
 }
 .contactsItem {
-    width: 100%;
+  width: 100%;
 }
 .link {
-    text-decoration: none;
-    color: #fff;
-    transition: color .2s linear;
+  text-decoration: none;
+  color: #fff;
+  transition: color 0.2s linear;
 }
 .link:hover {
-    color: #00d7b2;
+  color: #00d7b2;
 }
 
 .info {
-    font-size: 18px;
-    font-weight: 600;
+  font-size: 18px;
+  font-weight: 600;
 }
 .wrapperInput {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 12px;
-    background-color: #383d5c;
-    border-radius: 10px;
-    
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 12px;
+  background-color: #383d5c;
+  border-radius: 10px;
 }
 
 .wrapperInput i {
-    margin-right: 5px;
-    font-size: 20px;
-    font-weight: 700;
-    color: #fff;
+  margin-right: 5px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
 }
 .inputFile {
-    width: 0.1px;
-    height: 0.1px;
-    opacity: 0;
-    overflow: hidden;
-    position: absolute;
-    z-index: -1;
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
 }
 
 .inputLabel {
-    display: inline-block;
-    cursor: pointer;
-    padding: 10px;
-    font-size: 16px;
-    font-weight: 700;
-    color: #fff;
-    
-    transition: color .2s linear;
-    
+  display: inline-block;
+  cursor: pointer;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+
+  transition: color 0.2s linear;
 }
 
-.inputFile:focus + .inputLabel ,
-.inputFile +.inputLabel:hover {
-    color: #00d7b2;
+.inputFile:focus + .inputLabel,
+.inputFile + .inputLabel:hover {
+  color: #00d7b2;
 }
 
 .wrapperBtn {
-    margin-top: 15px;
-    padding: 15px;
-    background: #111436;
-    border-radius: 10px;
+  margin-top: 15px;
+  padding: 15px;
+  background: #111436;
+  border-radius: 10px;
 }

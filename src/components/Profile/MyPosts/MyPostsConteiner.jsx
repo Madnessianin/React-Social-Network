@@ -1,23 +1,19 @@
-import React from 'react';
-import { addPost, likeDislikeSucsess } from '../../../Redux/profile-reducer';
-import MyPosts from './MyPosts';
-import { connect } from 'react-redux';
-import { getPosts } from '../../../Redux/profile-selectors';
-
-
-
-
+import React from "react";
+import { addPost, likeDislikeSucsess } from "../../../Redux/profile-reducer";
+import MyPosts from "./MyPosts";
+import { connect } from "react-redux";
+import { getPosts } from "../../../Redux/profile-selectors";
 
 const mapStateToProps = (state) => {
   return {
-    posts : getPosts(state)
-  }
-}
+    posts: getPosts(state),
+  };
+};
 
-const mapDispatchYoProps =  {
+const mapDispatchYoProps = {
   addPost,
-  likeDislikeSucsess
-}
+  likeDislikeSucsess,
+};
 const MyPostsConteiner = connect(mapStateToProps, mapDispatchYoProps)(MyPosts);
 
 export default MyPostsConteiner;
