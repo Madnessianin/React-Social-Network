@@ -19,8 +19,8 @@ const ProfileConteiner = React.lazy(() =>
 
 const Page = () => {
   return (
-    <div>
-      <Layout>
+    
+      <Layout style={{minHeight: '100vh'}}>
         <Header />
         <Layout>
           <Sider width={200}>
@@ -63,7 +63,6 @@ const Page = () => {
           </Layout>
         </Layout>
       </Layout>
-    </div>
   );
 };
 /**/
