@@ -20,9 +20,6 @@
   border-radius: 50%;
 }
 
-.login_block {
-  color: #fff;
-}
 .btn {
   width: 2px;
   height: 14px;
@@ -37,10 +34,6 @@
 }
 .btn:focus {
   outline: 0;
-}
-.login_block a {
-  text-decoration: none;
-  color: #fff;
 }
 .menu {
   margin: 0;
@@ -104,13 +97,4 @@
 
 .menu dd a {
   margin-left: 10px;
-}
-
-
-.ant-avatar {
-  img {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-  }
 }

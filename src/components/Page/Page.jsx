@@ -8,7 +8,7 @@ import UsersConteiner from "./../Users/UsersConteiner";
 import withSuspense from "./../Hoc/withSuspense";
 import EditConteiner from "./../Edit/EditConteiner";
 import { withAuthRedirect } from "../Hoc/withAuthRedirect";
-import Header from "../Header/Header"
+import Header from "../Header/Header";
 const { SubMenu } = Menu;
 const { Content, Sider } = Layout;
 const DialogsConteiner = React.lazy(() =>

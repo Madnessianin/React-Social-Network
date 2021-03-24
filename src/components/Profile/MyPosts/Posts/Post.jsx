@@ -1,10 +1,10 @@
 import React from "react";
 import style from "./Post.module.css";
-import PhotoLoginConteiner from "../../../PhotoLogin/PhotoLoginConteiner";
 import { useState } from "react";
 import { useEffect } from "react";
 
 import cn from "classnames";
+import PhotoLogin from "../../../Common/PhotoLogin/PhotoLogin";
 
 const Post = (props) => {
   let [likePost, setLikePost] = useState(props.likePost);
@@ -15,7 +15,7 @@ const Post = (props) => {
   return (
     <div className={style.item}>
       <div className={style.title}>
-        <PhotoLoginConteiner />
+        <PhotoLogin />
       </div>
       <div className={style.messages}>{props.message}</div>
 
