@@ -81,7 +81,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var reac
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\"dialogs\":\"ydvaudMgx2fuQYuFZrHim\",\"inner\":\"pwCdHk7PfFryuy4kf8sCJ\",\"avatar\":\"_1tNJIW7TWAqgBD3p2m0Wyr\",\"link\":\"VFsIs4C7d3-4wpjjxyo4-\",\"active\":\"_3AiwNrGdkPUTe2etrUNfcm\"});\n    if(true) {\n      // 1616601008366\n      var cssReload = __webpack_require__(/*! ../node_modules/mini-css-extract-plugin/dist/hmr/hotModuleReplacement.js */ \"../node_modules/mini-css-extract-plugin/dist/hmr/hotModuleReplacement.js\")(module.id, {\"locals\":true});\n      module.hot.dispose(cssReload);\n      \n    }\n  \n\n//# sourceURL=webpack:///./Components/Dialogs/Dialogs.module.css?");
+eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\"dialogs\":\"ydvaudMgx2fuQYuFZrHim\",\"inner\":\"pwCdHk7PfFryuy4kf8sCJ\",\"avatar\":\"_1tNJIW7TWAqgBD3p2m0Wyr\",\"link\":\"VFsIs4C7d3-4wpjjxyo4-\",\"active\":\"_3AiwNrGdkPUTe2etrUNfcm\"});\n    if(true) {\n      // 1616601086840\n      var cssReload = __webpack_require__(/*! ../node_modules/mini-css-extract-plugin/dist/hmr/hotModuleReplacement.js */ \"../node_modules/mini-css-extract-plugin/dist/hmr/hotModuleReplacement.js\")(module.id, {\"locals\":true});\n      module.hot.dispose(cssReload);\n      \n    }\n  \n\n//# sourceURL=webpack:///./Components/Dialogs/Dialogs.module.css?");
 
 /***/ })
 
