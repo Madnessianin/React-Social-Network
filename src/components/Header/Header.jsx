@@ -1,23 +1,37 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import style from "./Header.module.css";
+import "./Header.scss";
 import logo from "../../assets/images/logo192.png";
 import userPhoto from "../../assets/images/user.png";
 import PhotoLoginConteiner from "../PhotoLogin/PhotoLoginConteiner";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../Redux/auth-reducer";
+import { Header } from "antd/lib/layout/layout";
+import { getIsAuth, getLogin, getUserPhoto } from "../../Redux/auth-selectors";
+import Avatar from "antd/lib/avatar/avatar";
 
-const Header = (props) => {
-  let [menuMode, setMenuMode] = useState(false);
+const MyHeader = () => {
+  const [menuMode, setMenuMode] = useState(false);
+  const isAuth = useSelector(state => getIsAuth(state));
+  const login = useSelector(state => getLogin(state));
+  const photo = useSelector(state => getUserPhoto(state));
+
+  const dispatch = useDispatch()
+
+  const logOut = () => {
+    dispatch(logout())
+  }
 
   return (
-    <header className={style.header}>
-      <div className={style.wrapper}>
-        <div className={style.inner}>
-          <img className={style.img} src={logo} />
-          <div className={style.login_block}>
-            {props.isAuth ? (
+    <Header className="header">
+      <div className="header_wrapper"></div>
+        <div className="header_inner">
+          <img className="header_logo" src={logo} />
+          <div className="login_block">
+            {isAuth ? (
               <NicknameWithPhoto
-                photo={props.userPhoto}
-                login={props.login}
+                photo={photo}
+                login={login}
                 inToMenuMode={() => {
                   setMenuMode(!menuMode);
                 }}
@@ -36,7 +50,7 @@ const Header = (props) => {
         </div>
         {menuMode ? (
           <Menu
-            logout={props.logout}
+            logout={logOut}
             leftToMenuMode={() => {
               setMenuMode(false);
             }}
@@ -44,38 +58,37 @@ const Header = (props) => {
         ) : (
           <></>
         )}
-      </div>
-    </header>
+    </Header>
   );
 };
 
-const NicknameWithPhoto = ({ photo, inToMenuMode, login }) => {
+const NicknameWithPhoto = ({ inToMenuMode, photo }) => {
   return (
-    <div className={style.nickName}>
-      <PhotoLoginConteiner />
-      <button onClick={inToMenuMode} className={style.btn}></button>
+    <div className="nickName">
+      <Avatar src={photo} size="small" shape="circle" />
+      <button onClick={inToMenuMode} className="btn"></button>
     </div>
   );
 };
 
 const Menu = ({ leftToMenuMode, logout }) => {
   return (
-    <dl className={style.menu} onBlur={leftToMenuMode}>
-      <dd className={style.link}>
-        <i class="fas fa-user"></i>
+    <dl className="menu" onBlur={leftToMenuMode}>
+      <dd className="link">
+        <i className="fas fa-user"></i>
         <NavLink onClick={leftToMenuMode} to="/profile">
           Profile
         </NavLink>
       </dd>
-      <dd className={style.link}>
-        <i class="fas fa-cog"></i>
+      <dd className="link">
+        <i className="fas fa-cog"></i>
         <NavLink onClick={leftToMenuMode} to="/settings">
           Settings
         </NavLink>
       </dd>
-      <dd className={style.out}>
-        <i class="fas fa-sign-out-alt"></i>
-        <a className={style.outBtn} onClick={logout}>
+      <dd className="out">
+        <i className="fas fa-sign-out-alt"></i>
+        <a className="outBtn" onClick={logout}>
           Out
         </a>
       </dd>
@@ -83,4 +96,4 @@ const Menu = ({ leftToMenuMode, logout }) => {
   );
 };
 
-export default Header;
+export default MyHeader;

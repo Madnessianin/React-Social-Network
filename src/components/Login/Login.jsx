@@ -7,11 +7,16 @@ import classes from "../Common/FormsControl/FormsControl.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../Redux/auth-reducer";
 import { getCaptcha, getIsAuth } from "../../Redux/auth-selectors";
-import { Form, Input, Button, Checkbox } from 'antd';
-import { UserOutlined, LockOutlined } from '@ant-design/icons';
-import { styleBtn, styleBtnLink, styleCheckBox, styleInput } from "./LoginStyle";
+import { Form, Input, Button, Checkbox } from "antd";
+import { UserOutlined, LockOutlined } from "@ant-design/icons";
+import {
+  styleBtn,
+  styleBtnLink,
+  styleCheckBox,
+  styleInput,
+} from "./LoginStyle";
 
-const LoginForm = ({onSubmit, captchaURL, error}) => {
+const LoginForm = ({ onSubmit, captchaURL, error }) => {
   return (
     <Form
       name="login"
@@ -21,15 +26,19 @@ const LoginForm = ({onSubmit, captchaURL, error}) => {
     >
       <Form.Item
         name="email"
-        rules={[{ required: true, message: 'Please input your Username!' }]}
+        rules={[{ required: true, message: "Please input your Username!" }]}
       >
-        <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" style={styleInput} />
+        <Input
+          prefix={<UserOutlined className="site-form-item-icon" />}
+          placeholder="Username"
+          style={styleInput}
+        />
       </Form.Item>
       <Form.Item
         name="password"
-        rules={[{ required: true, message: 'Please input your Password!' }]}
+        rules={[{ required: true, message: "Please input your Password!" }]}
       >
-        <Input.Password 
+        <Input.Password
           prefix={<LockOutlined className="site-form-item-icon" />}
           type="password"
           placeholder="password"
@@ -53,36 +62,30 @@ const LoginForm = ({onSubmit, captchaURL, error}) => {
           <Button type="primary" htmlType="submit" style={styleBtn}>
             Войти
           </Button>
-          <Button style={styleBtn}>
-            Зарегистрироваться
-          </Button>
+          <Button style={styleBtn}>Зарегистрироваться</Button>
         </div>
-        
       </Form.Item>
       {captchaURL && (
-        <Form.Item 
+        <Form.Item
           name="captcha"
-          rules={[{ required: true, message: 'Please input your Username!' }]}>
+          rules={[{ required: true, message: "Please input your Username!" }]}
+        >
           <img className={style.captcha} src={captchaURL} />
-          <Input placeholder="captcha"
-                 style={styleInput} />
+          <Input placeholder="captcha" style={styleInput} />
         </Form.Item>
       )}
-      {error && (
-        <div className={classes.formCommonError}>{error}</div>
-      )}
+      {error && <div className={classes.formCommonError}>{error}</div>}
     </Form>
-    
   );
 };
 
 //const LoginFormConteiner = reduxForm({ form: "login" })(LoginForm);
 
 const Login = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-  const isAuth = useSelector(state => getIsAuth(state))
-  const captchaURL = useSelector(state => getCaptcha(state))
+  const isAuth = useSelector((state) => getIsAuth(state));
+  const captchaURL = useSelector((state) => getCaptcha(state));
 
   const onSubmit = (data) => {
     dispatch(login(data));
@@ -95,10 +98,10 @@ const Login = () => {
   return (
     <div className="login_form">
       <img className="login_logo" src={logo} />
-        <div className = "login_wrapper">
-          <h3 className="login_title">Социальная сеть</h3>
-          <LoginForm onSubmit={onSubmit} captchaURL={captchaURL} />
-        </div>
+      <div className="login_wrapper">
+        <h3 className="login_title">Социальная сеть</h3>
+        <LoginForm onSubmit={onSubmit} captchaURL={captchaURL} />
+      </div>
     </div>
   );
 };

@@ -36,7 +36,7 @@ const Profile = (props) => {
           </div>
           {props.isOwner && (
             <div className={style.wrapperBtn}>
-              <Button textBtn={"Edit mode"} link={"/edit"} />
+              <Button textBtn={"Edit mode"} link={"/app/edit"} />
             </div>
           )}
         </div>

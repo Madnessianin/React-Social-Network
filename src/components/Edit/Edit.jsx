@@ -13,11 +13,11 @@ const Edit = (props) => {
         <Switch>
           <Route
             exact
-            path="/edit"
-            render={() => <Redirect to={"/edit/general"} />}
+            path="/app/edit"
+            render={() => <Redirect to={"/app/edit/general"} />}
           />
           <Route
-            path="/edit/general"
+            path="/app/edit/general"
             render={() => (
               <GeneralEdit
                 profile={props.profile}
@@ -26,7 +26,7 @@ const Edit = (props) => {
             )}
           />
           <Route
-            path="/edit/contacts"
+            path="/app/edit/contacts"
             render={() => (
               <ContactEdit
                 profile={props.profile}
