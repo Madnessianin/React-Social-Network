@@ -23,5 +23,4 @@ const store = createStore(
   composeEnhancers(applyMiddleware(thunkMiddleware))
 );
 
-
 export default store;

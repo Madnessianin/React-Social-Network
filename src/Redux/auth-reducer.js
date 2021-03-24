@@ -65,6 +65,7 @@ export const getAuthUserPhoto = (id) => async (dispatch) => {
 
 export const login = (data) => async (dispatch) => {
   let response = await authAPI.postAuth(data);
+  console.log(response);
   if (response.data.resultCode === 0) {
     dispatch(setAuth());
   } else {
