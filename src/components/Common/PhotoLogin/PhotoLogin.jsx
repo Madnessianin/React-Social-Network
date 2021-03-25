@@ -7,7 +7,7 @@ const PhotoLogin = ({ photo, name }) => {
   return (
     <div className="photo_login">
       <Avatar src={photo || defaultPhoto} size="large" shape="circle" />
-      <span className="photo_login_name">{name}</span>
+      {name ? <span className="photo_login_name">{name}</span>: null}
     </div>
   );
 };

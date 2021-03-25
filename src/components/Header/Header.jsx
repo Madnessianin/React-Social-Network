@@ -7,11 +7,12 @@ import { logout } from "../../Redux/auth-reducer";
 import { Header } from "antd/lib/layout/layout";
 import { getIsAuth, getLogin, getUserPhoto } from "../../Redux/auth-selectors";
 import PhotoLogin from "../Common/PhotoLogin/PhotoLogin";
+import { Button, Menu } from "antd";
+import { MenuUnfoldOutlined, SettingOutlined, ToolOutlined, ExportOutlined } from '@ant-design/icons';
 
+const {SubMenu} = Menu;
 
 const MyHeader = () => {
-  const [menuMode, setMenuMode] = useState(false);
-  
   const dispatch = useDispatch()
 
   const logOut = () => {
@@ -20,57 +21,24 @@ const MyHeader = () => {
 
   return (
     <Header className="header">
-      <div className="header_wrapper"></div>
         <div className="header_inner">
           <img className="header_logo" src={logo} />
-          <LoginBlock />
-        </div>
-        {menuMode ? (
-          <Menu
-            logout={logOut}
-            leftToMenuMode={() => {
-              setMenuMode(false);
-            }}
-          />
-        ) : (
-          <></>
-        )}
+          <DropDownMenu event={logOut} />
+        </div>  
     </Header>
   );
 };
 
-const LoginBlock = () => {
+const DropDownMenu = ({ event }) => { 
   const login = useSelector(state => getLogin(state));
-  const photo = useSelector(state => getUserPhoto(state));
-
   return (
-  <div className="login_block">
-    <PhotoLogin photo={photo} name={login} />
-  </div>)
-}
-
-const Menu = ({ leftToMenuMode, logout }) => {
-  return (
-    <dl className="menu" onBlur={leftToMenuMode}>
-      <dd className="link">
-        <i className="fas fa-user"></i>
-        <NavLink onClick={leftToMenuMode} to="/profile">
-          Profile
-        </NavLink>
-      </dd>
-      <dd className="link">
-        <i className="fas fa-cog"></i>
-        <NavLink onClick={leftToMenuMode} to="/settings">
-          Settings
-        </NavLink>
-      </dd>
-      <dd className="out">
-        <i className="fas fa-sign-out-alt"></i>
-        <a className="outBtn" onClick={logout}>
-          Out
-        </a>
-      </dd>
-    </dl>
+    <Menu mode="horizontal" className="dropdown_menu" style={{width: '200px'}}>
+      <SubMenu key="menu" icon={<MenuUnfoldOutlined className="dropdown_menu_icon" />} title={login}>
+        <Menu.Item icon={<SettingOutlined />} key="1">Общие настройки</Menu.Item>
+        <Menu.Item icon={<ToolOutlined />} key="2">Настройки отображения</Menu.Item>
+        <Menu.Item onClick={event} icon={<ExportOutlined />} key="3">Выйти</Menu.Item>
+      </SubMenu>
+    </Menu>
   );
 };
 
