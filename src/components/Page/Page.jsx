@@ -22,7 +22,7 @@ const Page = () => {
   return (
     <Layout style={{ minHeight: "100vh" }}>
       <Header />
-      <Layout>
+      <Layout style={{padding: '0 200px'}}>
         <Sider width={200}>
           <Menu
             mode="inline"
