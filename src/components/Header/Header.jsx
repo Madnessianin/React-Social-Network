@@ -8,35 +8,54 @@ import { Header } from "antd/lib/layout/layout";
 import { getIsAuth, getLogin, getUserPhoto } from "../../Redux/auth-selectors";
 import PhotoLogin from "../Common/PhotoLogin/PhotoLogin";
 import { Button, Menu } from "antd";
-import { MenuUnfoldOutlined, SettingOutlined, ToolOutlined, ExportOutlined } from '@ant-design/icons';
+import {
+  MenuUnfoldOutlined,
+  SettingOutlined,
+  ToolOutlined,
+  ExportOutlined,
+} from "@ant-design/icons";
 
-const {SubMenu} = Menu;
+const { SubMenu } = Menu;
 
 const MyHeader = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const logOut = () => {
-    dispatch(logout())
-  }
+    dispatch(logout());
+  };
 
   return (
     <Header className="header">
-        <div className="header_inner">
-          <img className="header_logo" src={logo} />
-          <DropDownMenu event={logOut} />
-        </div>  
+      <div className="header_inner">
+        <img className="header_logo" src={logo} />
+        <DropDownMenu event={logOut} />
+      </div>
     </Header>
   );
 };
 
-const DropDownMenu = ({ event }) => { 
-  const login = useSelector(state => getLogin(state));
+const DropDownMenu = ({ event }) => {
+  const login = useSelector((state) => getLogin(state));
   return (
-    <Menu mode="horizontal" className="dropdown_menu" style={{width: '200px'}}>
-      <SubMenu key="menu" icon={<MenuUnfoldOutlined className="dropdown_menu_icon" />} title={login}>
-        <Menu.Item icon={<SettingOutlined />} key="1">Общие настройки</Menu.Item>
-        <Menu.Item icon={<ToolOutlined />} key="2">Настройки отображения</Menu.Item>
-        <Menu.Item onClick={event} icon={<ExportOutlined />} key="3">Выйти</Menu.Item>
+    <Menu
+      mode="horizontal"
+      className="dropdown_menu"
+      style={{ width: "200px" }}
+    >
+      <SubMenu
+        key="menu"
+        icon={<MenuUnfoldOutlined className="dropdown_menu_icon" />}
+        title={login}
+      >
+        <Menu.Item icon={<SettingOutlined />} key="1">
+          Общие настройки
+        </Menu.Item>
+        <Menu.Item icon={<ToolOutlined />} key="2">
+          Настройки отображения
+        </Menu.Item>
+        <Menu.Item onClick={event} icon={<ExportOutlined />} key="3">
+          Выйти
+        </Menu.Item>
       </SubMenu>
     </Menu>
   );

@@ -9,8 +9,8 @@ import withSuspense from "./../Hoc/withSuspense";
 import EditConteiner from "./../Edit/EditConteiner";
 import { withAuthRedirect } from "../Hoc/withAuthRedirect";
 import Header from "../Header/Header";
-const { SubMenu } = Menu;
-const { Content, Sider } = Layout;
+import SideBar from "../SideBar/SideBar";
+const { Content, Sider, Footer } = Layout;
 const DialogsConteiner = React.lazy(() =>
   import("./../Dialogs/DialogsConteiner")
 );
@@ -22,21 +22,8 @@ const Page = () => {
   return (
     <Layout style={{ minHeight: "100vh" }}>
       <Header />
-      <Layout style={{padding: '0 200px'}}>
-        <Sider width={200}>
-          <Menu
-            mode="inline"
-            defaultSelectedKeys={["1"]}
-            style={{ height: "100%", borderRight: 0 }}
-          >
-            <Menu.Item key="1">profile</Menu.Item>
-            <Menu.Item key="2">dialogs</Menu.Item>
-            <Menu.Item key="3">news</Menu.Item>
-            <Menu.Item key="4">music</Menu.Item>
-            <Menu.Item key="5">users</Menu.Item>
-            <Menu.Item key="6">settings</Menu.Item>
-          </Menu>
-        </Sider>
+      <Layout style={{ padding: "0 200px" }}>
+        <SideBar />
         <Layout style={{ padding: "0 24px 24px" }}>
           <Content>
             <Switch>
@@ -62,6 +49,9 @@ const Page = () => {
           </Content>
         </Layout>
       </Layout>
+      <Footer style={{ textAlign: "center" }}>
+        Social network. Created Alex
+      </Footer>
     </Layout>
   );
 };
