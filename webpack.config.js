@@ -93,14 +93,24 @@ const babelLoader = (preset) => {
   return loaders;
 };
 
+const returnContentBase = () => {
+  if (isDev) {
+    return path.resolve(__dirname, "./src")
+  }
+  if (isProd) {
+    return path.resolve(__dirname, "./dist")
+  }
+}
+
 module.exports = {
   mode: process.env.NODE_ENV,
   devServer: {
     historyApiFallback: true,
-    contentBase: path.resolve(__dirname, "./dist"),
+    contentBase: returnContentBase(),
     open: true,
     compress: true,
-    hot: isDev,
+    hotOnly: isDev,
+    inline: true,
     port: 3000,
   },
   context: path.resolve(__dirname, "src"),

@@ -1,25 +1,36 @@
 import React from "react";
 import Preloader from "../Common/Preloader/Preloader";
 import style from "./Profile.module.css";
-import ProfileStatusWithHooks from "./ProfileStatus/ProfileStatusWithHooks";
+import ProfileStatusWithHooks from "./ProfileStatus/ProfileStatus";
 import userPhoto from "../../assets/images/user.png";
 import MyPostsConteiner from "./MyPosts/MyPostsConteiner";
 import Button from "../Common/Button/Button";
 import { useState } from "react";
 import { submit } from "redux-form";
+import { useDispatch, useSelector } from "react-redux";
+import { getAutorizedUserId, getProfile, getUserStatus } from "../../Redux/profile-selectors";
+import { savePhoto, updateStatus } from "../../Redux/profile-reducer";
 
 const Profile = (props) => {
-  let onMainPhotoSelected = (event) => {
+  const profile = useSelector(state => getProfile(state))
+  const status = useSelector(state => getUserStatus(state))
+  const authUserId = useSelector(state => getAutorizedUserId(state))
+
+  const dispatch = useDispatch()
+
+  const onMainPhotoSelected = (event) => {
     if (event.target.files.length) {
-      props.savePhoto(event.target.files[0]);
+      dispatch(savePhoto(event.target.files[0]));
     }
   };
-  let [addPostode, setAddPostMode] = useState(false);
+
+  
+  
   if (!props.profile) {
     return <Preloader />;
   }
   return (
-    <div className={style.profile}>
+    <div className="">
       <div className={style.inner}>
         <div className={style.item}>
           <div className={style.wrapper}>
