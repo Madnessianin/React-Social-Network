@@ -1,22 +1,26 @@
 import React from "react";
 import Preloader from "../Common/Preloader/Preloader";
 import style from "./Profile.module.css";
-import ProfileStatusWithHooks from "./ProfileStatus/ProfileStatus";
+import ProfileStatus from "./ProfileStatus/ProfileStatus";
 import userPhoto from "../../assets/images/user.png";
 import MyPostsConteiner from "./MyPosts/MyPostsConteiner";
 import Button from "../Common/Button/Button";
 import { useState } from "react";
 import { submit } from "redux-form";
 import { useDispatch, useSelector } from "react-redux";
-import { getAutorizedUserId, getProfile, getUserStatus } from "../../Redux/profile-selectors";
+import {
+  getAutorizedUserId,
+  getProfile,
+  getUserStatus,
+} from "../../Redux/profile-selectors";
 import { savePhoto, updateStatus } from "../../Redux/profile-reducer";
 
 const Profile = (props) => {
-  const profile = useSelector(state => getProfile(state))
-  const status = useSelector(state => getUserStatus(state))
-  const authUserId = useSelector(state => getAutorizedUserId(state))
+  const profile = useSelector((state) => getProfile(state));
+  const status = useSelector((state) => getUserStatus(state));
+  const authUserId = useSelector((state) => getAutorizedUserId(state));
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const onMainPhotoSelected = (event) => {
     if (event.target.files.length) {
@@ -24,9 +28,7 @@ const Profile = (props) => {
     }
   };
 
-  
-  
-  if (!props.profile) {
+  if (!profile) {
     return <Preloader />;
   }
   return (
@@ -36,7 +38,7 @@ const Profile = (props) => {
           <div className={style.wrapper}>
             <img
               className={style.avatar}
-              src={props.profile.photos.large || userPhoto}
+              src={profile.photos.large || userPhoto}
               alt=""
             />
             <div className={style.loadPhoto}>
@@ -55,12 +57,7 @@ const Profile = (props) => {
         <div className={style.item}>
           <div className={style.itemInner}>
             <div className={style.wrapper}>
-              <ProfileInfo
-                profile={props.profile}
-                status={props.status}
-                updateStatus={props.updateStatus}
-                isOwner={props.isOwner}
-              />
+              <ProfileInfo profile={profile} isOwner={props.isOwner} />
             </div>
 
             <div>{props.isOwner && <MyPostsConteiner />}</div>
@@ -70,31 +67,33 @@ const Profile = (props) => {
     </div>
   );
 };
-const ProfileInfo = ({ profile, status, updateStatus, isOwner }) => {
+const ProfileInfo = ({ profile, isOwner }) => {
+  const {
+    fullName,
+    aboutMe,
+    lookingForAJob,
+    lookingForAJobDescription,
+    contacts,
+  } = profile;
+
+  const createContactList = (contacts) => {
+    return Object.keys(profile.contacts).map((key) => {
+      return (
+        <Contact key={key} contactKey={key} contactValue={contacts[key]} />
+      );
+    });
+  };
+
   return (
     <div className={style.info}>
-      <h3 className={style.name}>{profile.fullName}</h3>
+      <h3 className={style.name}>{fullName}</h3>
       <div className={style.status}>
-        <ProfileStatusWithHooks
-          status={status}
-          updateStatus={updateStatus}
-          isOwner={isOwner}
-        />
+        <ProfileStatus isOwner={isOwner} />
       </div>
-      <div>About: {profile.aboutMe}</div>
-      <div>LookingForAJob: {profile.lookingForAJob ? "yes" : "no"}</div>
-      <div>My profecional skills: {profile.lookingForAJobDescription}</div>
-      <div className={style.contacts}>
-        {Object.keys(profile.contacts).map((key) => {
-          return (
-            <Contact
-              key={key}
-              contactKey={key}
-              contactValue={profile.contacts[key]}
-            />
-          );
-        })}
-      </div>
+      <div>About: {aboutMe}</div>
+      <div>LookingForAJob: {lookingForAJob ? "yes" : "no"}</div>
+      <div>My profecional skills: {lookingForAJobDescription}</div>
+      <div className={style.contacts}>{createContactList(contacts)}</div>
     </div>
   );
 };

@@ -5,12 +5,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUserStatus } from "../../../Redux/profile-selectors";
 
 const ProfileStatus = (props) => {
-  const status = useSelector(state => getUserStatus(state));
-  
+  const status = useSelector((state) => getUserStatus(state));
+
   return (
     <div>
       {props.isOwner ? (
-        <Status status = {status} />
+        <Status status={status} />
       ) : (
         <span>{props.status || "--"}</span>
       )}
@@ -18,38 +18,34 @@ const ProfileStatus = (props) => {
   );
 };
 
-const Status = ({status}) => {
+const Status = ({ status }) => {
   const dispatch = useDispatch();
 
   const [editMode, setEditMode] = useState(false);
   const [currentStatus, setCurrentStatus] = useState(status);
-  
+
   useEffect(() => {
     setCurrentStatus(status);
-  }, [status]); 
-    
+  }, [status]);
+
   const onEditMode = () => {
     setEditMode(true);
-  }
+  };
 
   const onBlurMode = () => {
     setEditMode(false);
     dispatch(updateStatus(currentStatus));
-  }
+  };
 
   const onChangeStatus = (event) => {
-    setStatus(event.currentTarget.value)
-  }
+    setStatus(event.currentTarget.value);
+  };
 
   return (
     <div>
       {!editMode && (
         <div>
-          <span
-            onDoubleClick={onEditMode}
-          >
-            {currentStatus || "--"}
-          </span>
+          <span onDoubleClick={onEditMode}>{currentStatus || "--"}</span>
         </div>
       )}
       {editMode && (
