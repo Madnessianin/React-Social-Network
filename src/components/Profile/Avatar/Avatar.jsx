@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { savePhoto } from "../../../Redux/profile-reducer";
 import userPhoto from "../../../assets/images/user.png";
 import { getProfilePhoto } from "../../../Redux/profile-selectors";
-import { Image } from "antd";
+import { Upload, Image, Button } from "antd";
+import { UploadOutlined } from "@ant-design/icons";
 
 const MyAvatar = ({ isOwner }) => {
   const photos = useSelector((state) => getProfilePhoto(state));
@@ -16,9 +17,14 @@ const MyAvatar = ({ isOwner }) => {
   return (
     <div>
       <Image width={280} src={photos || userPhoto} />
-      <div className="">
-        {isOwner && <LoadFile onMainPhotoSelected={onMainPhotoSelected} />}
-      </div>
+      <Upload>
+        <Button
+          style={{ width: "280px", marginTop: "10px" }}
+          icon={<UploadOutlined />}
+        >
+          Выбрать фото
+        </Button>
+      </Upload>
     </div>
   );
 };

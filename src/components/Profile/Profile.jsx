@@ -3,10 +3,7 @@ import { Row, Col } from "antd";
 import Preloader from "../Common/Preloader/Preloader";
 import MyPostsConteiner from "./MyPosts/MyPostsConteiner";
 import { useSelector } from "react-redux";
-import {
-  getAutorizedUserId,
-  getProfile,
-} from "../../Redux/profile-selectors";
+import { getAutorizedUserId, getProfile } from "../../Redux/profile-selectors";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import Avatar from "./Avatar/Avatar";
 
@@ -22,7 +19,7 @@ const Profile = (props) => {
       <Col flex="280px">
         <Avatar isOwner={props.isOwner} />
       </Col>
-      <Col flex="auto">
+      <Col flex="auto" style={{ marginLeft: "15px" }}>
         <ProfileInfo isOwner={props.isOwner} />
         <MyPostsConteiner />
       </Col>
