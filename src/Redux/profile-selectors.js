@@ -17,3 +17,7 @@ export const getPosts = (state) => {
 export const getProfilePhoto = (state) => {
   return state.profilePage.profile.photos.large;
 };
+
+export const getContacts = (state) => {
+  return state.profilePage.profile.contacts
+}
