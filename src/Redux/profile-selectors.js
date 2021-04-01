@@ -19,5 +19,5 @@ export const getProfilePhoto = (state) => {
 };
 
 export const getContacts = (state) => {
-  return state.profilePage.profile.contacts
-}
+  return state.profilePage.profile.contacts;
+};
