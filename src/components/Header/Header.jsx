@@ -1,13 +1,11 @@
-import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import React from "react";
 import "./Header.scss";
 import logo from "../../assets/images/logo192.png";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../Redux/auth-reducer";
 import { Header } from "antd/lib/layout/layout";
-import { getIsAuth, getLogin, getUserPhoto } from "../../Redux/auth-selectors";
-import PhotoLogin from "../Common/PhotoLogin/PhotoLogin";
-import { Button, Menu } from "antd";
+import { getLogin } from "../../Redux/auth-selectors";
+import { Menu } from "antd";
 import {
   MenuUnfoldOutlined,
   SettingOutlined,
