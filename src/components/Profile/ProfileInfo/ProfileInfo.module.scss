@@ -1,24 +1,44 @@
 .profileInfo {
-  padding: 15px 20px;
+  padding: 15px 25px;
   background-color: #fff;
 }
 
 .profileName {
   font-size: 20px;
   font-weight: 400;
+  line-height: 30px;
   text-transform: capitalize;
+  margin: 0;
 }
 
 .description {
   padding: 15px 0;
+  margin: 0;
   border-top: 1px solid #ccc;
 }
-
-.headerItem {
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding-bottom: 15px;
-  &--main {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+}
+.headerItem {
+  &:last-child {
+    font-size: 14px;
+    font-weight: 400;
+    opacity: 0.4;
   }
+}
+
+.descriptionItem {
+  display: flex;
+  flex-wrap: nowrap;
+  font-size: 16px;
+  font-weight: 400;
+  margin: 0;
+}
+
+.descriptionLabel {
+  font-weight: 500;
+  width: 30%;
 }

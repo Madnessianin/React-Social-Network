@@ -20,7 +20,14 @@ const initialState = {
   profile: null,
   status: "",
 };
-
+// Заглушка на контакты
+export const contacts = {
+  youtube: "https://www.youtube.com/",
+  facebook: "https://www.facebook.com/",
+  vk: "https://vk.com/",
+  github: "https://github.com/",
+  twitter: "https://twitter.com/",
+};
 const profileReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_POST: {
