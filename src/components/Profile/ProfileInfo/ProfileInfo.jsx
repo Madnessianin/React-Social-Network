@@ -19,6 +19,7 @@ const ProfileInfo = ({ isOwner }) => {
         <div className={style.headerItem}>{isOwner ? "online" : "ofline"}</div>
       </div>
       <Description {...rest} />
+      <About />
     </div>
   );
 };
@@ -53,5 +54,33 @@ const Description = ({
     </dd>
   );
 };
+
+const About = () => {
+  return (
+    <dd className={style.about}>
+      <dl className={style.aboutItem}>
+        <span className={style.aboutCount}>58</span>
+        <span className={style.aboutName}>друзей</span>
+      </dl>
+      <dl className={style.aboutItem}>
+        <span className={style.aboutCount}>59</span>
+        <span className={style.aboutName}>подписчиков</span>
+      </dl>
+      <dl className={style.aboutItem}>
+        <span className={style.aboutCount}>19</span>
+        <span className={style.aboutName}>фотографий</span>
+      </dl>
+      <dl className={style.aboutItem}>
+        <span className={style.aboutCount}>3</span>
+        <span className={style.aboutName}>видиозаписи</span>
+      </dl>
+      <dl className={style.aboutItem}>
+        <span className={style.aboutCount}>13</span>
+        <span className={style.aboutName}>аудиозаписей</span>
+      </dl>
+
+    </dd>
+  );
+}
 
 export default ProfileInfo;
