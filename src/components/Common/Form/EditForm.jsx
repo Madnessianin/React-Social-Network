@@ -3,7 +3,7 @@ import { Field, reduxForm } from "redux-form";
 import { required } from "../../../Utils/Validators/validators";
 import Button from "../Button/Button";
 import { Textarea } from "../FormsControl/FormsControl";
-import style from "./EditForm.module.css";
+import style from "./EditForm.module.scss";
 
 const FormEdit = (props) => {
   return (

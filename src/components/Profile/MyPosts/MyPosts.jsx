@@ -1,5 +1,5 @@
 import React from "react";
-import style from "./MyPosts.module.css";
+import style from "./MyPosts.module.scss";
 import Post from "./Posts/Post";
 import FormEditConteiner from "../../Common/Form/EditForm";
 

@@ -20,8 +20,8 @@ const Profile = (props) => {
         <Avatar isOwner={props.isOwner} />
       </Col>
       <Col flex="auto" style={{ marginLeft: "15px" }}>
-         <ProfileInfo isOwner={props.isOwner} />
-         <MyPostsConteiner />
+        <ProfileInfo isOwner={props.isOwner} />
+        <MyPostsConteiner />
       </Col>
     </Row>
   );

@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import ContactReduxForm from "./ContactForm/ContactForm";
-import style from "../Edit.module.css";
+import style from "../Edit.module.scss";
 import Changes from "../../Common/Changes/Changes";
 
 const ContactEdit = (props) => {

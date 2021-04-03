@@ -2,7 +2,7 @@ import React from "react";
 import { Field, reduxForm } from "redux-form";
 import { Input } from "../../../Common/FormsControl/FormsControl";
 
-import style from "../../Edit.module.css";
+import style from "../../Edit.module.scss";
 
 const ContactForm = (props) => {
   return (

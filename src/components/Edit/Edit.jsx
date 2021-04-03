@@ -1,6 +1,6 @@
 import React from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
-import style from "./Edit.module.css";
+import style from "./Edit.module.scss";
 import GeneralEdit from "./GeneralEdit/GeneralEdit";
 import ContactEdit from "./ContactEdit/ContactEdit";
 import NavBarEdit from "./NavBarEdit/NavBarEdit";

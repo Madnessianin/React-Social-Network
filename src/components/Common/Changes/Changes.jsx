@@ -1,5 +1,5 @@
 import React from "react";
-import style from "./Changes.module.css";
+import style from "./Changes.module.scss";
 
 const Changes = () => {
   return (

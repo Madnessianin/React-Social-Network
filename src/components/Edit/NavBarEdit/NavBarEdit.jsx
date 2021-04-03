@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink, useRouteMatch } from "react-router-dom";
 //import style from "../../SideBar/NavBar.module.css";
-import classes from "./NavBarEdit.module.css";
+import classes from "./NavBarEdit.module.scss";
 
 const NavBarEdit = (props) => {
   let { url } = useRouteMatch();

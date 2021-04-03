@@ -2,18 +2,27 @@ const path = require("path");
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const getCSSModuleLocalIdent = require('react-dev-utils/getCSSModuleLocalIdent');
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const OptimazeCssAssetsWebpackPlugin = require("optimize-css-assets-webpack-plugin");
 const fs = require("fs");
 const lessToJs = require("less-vars-to-js");
+const { loader } = require("mini-css-extract-plugin");
 const themeVariables = lessToJs(
   fs.readFileSync(path.join(__dirname, "./src/ant.less"), "utf8")
 );
 
 const isDev = process.env.NODE_ENV === "development";
 const isProd = process.env.NODE_ENV === "production";
+
+const cssRegex = /\.css$/;
+const cssModuleRegex = /\.module\.css$/;
+const sassRegex = /\.(scss|sass)$/;
+const sassModuleRegex = /\.module\.(scss|sass)$/;
+const lessRegex = /\.less$/;
+const lessModuleRegex = /\.module\.less$/;
 
 const optimization = () => {
   let config = {
@@ -32,34 +41,54 @@ const optimization = () => {
 };
 const filename = (ext) => (isDev ? `[name].${ext}` : `[name].[hash].${ext}`);
 
-const styleLoader = (loader) => {
-  let configLoader = [
-    MiniCssExtractPlugin.loader,
-    "css-loader",
+const getStyleLoader = (cssOptions, preProcessor) => {
+  const loaders = [
+    isDev && 'style-loader',
+    isProd && MiniCssExtractPlugin.loader,
+    {
+      loader: "css-loader",
+      options: cssOptions
+    },
     "postcss-loader",
-  ];
-
-  switch (loader) {
-    case "sass-loader": {
-      configLoader.push(loader);
-      return configLoader;
-    }
-    case "less-loader": {
-      configLoader.push({
-        loader: loader,
-        options: {
-          lessOptions: {
-            javascriptEnabled: true,
-            modifyVars: themeVariables,
+  ].filter(Boolean);
+  if (preProcessor) {
+    loaders.push({
+      loader: 'resolve-url-loader',
+      options: {
+        sourceMap: isProd,
+        root: path.appSrc,
+      },
+    })
+    switch (preProcessor) {
+      case "sass-loader": {
+        loaders.push({
+          loader: preProcessor,
+          options: {
+            sourceMap: isDev,
+          }
+        });
+        return loaders;
+      }
+      case "less-loader": {
+        loaders.push({
+          loader: preProcessor,
+          options: {
+            sourceMap: isDev,
+            lessOptions: {
+              javascriptEnabled: true,
+              modifyVars: themeVariables,
+            },
           },
-        },
-      });
-      return configLoader;
+        });
+        return loaders;
+      }
+      default: {
+        return loaders;
+      }
     }
-    default: {
-      return configLoader;
-    }
-  }
+  }  
+
+  
 };
 
 const babelLoader = (preset) => {
@@ -179,17 +208,64 @@ module.exports = {
         type: "asset/inline",
       },
       {
-        test: /\.css$/,
-        use: styleLoader(),
+        test: cssRegex,
+        exclude: cssModuleRegex,
+        use: getStyleLoader({
+          importLoaders: 1,
+          sourceMap: isDev
+        })
       },
       {
-        test: /\.less$/,
-        use: styleLoader("less-loader"),
+        test: cssModuleRegex,
+        use: getStyleLoader({
+          importLoaders: 1,
+          sourceMap: isDev,
+          modules: {
+            getLocalIdent: getCSSModuleLocalIdent,
+          }
+        })
+      },
+      //less
+      {
+        test: lessRegex,
+        exclude: lessModuleRegex,
+        use: getStyleLoader({
+          importLoaders: 3,
+          sourceMap: isDev
+        }, 
+        'less-loader')
+      },
+      {
+        test: lessModuleRegex,
+        use: getStyleLoader({
+          importLoaders: 3,
+          sourceMap: isDev,
+          modules: {
+            getLocalIdent: getCSSModuleLocalIdent,
+          }
+        },
+        'less-loader')
       },
       //Sass
       {
-        test: /\.(sass|scss)$/,
-        use: styleLoader("sass-loader"),
+        test: sassRegex,
+        exclude: sassModuleRegex,
+        use: getStyleLoader({
+          importLoaders: 3,
+          sourceMap: isDev
+        },
+        'sass-loader')
+      },
+      {
+        test: sassModuleRegex,
+        use: getStyleLoader({
+          importLoaders: 3,
+          sourceMap: isDev,
+          modules: {
+            getLocalIdent: getCSSModuleLocalIdent,
+          }
+        },
+        'sass-loader')
       },
     ],
   },
