@@ -1,0 +1,16 @@
+.status {
+  font-weight: 14px;
+  font-weight: 400;
+}
+
+.statusInput {
+  width: 300px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+
+  &:focus,
+  &:active {
+    outline: none;
+  }
+}

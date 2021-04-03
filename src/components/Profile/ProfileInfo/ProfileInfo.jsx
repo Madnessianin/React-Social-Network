@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useSelector } from "react-redux";
 import { getProfile } from "../../../Redux/profile-selectors";
@@ -78,9 +77,8 @@ const About = () => {
         <span className={style.aboutCount}>13</span>
         <span className={style.aboutName}>аудиозаписей</span>
       </dl>
-
     </dd>
   );
-}
+};
 
 export default ProfileInfo;

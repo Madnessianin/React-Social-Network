@@ -14,14 +14,14 @@
 .description {
   padding: 15px 0;
   margin: 0;
-  border-top: 1px solid rgba(#000, .1);
-  border-bottom: 1px solid rgba(#000, .1);
+  border-top: 1px solid rgba(#000, 0.1);
+  border-bottom: 1px solid rgba(#000, 0.1);
 }
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 15px;
+  padding-bottom: 10px;
 }
 .headerItem {
   &:last-child {
@@ -67,12 +67,12 @@
   font-size: 28px;
   line-height: 20px;
   font-weight: 500;
-  opacity: .8;
+  opacity: 0.8;
 }
 .aboutName {
   width: 100%;
   text-align: center;
   font-size: 16px;
   font-weight: 400;
-  opacity: .3;
+  opacity: 0.3;
 }

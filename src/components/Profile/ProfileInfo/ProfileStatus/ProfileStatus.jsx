@@ -1,8 +1,11 @@
+import { Input } from "antd";
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { updateStatus } from "../../../../Redux/profile-reducer";
 import { getUserStatus } from "../../../../Redux/profile-selectors";
+import style from "./ProfileStatus.module.scss";
 
 const ProfileStatus = (props) => {
   const status = useSelector((state) => getUserStatus(state));
@@ -32,31 +35,30 @@ const Status = ({ status }) => {
     setEditMode(true);
   };
 
-  const onBlurMode = () => {
-    setEditMode(false);
-    dispatch(updateStatus(currentStatus));
+  const onChangeStatus = (event) => {
+    setCurrentStatus(event.currentTarget.value);
   };
 
-  const onChangeStatus = (event) => {
-    setStatus(event.currentTarget.value);
+  const dispatchStatus = () => {
+    setEditMode(false);
+    dispatch(updateStatus(currentStatus));
   };
 
   return (
     <div>
       {!editMode && (
-        <div>
-          <span onDoubleClick={onEditMode}>{currentStatus || "--"}</span>
-        </div>
+        <span className={style.status} onDoubleClick={onEditMode}>
+          {currentStatus || "--"}
+        </span>
       )}
       {editMode && (
-        <div>
-          <input
-            autoFocus={true}
-            onBlur={onBlurMode}
-            onChange={onChangeStatus}
-            value={currentStatus}
-          />
-        </div>
+        <Input
+          onPressEnter={dispatchStatus}
+          onChange={onChangeStatus}
+          defaultValue={status}
+          className={style.statusInput}
+          value={currentStatus}
+        />
       )}
     </div>
   );
