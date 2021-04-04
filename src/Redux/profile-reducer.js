@@ -17,17 +17,73 @@ const initialState = {
       isLikes: false,
     },
   ],
-  profile: null,
+  profile: {
+    userId: "",
+    lookingForAJob: true,
+    lookingForAJobDescription: "",
+    fullName: "",
+    contacts: {
+      youtube: "https://www.youtube.com/",
+      facebook: "https://www.facebook.com/",
+      vk: "https://vk.com/",
+      github: "https://github.com/",
+      twitter: "https://twitter.com/",
+    },
+    photos: {},
+  },
   status: "",
+  friends: [
+    {
+      id: "1",
+      fullName: "User1",
+      photo: {
+        large: "",
+        small: "",
+      },
+    },
+    {
+      id: "2",
+      fullName: "User2",
+      photo: {
+        large: "",
+        small: "",
+      },
+    },
+    {
+      id: "3",
+      fullName: "User3",
+      photo: {
+        large: "",
+        small: "",
+      },
+    },
+    {
+      id: "4",
+      fullName: "User4",
+      photo: {
+        large: "",
+        small: "",
+      },
+    },
+    {
+      id: "5",
+      fullName: "User5",
+      photo: {
+        large: "",
+        small: "",
+      },
+    },
+    {
+      id: "6",
+      fullName: "User6",
+      photo: {
+        large: "",
+        small: "",
+      },
+    },
+  ],
 };
-// Заглушка на контакты
-export const contacts = {
-  youtube: "https://www.youtube.com/",
-  facebook: "https://www.facebook.com/",
-  vk: "https://vk.com/",
-  github: "https://github.com/",
-  twitter: "https://twitter.com/",
-};
+
 const profileReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_POST: {
@@ -45,9 +101,23 @@ const profileReducer = (state = initialState, action) => {
       };
     }
     case SET_USER_PROFILE: {
+      const {
+        userId,
+        lookingForAJob,
+        lookingForAJobDescription,
+        fullName,
+        photos,
+      } = action.profile;
       return {
         ...state,
-        profile: action.profile,
+        profile: {
+          ...state.profile,
+          userId,
+          lookingForAJob,
+          lookingForAJobDescription,
+          fullName,
+          photos,
+        },
       };
     }
     case SET_USER_STATUS: {

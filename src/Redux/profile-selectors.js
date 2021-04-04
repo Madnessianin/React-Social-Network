@@ -1,5 +1,3 @@
-import { contacts } from "./profile-reducer";
-
 export const getProfile = (state) => {
   return state.profilePage.profile;
 };
@@ -21,5 +19,9 @@ export const getProfilePhoto = (state) => {
 };
 
 export const getContacts = (state) => {
-  return contacts;
+  return state.profilePage.profile.contacts;
+};
+
+export const getFriends = (state) => {
+  return state.profilePage.friends;
 };

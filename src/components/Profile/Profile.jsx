@@ -9,6 +9,7 @@ import Avatar from "./Avatar/Avatar";
 import Contacts from "./Contacts/Contacts";
 import { useParams } from "react-router";
 import { getStatus, getUser } from "../../Redux/profile-reducer";
+import FriendsList from "./FriendsList/FriendsList";
 
 const Profile = () => {
   const profile = useSelector((state) => getProfile(state));
@@ -42,6 +43,7 @@ const Profile = () => {
       <Col flex="280px">
         <Avatar isOwner={isOwner} />
         <Contacts />
+        <FriendsList isOwner={isOwner} />
       </Col>
       <Col flex="auto" style={{ marginLeft: "15px" }}>
         <ProfileInfo isOwner={isOwner} />
