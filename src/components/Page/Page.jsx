@@ -10,13 +10,11 @@ import EditConteiner from "./../Edit/EditConteiner";
 import { withAuthRedirect } from "../Hoc/withAuthRedirect";
 import Header from "../Header/Header";
 import SideBar from "../SideBar/SideBar";
-const { Content, Sider, Footer } = Layout;
+const { Content, Footer } = Layout;
 const DialogsConteiner = React.lazy(() =>
   import("./../Dialogs/DialogsConteiner")
 );
-const ProfileConteiner = React.lazy(() =>
-  import("./../Profile/ProfileConteiner")
-);
+const Profile = React.lazy(() => import("../Profile/Profile"));
 
 const Page = () => {
   return (
@@ -34,7 +32,7 @@ const Page = () => {
               />
               <Route
                 path="/app/profile/:userId?"
-                render={withSuspense(ProfileConteiner)}
+                render={withSuspense(Profile)}
               />
               <Route
                 path="/app/dialogs"

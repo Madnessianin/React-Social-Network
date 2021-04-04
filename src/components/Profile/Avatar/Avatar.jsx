@@ -1,50 +1,61 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { savePhoto } from "../../../Redux/profile-reducer";
 import userPhoto from "../../../assets/images/user.png";
 import { getProfilePhoto } from "../../../Redux/profile-selectors";
-import { Upload, Image, Button } from "antd";
+import { Upload, Image, Button, message } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
+import style from "./Avatar.module.scss"
+import { Link } from "react-router-dom";
 
 const MyAvatar = ({ isOwner }) => {
   const photos = useSelector((state) => getProfilePhoto(state));
-  const dispatch = useDispatch();
-  const onMainPhotoSelected = (event) => {
-    if (event.target.files.length) {
-      dispatch(savePhoto(event.target.files[0]));
-    }
-  };
+
   return (
-    <div>
+    <div className={style.avatar}>
       <Image width={280} src={photos || userPhoto} />
-      <Upload>
-        <Button
-          style={{ width: "280px", marginTop: "10px" }}
-          icon={<UploadOutlined />}
-        >
-          Выбрать фото
-        </Button>
-      </Upload>
+      {isOwner ? <EditBlock /> : <UserBlock />}
     </div>
   );
 };
 
-const LoadFile = (props) => {
+const EditBlock = () => {
+  const dispatch = useDispatch();
+  
+  const beforeUpload = (file) => {
+    if (file.type !== 'image/jpeg' || file.type !== 'image/jpg' || file.type !== 'image/png') {
+      message.error("Выбран некорректный файл!")
+    }
+  }
+  
+  const dispatchPhoto = ({file}) => {
+    dispatch(savePhoto(file));
+  };
   return (
-    <div className="">
-      <i className="fas fa-download"></i>
-      <input
-        className=""
-        onChange={props.onMainPhotoSelected}
-        id="file"
-        name={"file"}
-        type={"file"}
-      />
-      <label className="" htmlFor={"file"}>
-        Choose file
-      </label>
+    <div className={style.btnBlock}>
+      <Upload customRequest={dispatchPhoto} beforeUpload={beforeUpload}>
+        <Button
+          className={style.firstBtn}
+          icon={<UploadOutlined />}
+        >
+          Загрузить фото
+        </Button>
+      </Upload>
+      <Link to="/app/edit">
+        <Button className={style.lastBtn} type="primary">Редактировать</Button>
+      </Link>
     </div>
-  );
+  )
 };
+
+const UserBlock = () => {
+  return (
+    <div className={style.btnBlock}>
+      <Button className={style.firstBtn}>Написать сообщение</Button>
+      <Button className={style.lastBtn} type="primary">Добавить в друзья</Button>
+    </div>
+  )
+}
+
 
 export default MyAvatar;

@@ -1,19 +1,19 @@
 import React from "react";
 import { NavLink, useRouteMatch } from "react-router-dom";
 //import style from "../../SideBar/NavBar.module.css";
-import classes from "./NavBarEdit.module.scss";
+import style from "./NavBarEdit.module.scss";
 
 const NavBarEdit = (props) => {
   let { url } = useRouteMatch();
   return (
     <nav className={style.nav}>
-      <div className={classes.item}>
-        <NavLink to={`${url}/general`} activeClassName={classes.active}>
+      <div className={style.item}>
+        <NavLink to={`${url}/general`} activeClassName={style.active}>
           General
         </NavLink>
       </div>
-      <div className={classes.item}>
-        <NavLink to={`${url}/contacts`} activeClassName={classes.active}>
+      <div className={style.item}>
+        <NavLink to={`${url}/contacts`} activeClassName={style.active}>
           Contacts
         </NavLink>
       </div>
