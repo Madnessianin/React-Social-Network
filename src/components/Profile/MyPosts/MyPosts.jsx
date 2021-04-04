@@ -20,13 +20,6 @@ class MyPosts extends React.PureComponent {
     };
     return (
       <div className={style.inner}>
-        <div className={style.form}>
-          <FormEditConteiner
-            form={"addPost"}
-            onSubmit={addPost}
-            identifierText={"newPostText"}
-          />
-        </div>
         <div className={style.posts}>{postsElements}</div>
       </div>
     );
