@@ -21,10 +21,11 @@ const NewPost = () => {
 
   const onSubmit = ({ newPostText }) => {
     dispatch(addPost(newPostText));
+    setNewPostMode(false);
   };
 
   const setAddPostMode = () => {
-    setNewPostMode(!newPostMode);
+    setNewPostMode(true);
   };
 
   return (

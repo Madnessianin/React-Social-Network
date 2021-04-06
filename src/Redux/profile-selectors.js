@@ -25,3 +25,7 @@ export const getContacts = (state) => {
 export const getFriends = (state) => {
   return state.profilePage.friends;
 };
+
+export const getProfileName = (state) => {
+  return state.profilePage.profile.fullName;
+};
