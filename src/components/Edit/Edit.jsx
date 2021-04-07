@@ -2,7 +2,7 @@ import React from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import style from "./Edit.module.scss";
 import GeneralSettings from "./EditForms/GeneralSettings/GeneralSettings";
-import ContactEdit from "./EditForms/ContactEdit/ContactEdit";
+import ContactSettings from "./EditForms/ContactSettings/ContactSettings";
 import AddSideBar from "./AddSideBar/AddSideBar";
 import { Layout } from "antd";
 
@@ -24,12 +24,7 @@ const Edit = (props) => {
           />
           <Route
             path="/app/edit/contacts"
-            render={() => (
-              <ContactEdit
-                profile={props.profile}
-                saveProfileInfo={props.saveProfileInfo}
-              />
-            )}
+            render={() => <ContactSettings title="Контакты: " />}
           />
         </Switch>
       </Content>

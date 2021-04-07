@@ -6,7 +6,6 @@ import { getProfile } from "../../../../Redux/profile-selectors";
 import EditForm from "../EditForm";
 import style from "./../EditForm.module.scss";
 
-
 const GeneralForm = () => {
   const layout = {
     labelCol: { span: 8 },
@@ -68,9 +67,9 @@ const GeneralForm = () => {
         <Input.TextArea autoSize={{ minRows: 3, maxRows: 5 }} />
       </Form.Item>
       <div className={style.btnInner}>
-      <Button className={style.formBtn} htmlType="submit" type="primary">
-        Сохранить изменения
-      </Button>
+        <Button className={style.formBtn} htmlType="submit" type="primary">
+          Сохранить изменения
+        </Button>
       </div>
     </Form>
   );
