@@ -38,9 +38,6 @@ const Dialogs = () => {
 
   const dispatch = useDispatch();
 
-  const dialogsElements = dialogs.map((dialog) => (
-    <Dialog key={dialog.id} name={dialog.name} id={dialog.id} />
-  ));
   const messagesElements = messages.map((message) => (
     <Messege key={message.id} message={message.message} />
   ));
@@ -54,14 +51,20 @@ const Dialogs = () => {
       <List
         dataSource={dialogs}
         className={style.list}
-        renderItem={(item) => <Dialog id={item.id} name={item.fullName} lastMessege={item.lastMessege}/>}
+        renderItem={(item) => (
+          <Dialog
+            id={item.id}
+            name={item.fullName}
+            lastMessege={item.lastMessege}
+          />
+        )}
       />
     </div>
   );
 };
 
-const Dialog = ({ id, name, lastMessege: {user} }) => {
-  const linkUrl = `/app/dialogs/${id}`
+const Dialog = ({ id, name, lastMessege: { user } }) => {
+  const linkUrl = `/app/dialogs/${id}`;
   return (
     <Link to={linkUrl}>
       <List.Item className={style.listItem}>
@@ -69,22 +72,21 @@ const Dialog = ({ id, name, lastMessege: {user} }) => {
           avatar={<PhotoLogin isLink={false} isLarge={true} />}
           title={<span className={style.dialogName}>{name}</span>}
           description={<MessageAvatar message={user.message} />}
-        >
-        </List.Item.Meta>
+        ></List.Item.Meta>
         <span className={style.data}>{user.data}</span>
       </List.Item>
     </Link>
   );
 };
 
-const MessageAvatar = ({message}) => {
+const MessageAvatar = ({ message }) => {
   return (
     <span className={style.lastMessege}>
       <PhotoLogin isLink={false} />
       <span className={style.message}>{message}</span>
     </span>
-  )
-}
+  );
+};
 
 const Messege = (props) => {
   return <div className={style.messages_item}>{props.message}</div>;

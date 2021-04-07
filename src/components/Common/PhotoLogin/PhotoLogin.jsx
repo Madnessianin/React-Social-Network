@@ -5,18 +5,22 @@ import { Link } from "react-router-dom";
 import style from "./PhotoLogin.module.scss";
 
 const PhotoLogin = ({ photo, name, link, isLarge, isLink }) => {
-
-  const MyButton = ({sizeIcon}) => {
+  const MyButton = ({ sizeIcon }) => {
     return (
       <Button
-        icon={<Avatar src={photo || defaultPhoto} size={isLarge ? 65 : sizeIcon || 30} />}
+        icon={
+          <Avatar
+            src={photo || defaultPhoto}
+            size={isLarge ? 65 : sizeIcon || 30}
+          />
+        }
         type="link"
         className={style.btn}
       >
         {name ? <span className={style.name}>{name}</span> : null}
       </Button>
-    )
-  }
+    );
+  };
   if (isLink) {
     return (
       <Link to={link}>
@@ -24,9 +28,8 @@ const PhotoLogin = ({ photo, name, link, isLarge, isLink }) => {
       </Link>
     );
   } else {
-    return <MyButton />
+    return <MyButton />;
   }
- 
 };
 
 export default PhotoLogin;
