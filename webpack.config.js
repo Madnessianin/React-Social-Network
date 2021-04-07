@@ -136,6 +136,7 @@ module.exports = {
   devServer: {
     historyApiFallback: true,
     contentBase: returnContentBase(),
+    watchContentBase: true,
     open: true,
     compress: true,
     hotOnly: isDev,

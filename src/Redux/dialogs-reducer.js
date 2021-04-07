@@ -2,13 +2,126 @@ const SEND_MESSAGE = "social-network/dialogs/SEND_MESSAGE";
 
 const initialState = {
   dialogs: [
-    { id: "1", name: "Dima" },
-    { id: "2", name: "Alex" },
-    { id: "3", name: "Andrey" },
-    { id: "4", name: "Sveta" },
-    { id: "5", name: "Sasha" },
-    { id: "6", name: "Victor" },
-    { id: "7", name: "Valera" },
+    {
+      id: "1",
+      fullName: "User1",
+      photo: {
+        large: "",
+        small: "",
+      },
+      lastMessege: {
+        user: {
+          id: "2",
+          fullName: "User2",
+          photo: {
+            large: "",
+            small: "",
+          },
+          message: "Abra codabra",
+          data: "07.04.21",
+        },
+      },
+    },
+    {
+      id: "2",
+      fullName: "User2",
+      photo: {
+        large: "",
+        small: "",
+      },
+      lastMessege: {
+        user: {
+          id: "3",
+          fullName: "User3",
+          photo: {
+            large: "",
+            small: "",
+          },
+          message: "Abra codabra",
+          data: "07.04.21",
+        },
+      },
+    },
+    {
+      id: "3",
+      fullName: "User3",
+      photo: {
+        large: "",
+        small: "",
+      },
+      lastMessege: {
+        user: {
+          id: "2",
+          fullName: "User2",
+          photo: {
+            large: "",
+            small: "",
+          },
+          message: "Abra codabra",
+          data: "07.04.21",
+        },
+      },
+    },
+    {
+      id: "4",
+      fullName: "User4",
+      photo: {
+        large: "",
+        small: "",
+      },
+      lastMessege: {
+        user: {
+          id: "2",
+          fullName: "User2",
+          photo: {
+            large: "",
+            small: "",
+          },
+          message: "Abra codabra",
+          data: "07.04.21",
+        },
+      },
+    },
+    {
+      id: "5",
+      fullName: "User5",
+      photo: {
+        large: "",
+        small: "",
+      },
+      lastMessege: {
+        user: {
+          id: "2",
+          fullName: "User2",
+          photo: {
+            large: "",
+            small: "",
+          },
+          message: "Abra codabra",
+          data: "07.04.21",
+        },
+      },
+    },
+    {
+      id: "6",
+      fullName: "User6",
+      photo: {
+        large: "",
+        small: "",
+      },
+      lastMessege: {
+        user: {
+          id: "2",
+          fullName: "User2",
+          photo: {
+            large: "",
+            small: "",
+          },
+          message: "Abra codabra",
+          data: "07.04.21",
+        },
+      },
+    },
   ],
   messages: [
     { id: "1", message: "Hi" },

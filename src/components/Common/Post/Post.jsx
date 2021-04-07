@@ -62,6 +62,7 @@ const LocalPhotoLogin = () => {
       photo={profilePhoto}
       link={`/app/profile/${authUserId}`}
       name={profileName}
+      isLink={true}
     />
   );
 };

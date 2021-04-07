@@ -1,32 +1,35 @@
-.dialogs {
-  display: grid;
-  grid-template-columns: 8fr 2fr;
-  grid-template-areas: "c n";
+.list {
+    max-width: 740px;
 }
-.inner {
-  grid-area: c;
-  display: grid;
-  grid-template-columns: 3fr 5fr;
-  margin: 15px;
-  padding: 15px;
-  border-radius: 15px;
-  background: #111436;
+
+.listItem {
+    margin-bottom: 10px;
+    padding: 16px 20px;
+    background-color: #fff;
 }
-.avatar {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
+
+.dialogName {
+    margin-left: 20px;
+    font-size: 14px;
+    font-weight: 400;
+    opacity: .8;
+    color: #000;
 }
-.avatar img {
-  width: 50px;
-  height: 50px;
-  margin-right: 10px;
-  border-radius: 50%;
+
+.lastMessege {
+    margin-left: 25px;
+
 }
-.link {
-  text-decoration: none;
-  color: #fff;
+
+.message {
+    margin-left: 10px;
 }
-.avatar a.active {
-  color: #00d7b2;
+
+.data {
+    position: relative;
+    top: -25px;
+    right: 0;
+    font-size: 12px;
+    font-weight: 400;
+    opacity: .3;
 }
