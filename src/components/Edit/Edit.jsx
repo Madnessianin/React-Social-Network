@@ -1,15 +1,17 @@
 import React from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import style from "./Edit.module.scss";
-import GeneralEdit from "./GeneralEdit/GeneralEdit";
-import ContactEdit from "./ContactEdit/ContactEdit";
-import NavBarEdit from "./NavBarEdit/NavBarEdit";
+import GeneralSettings from "./EditForms/GeneralSettings/GeneralSettings";
+import ContactEdit from "./EditForms/ContactEdit/ContactEdit";
+import AddSideBar from "./AddSideBar/AddSideBar";
+import { Layout } from "antd";
+
+const { Content } = Layout;
 
 const Edit = (props) => {
   return (
-    <div className={style.inner}>
-      <NavBarEdit />
-      <div className={style.content}>
+    <Layout>
+      <Content>
         <Switch>
           <Route
             exact
@@ -18,12 +20,7 @@ const Edit = (props) => {
           />
           <Route
             path="/app/edit/general"
-            render={() => (
-              <GeneralEdit
-                profile={props.profile}
-                saveProfileInfo={props.saveProfileInfo}
-              />
-            )}
+            render={() => <GeneralSettings title="Основная информация: " />}
           />
           <Route
             path="/app/edit/contacts"
@@ -35,8 +32,9 @@ const Edit = (props) => {
             )}
           />
         </Switch>
-      </div>
-    </div>
+      </Content>
+      <AddSideBar />
+    </Layout>
   );
 };
 

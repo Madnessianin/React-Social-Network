@@ -6,10 +6,10 @@ import Music from "./../Music/Music";
 import Settings from "./../Settings/Settings";
 import UsersConteiner from "./../Users/UsersConteiner";
 import withSuspense from "./../Hoc/withSuspense";
-import EditConteiner from "./../Edit/EditConteiner";
 import { withAuthRedirect } from "../Hoc/withAuthRedirect";
 import Header from "../Header/Header";
 import SideBar from "../SideBar/SideBar";
+import Edit from "../Edit/Edit";
 const { Content, Footer } = Layout;
 const Dialogs = React.lazy(() => import("../Dialogs/Dialogs"));
 const Profile = React.lazy(() => import("../Profile/Profile"));
@@ -37,7 +37,7 @@ const Page = () => {
               <Route path="/app/music" component={Music} />
               <Route path="/app/users" render={withSuspense(UsersConteiner)} />
               <Route path="/app/settings" component={Settings} />
-              <Route path="/app/edit" render={() => <EditConteiner />} />
+              <Route path="/app/edit" render={() => <Edit />} />
             </Switch>
           </Content>
         </Layout>
