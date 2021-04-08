@@ -1,9 +1,7 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
-import { Field, reduxForm } from "redux-form";
 import style from "./Login.scss";
 import logo from "../../assets/images/logo192.png";
-import classes from "../Common/FormsControl/FormsControl.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../Redux/auth-reducer";
 import { getCaptcha, getIsAuth } from "../../Redux/auth-selectors";

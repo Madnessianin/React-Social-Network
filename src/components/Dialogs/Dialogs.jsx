@@ -2,7 +2,6 @@ import React from "react";
 import style from "./Dialogs.module.scss";
 import { Field, reduxForm } from "redux-form";
 import { maxLengthCreator, required } from "../../Utils/Validators/validators";
-import { Textarea } from "../Common/FormsControl/FormsControl";
 import { useDispatch, useSelector } from "react-redux";
 import { getDialogs, getMessages } from "../../Redux/dialogs-selectors";
 import { sendMessage } from "../../Redux/dialogs-reducer";

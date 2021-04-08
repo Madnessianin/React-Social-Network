@@ -4,15 +4,16 @@ import { Redirect, Route, Switch } from "react-router-dom";
 import News from "./../News/News";
 import Music from "./../Music/Music";
 import Settings from "./../Settings/Settings";
-import UsersConteiner from "./../Users/UsersConteiner";
 import withSuspense from "./../Hoc/withSuspense";
 import { withAuthRedirect } from "../Hoc/withAuthRedirect";
 import Header from "../Header/Header";
 import SideBar from "../SideBar/SideBar";
 import Edit from "../Edit/Edit";
+
 const { Content, Footer } = Layout;
 const Dialogs = React.lazy(() => import("../Dialogs/Dialogs"));
 const Profile = React.lazy(() => import("../Profile/Profile"));
+const Users = React.lazy(() => import("../Users/Users"));
 
 const Page = () => {
   return (
@@ -35,7 +36,7 @@ const Page = () => {
               <Route path="/app/dialogs" render={withSuspense(Dialogs)} />
               <Route path="/app/news" component={News} />
               <Route path="/app/music" component={Music} />
-              <Route path="/app/users" render={withSuspense(UsersConteiner)} />
+              <Route path="/app/users" render={withSuspense(Users)} />
               <Route path="/app/settings" component={Settings} />
               <Route path="/app/edit" render={() => <Edit />} />
             </Switch>

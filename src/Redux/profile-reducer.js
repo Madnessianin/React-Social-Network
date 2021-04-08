@@ -19,6 +19,7 @@ const initialState = {
   ],
   profile: {
     userId: "",
+    aboutMe: "",
     lookingForAJob: true,
     lookingForAJobDescription: "",
     fullName: "",
@@ -105,6 +106,7 @@ const profileReducer = (state = initialState, action) => {
         userId,
         lookingForAJob,
         lookingForAJobDescription,
+        aboutMe,
         fullName,
         photos,
       } = action.profile;
@@ -113,6 +115,7 @@ const profileReducer = (state = initialState, action) => {
         profile: {
           ...state.profile,
           userId,
+          aboutMe,
           lookingForAJob,
           lookingForAJobDescription,
           fullName,

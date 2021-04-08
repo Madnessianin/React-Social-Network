@@ -28,6 +28,7 @@ const Description = ({
   lookingForAJob,
   lookingForAJobDescription,
 }) => {
+  console.log(aboutMe)
   return (
     <dd className={style.description}>
       <dl className={style.descriptionItem}>
