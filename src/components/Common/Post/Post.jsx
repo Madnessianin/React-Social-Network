@@ -16,7 +16,7 @@ import {
   getProfilePhoto,
 } from "../../../Redux/profile-selectors";
 
-const Post = ({ likeCounts, message, isLikes }) => {
+const Post = ({ likes, message, isLikes }) => {
   const setLike = () => {
     console.log("click!");
   };
@@ -33,9 +33,9 @@ const Post = ({ likeCounts, message, isLikes }) => {
       </div>
       <p className={style.postText}>{message}</p>
       <div className={style.blockBtn}>
-        <LikeCount count={likeCounts} action={setLike} />
-        <CommentsCount count={likeCounts} action={setLike} />
-        <RepostCount count={likeCounts} action={setLike} />
+        <LikeCount count={likes || 0} action={setLike} />
+        <CommentsCount count={likes || 0} action={setLike} />
+        <RepostCount count={likes || 0} action={setLike} />
       </div>
     </div>
   );

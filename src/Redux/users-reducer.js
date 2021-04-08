@@ -1,4 +1,4 @@
-import { usersAPI, followAPI } from "../api/Api.js";
+import { usersAPI, profileAPI } from "../api/Api.js";
 
 const FOLLOW = "social-network/users/FOLLOW",
   UNFOLLOW = "social-network/users/UNFOLLOW",
@@ -11,7 +11,7 @@ const FOLLOW = "social-network/users/FOLLOW",
 
 const initialState = {
   users: [],
-  pageSize: 100,
+  pageSize: 10,
   totalUsersCount: 0,
   currentPage: 1,
   isFetching: true,
@@ -86,14 +86,15 @@ export const toggleFollowingProgress = (isFetching, userId) => ({
 /* Thunk */
 export const getUsers = (currentPage, pageSize) => async (dispatch) => {
   dispatch(toggleIsFetching(true));
-  let response = await usersAPI.getUsers(currentPage, pageSize);
+  const response = await usersAPI.getUsers(currentPage, pageSize);
   dispatch(toggleIsFetching(false));
-  dispatch(setUsers(response.items));
-  dispatch(setTotalUsersCount(response.totalCount));
+  console.log(response);
+  dispatch(setUsers(response.data.items));
+  dispatch(setTotalUsersCount(response.data.totalCount));
 };
 export const follow = (userId) => async (dispatch) => {
   dispatch(toggleFollowingProgress(true, userId));
-  let response = await followAPI.postUser(userId);
+  let response = await profileAPI.postUser(userId);
   if (response.resultCode == 0) {
     dispatch(followSuccess(userId));
   }
@@ -102,7 +103,7 @@ export const follow = (userId) => async (dispatch) => {
 
 export const unfollow = (userId) => async (dispatch) => {
   dispatch(toggleFollowingProgress(true, userId));
-  let response = await followAPI.deleteUser(userId);
+  let response = await profileAPI.deleteUser(userId);
   if (response.resultCode == 0) {
     dispatch(unfollowSuccess(userId));
   }

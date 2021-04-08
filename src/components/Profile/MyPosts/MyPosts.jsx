@@ -6,13 +6,12 @@ import style from "./MyPosts.module.scss";
 
 const MyPosts = () => {
   const posts = useSelector((state) => getPosts(state));
-
   const postsElements = posts.map((post) => (
     <Post
       key={post.id}
       postId={post.id}
       message={post.message}
-      likeCounts={post.likesCount}
+      likes={post.likesCount}
       isLikes={post.isLikes}
     />
   ));

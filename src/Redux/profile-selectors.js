@@ -1,5 +1,5 @@
 export const getProfile = (state) => {
-  return state.profilePage.profile;
+  return state.profilePage;
 };
 
 export const getUserStatus = (state) => {
@@ -15,11 +15,11 @@ export const getPosts = (state) => {
 };
 
 export const getProfilePhoto = (state) => {
-  return state.profilePage.profile.photos.large;
+  return state.profilePage.photos.large;
 };
 
 export const getContacts = (state) => {
-  return state.profilePage.profile.contacts;
+  return state.profilePage.contacts;
 };
 
 export const getFriends = (state) => {
@@ -27,5 +27,5 @@ export const getFriends = (state) => {
 };
 
 export const getProfileName = (state) => {
-  return state.profilePage.profile.fullName;
+  return state.profilePage.fullName;
 };

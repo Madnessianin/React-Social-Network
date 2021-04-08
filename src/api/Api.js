@@ -3,23 +3,19 @@ import * as axios from "axios";
 let instance = axios.create({
   withCredentials: true,
   headers: { "API-KEY": "17ce7864-7abb-4461-acc2-1f1b971290ad" },
-  baseURL: "https://social-network.samuraijs.com/api/1.0/",
+  baseURL: "http://192.168.0.104:8000/",
   responseType: "json",
 });
 
 export const usersAPI = {
   async getUsers(currentPage, pageSize) {
-    let response = await instance.get(
-      `users?page=${currentPage}&count=${pageSize}`
-    );
-    return response.data;
+    return await instance.get(`users?page=${currentPage}&count=${pageSize}`);
   },
 };
 
 export const authAPI = {
   async getAuth() {
-    let response = await instance.get(`auth/me`);
-    return response.data;
+    return await instance.get(`auth/me`);
   },
   postAuth(data) {
     return instance.post(`/auth/login`, data);
@@ -29,25 +25,11 @@ export const authAPI = {
   },
 };
 
-export const followAPI = {
-  async postUser(id) {
-    let response = await instance.post(`follow/${id}`, {});
-    return response.data;
-  },
-  async deleteUser(id) {
-    let response = await instance.delete(`follow/${id}`);
-    return response.data;
-  },
-};
+export const followAPI = {};
 
 export const profileAPI = {
   async getUserProfile(id) {
-    let response = await instance.get(`profile/` + id);
-    return response.data;
-  },
-  async getStatust(id) {
-    let response = await instance.get(`profile/status/` + id);
-    return response.data;
+    return await instance.get(`profile/` + id);
   },
   updateStatus(status) {
     return instance.put(`profile/status`, { status: status });
@@ -65,6 +47,17 @@ export const profileAPI = {
   async dispachProfileInfo(profile) {
     let response = await instance.put(`profile`, profile);
     return response;
+  },
+  async postUser(id) {
+    let response = await instance.post(`profile/follow/${id}`, {});
+    return response.data;
+  },
+  async deleteUser(id) {
+    let response = await instance.delete(`profile/follow/${id}`);
+    return response.data;
+  },
+  async getPosts() {
+    return await instance.get(`profile/posts`);
   },
 };
 

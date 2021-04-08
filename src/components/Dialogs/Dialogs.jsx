@@ -71,7 +71,7 @@ const Dialog = ({ id, name, lastMessege: { user } }) => {
           avatar={<PhotoLogin isLink={false} isLarge={true} />}
           title={<span className={style.dialogName}>{name}</span>}
           description={<MessageAvatar message={user.message} />}
-        ></List.Item.Meta>
+         />
         <span className={style.data}>{user.data}</span>
       </List.Item>
     </Link>

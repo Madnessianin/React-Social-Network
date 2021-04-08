@@ -5,7 +5,7 @@ import style from "./Count.module.scss";
 const Count = (Component) => ({ count, action }) => {
   return (
     <Button icon={<Component />} className={style.btn} onClick={action}>
-      {count}
+      <span className={style.count}>{count}</span>
     </Button>
   );
 };

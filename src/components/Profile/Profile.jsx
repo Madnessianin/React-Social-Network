@@ -7,7 +7,7 @@ import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import Avatar from "./Avatar/Avatar";
 import Contacts from "./Contacts/Contacts";
 import { useParams } from "react-router";
-import { getStatus, getUser } from "../../Redux/profile-reducer";
+import { getUser } from "../../Redux/profile-reducer";
 import FriendsList from "./FriendsList/FriendsList";
 import NewPost from "./NewPost/NewPost";
 import MyPosts from "./MyPosts/MyPosts";
@@ -26,9 +26,7 @@ const Profile = () => {
       userId = autorizedUserId;
     }
     dispatch(getUser(userId));
-    dispatch(getStatus(userId));
   };
-
   useEffect(() => {
     if (userId !== autorizedUserId) {
       updateDataUser();

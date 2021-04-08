@@ -1,88 +1,30 @@
 import { stopSubmit } from "redux-form";
 import { profileAPI } from "../api/Api";
 
-const ADD_POST = "social-network/profile/ADD_POST",
-  SET_USER_PROFILE = "social-network/profile/SET_USER_PROFILE",
-  SET_USER_STATUS = "social-network/profile/SET_USER_STATUS",
-  SAVE_PHOTO_SUCSESS = "social-network/profile/SAVE_PHOTO_SUCSESS",
-  LIKEDISLAKEPOST = "social-network/profile/LIKEDISLAKEPOST";
+const ADD_POST = "social-network/profile/ADD_POST";
+const SET_USER_PROFILE = "social-network/profile/SET_USER_PROFILE";
+const SET_USER_STATUS = "social-network/profile/SET_USER_STATUS";
+const SAVE_PHOTO_SUCSESS = "social-network/profile/SAVE_PHOTO_SUCSESS";
+const LIKEDISLAKEPOST = "social-network/profile/LIKEDISLAKEPOST";
+const SET_POSTS = "social-network/profile/SET_POSTS";
 
 const initialState = {
-  posts: [
-    { id: "1", message: "Hi, how are you?", likesCount: "15", isLikes: false },
-    {
-      id: "2",
-      message: "It`s my first post",
-      likesCount: "10",
-      isLikes: false,
-    },
-  ],
-  profile: {
-    userId: "",
-    aboutMe: "",
-    lookingForAJob: true,
-    lookingForAJobDescription: "",
-    fullName: "",
-    contacts: {
-      youtube: "https://www.youtube.com/",
-      facebook: "https://www.facebook.com/",
-      vk: "https://vk.com/",
-      github: "https://github.com/",
-      twitter: "https://twitter.com/",
-    },
-    photos: {},
-  },
+  userId: "",
   status: "",
-  friends: [
-    {
-      id: "1",
-      fullName: "User1",
-      photo: {
-        large: "",
-        small: "",
-      },
-    },
-    {
-      id: "2",
-      fullName: "User2",
-      photo: {
-        large: "",
-        small: "",
-      },
-    },
-    {
-      id: "3",
-      fullName: "User3",
-      photo: {
-        large: "",
-        small: "",
-      },
-    },
-    {
-      id: "4",
-      fullName: "User4",
-      photo: {
-        large: "",
-        small: "",
-      },
-    },
-    {
-      id: "5",
-      fullName: "User5",
-      photo: {
-        large: "",
-        small: "",
-      },
-    },
-    {
-      id: "6",
-      fullName: "User6",
-      photo: {
-        large: "",
-        small: "",
-      },
-    },
-  ],
+  aboutMe: "",
+  lookingForAJob: true,
+  lookingForAJobDescription: "",
+  fullName: "",
+  contacts: {
+    youtube: "https://www.youtube.com/",
+    facebook: "https://www.facebook.com/",
+    vk: "https://vk.com/",
+    github: "https://github.com/",
+    twitter: "https://twitter.com/",
+  },
+  posts: [],
+  photos: {},
+  friends: [],
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -102,25 +44,9 @@ const profileReducer = (state = initialState, action) => {
       };
     }
     case SET_USER_PROFILE: {
-      const {
-        userId,
-        lookingForAJob,
-        lookingForAJobDescription,
-        aboutMe,
-        fullName,
-        photos,
-      } = action.profile;
       return {
         ...state,
-        profile: {
-          ...state.profile,
-          userId,
-          aboutMe,
-          lookingForAJob,
-          lookingForAJobDescription,
-          fullName,
-          photos,
-        },
+        ...action.profile,
       };
     }
     case SET_USER_STATUS: {
@@ -133,6 +59,12 @@ const profileReducer = (state = initialState, action) => {
       return {
         ...state,
         profile: { ...state.profile, photos: action.photos },
+      };
+    }
+    case SET_POSTS: {
+      return {
+        ...state,
+        posts: [...action.posts],
       };
     }
     case LIKEDISLAKEPOST: {
@@ -179,16 +111,20 @@ export const likeDislikeSucsess = (postId, isLikes) => ({
   postId,
   isLikes,
 });
+export const setPosts = (posts) => ({
+  type: SET_POSTS,
+  posts,
+});
+
+/* Thunk */
 
 export const getUser = (userId) => async (dispatch) => {
-  let data = await profileAPI.getUserProfile(userId);
-  dispatch(setUsersProfile(data));
+  const responseProfile = await profileAPI.getUserProfile(userId);
+  const responsePosts = await profileAPI.getPosts();
+  dispatch(setUsersProfile(responseProfile.data));
+  dispatch(setPosts(responsePosts.data.items));
 };
 
-export const getStatus = (userId) => async (dispatch) => {
-  let data = await profileAPI.getStatust(userId);
-  dispatch(setUserStatus(data));
-};
 export const updateStatus = (status) => async (dispatch) => {
   let response = await profileAPI.updateStatus(status);
   if (response.data.resultCode === 0) {
