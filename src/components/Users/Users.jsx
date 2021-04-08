@@ -81,7 +81,7 @@ const User = ({ user }) => {
 
   return (
     <List.Item className={style.item} actions={[
-      <Button onClick={follow}>Добавить в друзья</Button>
+      <Button onClick={followUser}>Добавить в друзья</Button>
     ]}>
       <Link to={`/app/profile/${user.id}`}>
         <List.Item.Meta
