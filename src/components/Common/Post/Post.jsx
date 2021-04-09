@@ -1,15 +1,20 @@
 import React from "react";
-import { Avatar, Button, List } from "antd";
+import { Avatar, Menu, List } from "antd";
 import {
   DownSquareOutlined,
   CommentOutlined,
   ShareAltOutlined,
+  EditOutlined,
+  DeleteOutlined
 } from "@ant-design/icons";
 import Count from "../../Common/Count/Count";
 import { HeartOutlined } from "@ant-design/icons";
 import style from "./Post.module.scss";
-
 import userPhoto from "./../../../assets/images/user.png";
+import { useDispatch } from "react-redux";
+import { deletePost } from "../../../Redux/profile/profile-reducer";
+
+const { SubMenu } = Menu;
 
 const Post = ({
   post: {
@@ -20,9 +25,16 @@ const Post = ({
     likes,
   },
 }) => {
+
+  const dispatch = useDispatch()
+
   const setLike = () => {
     console.log("click!");
   };
+
+  const deleteThisPost = () => {
+    dispatch(deletePost(id));
+  }
 
   return (
     <List.Item
@@ -33,11 +45,7 @@ const Post = ({
         <RepostCount count={likes || 0} action={setLike} />,
       ]}
       extra={
-        <Button
-          className={style.menuBtn}
-          size="large"
-          icon={<DownSquareOutlined />}
-        />
+        <DropDownMenu deletePost={deleteThisPost} changePost={()=>{console.log('click')}} />
       }
     >
       <List.Item.Meta
@@ -59,5 +67,26 @@ const CommentsCount = Count(({ count, action }) => (
 const RepostCount = Count(({ count, action }) => (
   <ShareAltOutlined count={count} action={action} />
 ));
+
+const DropDownMenu = ({deletePost, changePost}) => {
+  return (
+    <Menu
+      mode="horizontal"
+      className={style.dropDownMenu}
+    >
+      <SubMenu
+        key="menu"
+        icon={<DownSquareOutlined />}
+      >
+        <Menu.Item onClick={changePost} icon={<EditOutlined />} key="1">
+          Изменить
+        </Menu.Item>
+        <Menu.Item onClick={deletePost} icon={<DeleteOutlined />} key="2">
+          Удалить 
+        </Menu.Item>
+      </SubMenu>
+    </Menu>
+  );
+};
 
 export default Post;

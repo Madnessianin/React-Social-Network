@@ -13,7 +13,7 @@ const MyAvatar = ({ isOwner }) => {
 
   return (
     <div className={style.avatar}>
-      <Image width={280} src={photos || userPhoto} />
+      <Image className={style.avatarImg} src={photos || userPhoto} />
       {isOwner ? <EditBlock /> : <UserBlock />}
     </div>
   );

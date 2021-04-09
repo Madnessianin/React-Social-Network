@@ -136,6 +136,12 @@ export const sendNewPost = (post) => async (dispatch) => {
   }
 };
 
+export const deletePost = (id) => async (dispatch) => {
+  const response = await profileAPI.deletePost(id);
+  console.log(response)
+  dispatch(getAllPosts())
+}
+
 export const updateStatus = (status) => async (dispatch) => {
   const response = await profileAPI.updateStatus(status);
   if (response.data.resultCode === 0) {

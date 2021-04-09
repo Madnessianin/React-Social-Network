@@ -3,7 +3,7 @@ import * as axios from "axios";
 let instance = axios.create({
   withCredentials: true,
   headers: { "API-KEY": "17ce7864-7abb-4461-acc2-1f1b971290ad" },
-  baseURL: "http://192.168.0.104:8000/",
+  baseURL: "http://192.168.0.104:8001/",
   responseType: "json",
 });
 
@@ -56,6 +56,9 @@ export const profileAPI = {
   },
   async addPost(data) {
     return await instance.post(`profile/post`, data);
+  },
+  async deletePost(id) {
+    return await instance.delete(`profile/post/${id}`);
   },
 };
 

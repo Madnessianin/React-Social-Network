@@ -2,12 +2,13 @@
   padding: 10px;
   background-color: #fff;
 }
-
+.avatarImg, 
+.avatar,
+.firstBtn,
+.lastBtn {
+  width: 100%;
+}
 .firstBtn {
-  width: 280px;
   margin-bottom: 10px;
 }
 
-.lastBtn {
-  width: 280px;
-}

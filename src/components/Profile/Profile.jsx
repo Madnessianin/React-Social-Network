@@ -42,7 +42,7 @@ const Profile = () => {
   }
   return (
     <Row>
-      <Col flex="280px">
+      <Col flex="20%">
         <Avatar isOwner={isOwner} />
         <Contacts />
         <FriendsList isOwner={isOwner} />
