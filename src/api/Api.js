@@ -54,6 +54,9 @@ export const profileAPI = {
   async getPosts() {
     return await instance.get(`profile/posts`);
   },
+  async addPost(data) {
+    return await instance.post(`profile/post`, data);
+  },
 };
 
 export const securityAPI = {

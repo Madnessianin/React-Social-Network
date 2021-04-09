@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "antd";
+import { Avatar, Button, List } from "antd";
 import {
   DownSquareOutlined,
   CommentOutlined,
@@ -8,36 +8,44 @@ import {
 import Count from "../../Common/Count/Count";
 import { HeartOutlined } from "@ant-design/icons";
 import style from "./Post.module.scss";
-import PhotoLogin from "../../Common/PhotoLogin/PhotoLogin";
-import { useSelector } from "react-redux";
-import {
-  getAutorizedUserId,
-  getProfileName,
-  getProfilePhoto,
-} from "../../../Redux/profile/profile-selectors";
 
-const Post = ({ likes, message, isLikes }) => {
+import userPhoto from "./../../../assets/images/user.png";
+
+const Post = ({
+  post: {
+    fullName,
+    id,
+    author_photo: { large },
+    post_text,
+    likes,
+  },
+}) => {
   const setLike = () => {
     console.log("click!");
   };
 
   return (
-    <div className={style.item}>
-      <div className={style.header}>
-        <LocalPhotoLogin />
+    <List.Item
+      className={style.item}
+      actions={[
+        <LikeCount count={likes || 0} action={setLike} />,
+        <CommentsCount count={likes || 0} action={setLike} />,
+        <RepostCount count={likes || 0} action={setLike} />,
+      ]}
+      extra={
         <Button
           className={style.menuBtn}
           size="large"
           icon={<DownSquareOutlined />}
         />
-      </div>
-      <p className={style.postText}>{message}</p>
-      <div className={style.blockBtn}>
-        <LikeCount count={likes || 0} action={setLike} />
-        <CommentsCount count={likes || 0} action={setLike} />
-        <RepostCount count={likes || 0} action={setLike} />
-      </div>
-    </div>
+      }
+    >
+      <List.Item.Meta
+        avatar={<Avatar src={large || userPhoto} />}
+        title={fullName}
+        description={post_text}
+      />
+    </List.Item>
   );
 };
 
@@ -51,20 +59,5 @@ const CommentsCount = Count(({ count, action }) => (
 const RepostCount = Count(({ count, action }) => (
   <ShareAltOutlined count={count} action={action} />
 ));
-
-const LocalPhotoLogin = () => {
-  const profilePhoto = useSelector((state) => getProfilePhoto(state));
-  const authUserId = useSelector((state) => getAutorizedUserId(state));
-  const profileName = useSelector((state) => getProfileName(state));
-
-  return (
-    <PhotoLogin
-      photo={profilePhoto}
-      link={`/app/profile/${authUserId}`}
-      name={profileName}
-      isLink={true}
-    />
-  );
-};
 
 export default Post;

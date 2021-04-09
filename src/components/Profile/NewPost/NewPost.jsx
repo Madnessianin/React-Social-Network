@@ -1,7 +1,7 @@
 import { Button, Form, Input } from "antd";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addPost } from "../../../Redux/profile/profile-reducer";
+import { sendNewPost } from "../../../Redux/profile/profile-reducer";
 import {
   getAutorizedUserId,
   getProfilePhoto,
@@ -19,8 +19,8 @@ const NewPost = () => {
   const dispatch = useDispatch();
   const [newPostMode, setNewPostMode] = useState(false);
 
-  const onSubmit = ({ newPostText }) => {
-    dispatch(addPost(newPostText));
+  const onSubmit = (newPostText) => {
+    dispatch(sendNewPost(newPostText));
     setNewPostMode(false);
   };
 

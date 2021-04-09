@@ -83,7 +83,7 @@ const User = ({ user }) => {
   const unfollowUser = (userId) => {
     dispatch(unfollow(userId));
   };
-
+  console.log(user);
   return (
     <List.Item
       className={style.item}
@@ -91,7 +91,7 @@ const User = ({ user }) => {
     >
       <Link to={`/app/profile/${user.id}`}>
         <List.Item.Meta
-          avatar={<Avatar src={photo || userPhoto} size={100} />}
+          avatar={<Avatar src={user.photos.large || userPhoto} size={100} />}
           title={user.name}
           description={user.status}
         />

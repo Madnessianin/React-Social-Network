@@ -7,23 +7,14 @@ import style from "./MyPosts.module.scss";
 
 const MyPosts = () => {
   const posts = useSelector((state) => getPosts(state));
-
+  console.log(posts);
   return (
     <div className={style.inner}>
       <List
         className={style.posts}
         dataSource={posts}
-        renderItem={(post) => (
-          <List.Item>
-            <Post
-              key={post.id}
-              postId={post.id}
-              message={post.message}
-              likes={post.likesCount}
-              isLikes={post.isLikes}
-            />
-          </List.Item>
-        )}
+        itemLayout="vertical"
+        renderItem={(post) => <Post key={post.id} post={post} />}
       />
     </div>
   );

@@ -119,10 +119,21 @@ export const setPosts = (posts) => ({
 /* Thunk */
 
 export const getUser = (userId) => async (dispatch) => {
-  const responseProfile = await profileAPI.getUserProfile(userId);
-  const responsePosts = await profileAPI.getPosts();
-  dispatch(setUsersProfile(responseProfile.data));
-  dispatch(setPosts(responsePosts.data.items));
+  const response = await profileAPI.getUserProfile(userId);
+  dispatch(setUsersProfile(response.data));
+  dispatch(getAllPosts());
+};
+
+export const getAllPosts = () => async (dispatch) => {
+  const response = await profileAPI.getPosts();
+  dispatch(setPosts(response.data.items));
+};
+
+export const sendNewPost = (post) => async (dispatch) => {
+  const response = await profileAPI.addPost(post);
+  if (response.data.resultCode === 0) {
+    dispatch(getAllPosts());
+  }
 };
 
 export const updateStatus = (status) => async (dispatch) => {
