@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import "./App.scss";
 import { Redirect, Route, Switch } from "react-router-dom";
-import { initializeApp } from "./Redux/app-reducer";
+import { initializeApp } from "./Redux/app/app-reducer";
 import { useDispatch, useSelector } from "react-redux";
 import Preloader from "./Components/Common/Preloader/Preloader";
-import { getInitialized } from "./Redux/app-selectors";
+import { getInitialized } from "./Redux/app/app-selectors";
 import Page from "./Components/Page/Page";
 import Login from "./components/Login/Login";
 

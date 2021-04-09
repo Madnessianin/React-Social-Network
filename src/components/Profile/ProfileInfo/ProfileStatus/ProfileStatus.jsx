@@ -3,8 +3,8 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { updateStatus } from "../../../../Redux/profile-reducer";
-import { getUserStatus } from "../../../../Redux/profile-selectors";
+import { updateStatus } from "../../../../Redux/profile/profile-reducer";
+import { getUserStatus } from "../../../../Redux/profile/profile-selectors";
 import style from "./ProfileStatus.module.scss";
 
 const ProfileStatus = (props) => {

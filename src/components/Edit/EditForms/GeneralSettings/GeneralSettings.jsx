@@ -1,8 +1,8 @@
 import { Button, Form, Input, Select } from "antd";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { saveProfileInfo } from "../../../../Redux/profile-reducer";
-import { getProfile } from "../../../../Redux/profile-selectors";
+import { saveProfileInfo } from "../../../../Redux/profile/profile-reducer";
+import { getProfile } from "../../../../Redux/profile/profile-selectors";
 import EditForm from "../EditForm";
 import style from "./../EditForm.module.scss";
 

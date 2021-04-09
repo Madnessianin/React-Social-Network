@@ -1,16 +1,20 @@
 import { stopSubmit } from "redux-form";
-import { authAPI, profileAPI, securityAPI } from "../api/Api.js";
+import { authAPI, profileAPI, securityAPI } from "../../Api/Api.js";
 
-const SET_USER_DATA = "social-network/auth/SET_USER_DATA",
-  SET_CAPTCHA_URL = "social-network/auth/SET_CAPTCHA_URL",
-  SET_AUTORIZED_USER_PHOTO = "social-network/auth/SET_AUTORIZED_USER_PHOTO";
+const SET_USER_DATA = "social-network/auth/SET_USER_DATA";
+const SET_CAPTCHA_URL = "social-network/auth/SET_CAPTCHA_URL";
+const SET_AUTORIZED_USER_PHOTO = "social-network/auth/SET_AUTORIZED_USER_PHOTO";
+const SET_CAPTCHA_TEXT = "social-network/auth/SET_CAPTCHA_TEXT";
 
 const initialState = {
   id: null,
   email: null,
   login: null,
   isAuth: false,
-  captchaURL: null,
+  captcha: {
+    captchaURL: null,
+    captchaText: null,
+  },
   userPhoto: null,
 };
 
@@ -25,7 +29,19 @@ const authReducer = (state = initialState, action) => {
     case SET_CAPTCHA_URL: {
       return {
         ...state,
-        captchaURL: action.captcha,
+        captcha: {
+          ...state.captcha,
+          captchaURL: action.captcha,
+        },
+      };
+    }
+    case SET_CAPTCHA_TEXT: {
+      return {
+        ...state,
+        captcha: {
+          ...state.captcha,
+          captchaText: action.captchaText,
+        },
       };
     }
     case SET_AUTORIZED_USER_PHOTO: {
@@ -44,6 +60,10 @@ export const setAuthUserData = (userId, email, login, isAuth) => ({
   data: { userId, email, login, isAuth },
 });
 export const setCaptchaURL = (captcha) => ({ type: SET_CAPTCHA_URL, captcha });
+export const setCaptchaText = (captchaText) => ({
+  type: SET_CAPTCHA_TEXT,
+  captchaText,
+});
 export const setAuthUserPhoto = (photo) => ({
   type: SET_AUTORIZED_USER_PHOTO,
   photo,
@@ -59,12 +79,19 @@ export const setAuth = () => async (dispatch) => {
 };
 
 export const getAuthUserPhoto = (id) => async (dispatch) => {
-  let profile = await profileAPI.getUserProfile(id);
-  dispatch(setAuthUserPhoto(profile.photos.large));
+  const response = await profileAPI.getUserProfile(id);
+  dispatch(setAuthUserPhoto(response.data.photos.large));
 };
 
-export const login = (data) => async (dispatch) => {
-  let response = await authAPI.postAuth(data);
+export const login = (data) => async (dispatch, getState) => {
+  const { captchaURL, captchaText } = getState().authPage.captcha;
+  let newData = {
+    ...data,
+  };
+  if (captchaURL) {
+    newData.captcha = captchaText;
+  }
+  const response = await authAPI.postAuth(newData);
   if (response.data.resultCode === 0) {
     dispatch(setAuth());
   } else {
@@ -81,14 +108,14 @@ export const login = (data) => async (dispatch) => {
 };
 
 export const logout = () => async (dispatch) => {
-  let response = await authAPI.deleteAuth();
+  const response = await authAPI.deleteAuth();
   if (response.data.resultCode === 0) {
     dispatch(setAuthUserData(null, null, null, false));
   }
 };
 
 export const getCaptchaURL = () => async (dispatch) => {
-  let responseCaptcha = await securityAPI.getCaptchaURL();
+  const responseCaptcha = await securityAPI.getCaptchaURL();
   dispatch(setCaptchaURL(responseCaptcha.data.url));
 };
 

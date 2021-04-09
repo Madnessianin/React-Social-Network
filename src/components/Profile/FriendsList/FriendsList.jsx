@@ -1,7 +1,7 @@
 import { Button } from "antd";
 import React from "react";
 import { useSelector } from "react-redux";
-import { getFriends } from "../../../Redux/profile-selectors";
+import { getFriends } from "../../../Redux/profile/profile-selectors";
 import style from "./FriendsList.module.scss";
 import { Avatar } from "antd";
 import { UserOutlined } from "@ant-design/icons";

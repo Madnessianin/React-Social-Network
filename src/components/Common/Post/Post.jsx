@@ -14,7 +14,7 @@ import {
   getAutorizedUserId,
   getProfileName,
   getProfilePhoto,
-} from "../../../Redux/profile-selectors";
+} from "../../../Redux/profile/profile-selectors";
 
 const Post = ({ likes, message, isLikes }) => {
   const setLike = () => {

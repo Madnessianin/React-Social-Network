@@ -3,12 +3,11 @@ import style from "./Dialogs.module.scss";
 import { Field, reduxForm } from "redux-form";
 import { maxLengthCreator, required } from "../../Utils/Validators/validators";
 import { useDispatch, useSelector } from "react-redux";
-import { getDialogs, getMessages } from "../../Redux/dialogs-selectors";
-import { sendMessage } from "../../Redux/dialogs-reducer";
+import { getDialogs, getMessages } from "../../Redux/dialogs/dialogs-selectors";
+import { sendMessage } from "../../Redux/dialogs/dialogs-reducer";
 import { Link, NavLink } from "react-router-dom";
 import { Avatar, List } from "antd";
 import PhotoLogin from "../Common/PhotoLogin/PhotoLogin";
-import { getProfilePhoto } from "../../Redux/profile-selectors";
 
 const maxLength50 = maxLengthCreator(50);
 const SendNewMessage = (props) => {
@@ -71,7 +70,7 @@ const Dialog = ({ id, name, lastMessege: { user } }) => {
           avatar={<PhotoLogin isLink={false} isLarge={true} />}
           title={<span className={style.dialogName}>{name}</span>}
           description={<MessageAvatar message={user.message} />}
-         />
+        />
         <span className={style.data}>{user.data}</span>
       </List.Item>
     </Link>

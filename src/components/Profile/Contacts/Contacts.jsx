@@ -9,7 +9,7 @@ import {
 } from "@ant-design/icons";
 import style from "./Contacts.module.scss";
 import { Button } from "antd";
-import { getContacts } from "../../../Redux/profile-selectors";
+import { getContacts } from "../../../Redux/profile/profile-selectors";
 
 const contactIcon = (id) => {
   switch (id) {

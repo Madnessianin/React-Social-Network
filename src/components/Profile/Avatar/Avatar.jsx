@@ -1,8 +1,8 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { savePhoto } from "../../../Redux/profile-reducer";
+import { savePhoto } from "../../../Redux/profile/profile-reducer";
 import userPhoto from "../../../assets/images/user.png";
-import { getProfilePhoto } from "../../../Redux/profile-selectors";
+import { getProfilePhoto } from "../../../Redux/profile/profile-selectors";
 import { Upload, Image, Button, message } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import style from "./Avatar.module.scss";

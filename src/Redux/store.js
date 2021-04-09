@@ -1,56 +1,24 @@
-import profileReducer from "./profile-reducer";
-import dialogsReducer from "./dialogs-reducer";
-import sidebarReducer from "./sidebar-reducer";
+import { createStore, combineReducers, applyMiddleware, compose } from "redux";
+import profileReducer from "./profile/profile-reducer";
+import dialogsReducer from "./dialogs/dialogs-reducer";
+import usersReducer from "./users/users-reducer";
+import authReducer from "./auth/auth-reducer";
+import thunkMiddleware from "redux-thunk";
+import { reducer as formReducer } from "redux-form";
+import appReducer from "./app/app-reducer";
 
-const store = {
-  _state: {
-    dialogsPage: {
-      dialogs: [
-        { id: "1", name: "Dima" },
-        { id: "2", name: "Alex" },
-        { id: "3", name: "Andrey" },
-        { id: "4", name: "Sveta" },
-        { id: "5", name: "Sasha" },
-        { id: "6", name: "Victor" },
-        { id: "7", name: "Valera" },
-      ],
-      messages: [
-        { id: "1", message: "Hi" },
-        { id: "2", message: "How are you?" },
-        { id: "3", message: "Yo" },
-        { id: "4", message: "Yo" },
-        { id: "5", message: "Yo" },
-      ],
-      newMessageText: "Enter message",
-    },
-    profilePage: {
-      posts: [
-        { id: "1", message: "Hi, how are you?", likesCount: "15" },
-        { id: "2", message: "It`s my first post", likesCount: "10" },
-      ],
-      newPostText: "it-kamasutra.com",
-    },
-    sidebar: {},
-  },
-  _callSubscriber() {
-    console.log("state changed!");
-  },
-
-  getState() {
-    return this._state;
-  },
-  subscribe(observer) {
-    this._callSubscriber = observer;
-  },
-
-  dispatch(action) {
-    this._state.profilePage = profileReducer(this._state.profilePage, action);
-    this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
-    this._state.sidebar = sidebarReducer(this._state.sidebar, action);
-
-    this._callSubscriber(this._state);
-  },
-};
+const reducers = combineReducers({
+  profilePage: profileReducer,
+  dialogsPage: dialogsReducer,
+  usersPage: usersReducer,
+  authPage: authReducer,
+  form: formReducer,
+  app: appReducer,
+});
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(
+  reducers,
+  composeEnhancers(applyMiddleware(thunkMiddleware))
+);
 
 export default store;
-window.state = store;

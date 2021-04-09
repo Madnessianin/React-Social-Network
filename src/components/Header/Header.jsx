@@ -2,9 +2,9 @@ import React from "react";
 import "./Header.scss";
 import logo from "../../assets/images/logo192.png";
 import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../../Redux/auth-reducer";
+import { logout } from "../../Redux/auth/auth-reducer";
 import { Header } from "antd/lib/layout/layout";
-import { getLogin } from "../../Redux/auth-selectors";
+import { getLogin } from "../../Redux/auth/auth-selectors";
 import { Menu } from "antd";
 import {
   MenuUnfoldOutlined,

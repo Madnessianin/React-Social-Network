@@ -1,4 +1,4 @@
-import { usersAPI, profileAPI } from "../api/Api.js";
+import { usersAPI, profileAPI } from "../../Api/Api.js";
 
 const FOLLOW = "social-network/users/FOLLOW",
   UNFOLLOW = "social-network/users/UNFOLLOW",
@@ -94,8 +94,8 @@ export const getUsers = (currentPage, pageSize) => async (dispatch) => {
 };
 export const follow = (userId) => async (dispatch) => {
   dispatch(toggleFollowingProgress(true, userId));
-  let response = await profileAPI.postUser(userId);
-  if (response.resultCode == 0) {
+  const response = await profileAPI.postUser(userId);
+  if (response.data.resultCode === 0) {
     dispatch(followSuccess(userId));
   }
   dispatch(toggleFollowingProgress(false, userId));
@@ -103,8 +103,8 @@ export const follow = (userId) => async (dispatch) => {
 
 export const unfollow = (userId) => async (dispatch) => {
   dispatch(toggleFollowingProgress(true, userId));
-  let response = await profileAPI.deleteUser(userId);
-  if (response.resultCode == 0) {
+  const response = await profileAPI.deleteUser(userId);
+  if (response.data.resultCode === 0) {
     dispatch(unfollowSuccess(userId));
   }
   dispatch(toggleFollowingProgress(false, userId));

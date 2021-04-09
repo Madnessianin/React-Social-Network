@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { getProfile } from "../../../Redux/profile-selectors";
+import { getProfile } from "../../../Redux/profile/profile-selectors";
 import ProfileStatus from "./ProfileStatus/ProfileStatus";
 import style from "./ProfileInfo.module.scss";
 

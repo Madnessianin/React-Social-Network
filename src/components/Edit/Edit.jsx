@@ -1,6 +1,5 @@
 import React from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
-import style from "./Edit.module.scss";
 import GeneralSettings from "./EditForms/GeneralSettings/GeneralSettings";
 import ContactSettings from "./EditForms/ContactSettings/ContactSettings";
 import AddSideBar from "./AddSideBar/AddSideBar";

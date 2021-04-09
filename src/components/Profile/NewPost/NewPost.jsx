@@ -1,11 +1,11 @@
 import { Button, Form, Input } from "antd";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addPost } from "../../../Redux/profile-reducer";
+import { addPost } from "../../../Redux/profile/profile-reducer";
 import {
   getAutorizedUserId,
   getProfilePhoto,
-} from "../../../Redux/profile-selectors";
+} from "../../../Redux/profile/profile-selectors";
 import style from "./NewPost.module.scss";
 import PhotoLogin from "../../Common/PhotoLogin/PhotoLogin";
 import {

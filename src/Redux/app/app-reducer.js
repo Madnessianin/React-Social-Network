@@ -1,4 +1,4 @@
-import { setAuth } from "./auth-reducer.js";
+import { setAuth } from "../auth/auth-reducer.js";
 
 const INITIALIZED_SUCCSESS = "social-network/app/INITIALIZED_SUCCSESS";
 
@@ -22,7 +22,7 @@ const appReducer = (state = initialState, action) => {
 export const initializedSucsess = () => ({ type: INITIALIZED_SUCCSESS });
 
 export const initializeApp = () => async (dispatch) => {
-  let promise = await dispatch(setAuth());
+  await dispatch(setAuth());
   dispatch(initializedSucsess());
 };
 

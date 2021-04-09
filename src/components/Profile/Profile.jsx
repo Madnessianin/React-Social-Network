@@ -2,12 +2,15 @@ import React, { useEffect } from "react";
 import { Row, Col } from "antd";
 import Preloader from "../Common/Preloader/Preloader";
 import { useDispatch, useSelector } from "react-redux";
-import { getAutorizedUserId, getProfile } from "../../Redux/profile-selectors";
+import {
+  getAutorizedUserId,
+  getProfile,
+} from "../../Redux/profile/profile-selectors";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import Avatar from "./Avatar/Avatar";
 import Contacts from "./Contacts/Contacts";
 import { useParams } from "react-router";
-import { getUser } from "../../Redux/profile-reducer";
+import { getUser } from "../../Redux/profile/profile-reducer";
 import FriendsList from "./FriendsList/FriendsList";
 import NewPost from "./NewPost/NewPost";
 import MyPosts from "./MyPosts/MyPosts";

@@ -25,8 +25,6 @@ export const authAPI = {
   },
 };
 
-export const followAPI = {};
-
 export const profileAPI = {
   async getUserProfile(id) {
     return await instance.get(`profile/` + id);
@@ -35,9 +33,9 @@ export const profileAPI = {
     return instance.put(`profile/status`, { status: status });
   },
   async dispachPhoto(photo) {
-    let formData = new FormData();
+    const formData = new FormData();
     formData.append("image", photo);
-    let response = await instance.put(`profile/photo`, formData, {
+    const response = await instance.put(`profile/photo`, formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
@@ -45,16 +43,13 @@ export const profileAPI = {
     return response.data;
   },
   async dispachProfileInfo(profile) {
-    let response = await instance.put(`profile`, profile);
-    return response;
+    return await instance.put(`profile`, profile);
   },
   async postUser(id) {
-    let response = await instance.post(`profile/follow/${id}`, {});
-    return response.data;
+    return await instance.post(`profile/follow/${id}`, {});
   },
   async deleteUser(id) {
-    let response = await instance.delete(`profile/follow/${id}`);
-    return response.data;
+    return await instance.delete(`profile/follow/${id}`);
   },
   async getPosts() {
     return await instance.get(`profile/posts`);

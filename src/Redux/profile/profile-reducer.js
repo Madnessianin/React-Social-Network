@@ -1,5 +1,5 @@
 import { stopSubmit } from "redux-form";
-import { profileAPI } from "../api/Api";
+import { profileAPI } from "../../Api/Api";
 
 const ADD_POST = "social-network/profile/ADD_POST";
 const SET_USER_PROFILE = "social-network/profile/SET_USER_PROFILE";
@@ -126,13 +126,13 @@ export const getUser = (userId) => async (dispatch) => {
 };
 
 export const updateStatus = (status) => async (dispatch) => {
-  let response = await profileAPI.updateStatus(status);
+  const response = await profileAPI.updateStatus(status);
   if (response.data.resultCode === 0) {
     dispatch(setUserStatus(status));
   }
 };
 export const savePhoto = (photo) => async (dispatch) => {
-  let response = await profileAPI.dispachPhoto(photo);
+  const response = await profileAPI.dispachPhoto(photo);
   if (response.resultCode === 0) {
     dispatch(savePhotosSucsess(response.data.photos));
   }
@@ -142,7 +142,7 @@ export const saveProfileInfo = (profile, nameForm) => async (
   dispatch,
   getState
 ) => {
-  let response = await profileAPI.dispachProfileInfo(profile);
+  const response = await profileAPI.dispachProfileInfo(profile);
   if (response.resultCode === 0) {
     dispatch(getUser(getState().auth.id));
   } else {

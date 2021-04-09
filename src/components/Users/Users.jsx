@@ -9,11 +9,16 @@ import {
   getIsFetching,
   getPageSize,
   getTotalUsersCount,
-} from "../../Redux/users-selectors";
-import { getAutorizedUserId } from "../../Redux/profile-selectors";
+} from "../../Redux/users/users-selectors";
+import { getAutorizedUserId } from "../../Redux/profile/profile-selectors";
 import { Link } from "react-router-dom";
 import userPhoto from "../../assets/images/user.png";
-import { follow, getUsers, setCurrentPage, unfollow } from "../../Redux/users-reducer";
+import {
+  follow,
+  getUsers,
+  setCurrentPage,
+  unfollow,
+} from "../../Redux/users/users-reducer";
 import { Avatar, Button, List, Pagination } from "antd";
 
 const Users = (props) => {
@@ -48,9 +53,11 @@ const Users = (props) => {
         />
       </div>
       {isFetching ? <Preloader /> : null}
-      <List dataSource={users}
-            className={style.inner}
-            renderItem={user => (<User key={user.id} user={user} />)} />
+      <List
+        dataSource={users}
+        className={style.inner}
+        renderItem={(user) => <User key={user.id} user={user} />}
+      />
       <div className={style.pagination}>
         <Pagination
           total={totalCount}
@@ -64,30 +71,30 @@ const Users = (props) => {
   );
 };
 
-
-
 const User = ({ user }) => {
   const authId = useSelector((state) => getAutorizedUserId(state));
   const followedProgres = useSelector((state) => getFollowingIsProgress(state));
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const followUser = (userId) => {
-    dispatch(follow(userId))
-  }
+    dispatch(follow(userId));
+  };
 
   const unfollowUser = (userId) => {
-    dispatch(unfollow(userId))
-  }
+    dispatch(unfollow(userId));
+  };
 
   return (
-    <List.Item className={style.item} actions={[
-      <Button onClick={followUser}>Добавить в друзья</Button>
-    ]}>
+    <List.Item
+      className={style.item}
+      actions={[<Button onClick={followUser}>Добавить в друзья</Button>]}
+    >
       <Link to={`/app/profile/${user.id}`}>
         <List.Item.Meta
           avatar={<Avatar src={photo || userPhoto} size={100} />}
           title={user.name}
-          description={user.status} />
+          description={user.status}
+        />
       </Link>
     </List.Item>
   );
