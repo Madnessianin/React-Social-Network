@@ -12,8 +12,8 @@ import Contacts from "./Contacts/Contacts";
 import { useParams } from "react-router";
 import { getUser } from "../../Redux/profile/profile-reducer";
 import FriendsList from "./FriendsList/FriendsList";
-import NewPost from "./NewPost/NewPost";
 import MyPosts from "./MyPosts/MyPosts";
+import NewPost from "../Common/NewPost/NewPost";
 
 const Profile = () => {
   const profile = useSelector((state) => getProfile(state));

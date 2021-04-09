@@ -21,13 +21,12 @@ import {
 } from "../../Redux/users/users-reducer";
 import { Avatar, Button, List, Pagination } from "antd";
 
-const Users = (props) => {
+const Users = () => {
   const totalCount = useSelector((state) => getTotalUsersCount(state));
   const pageSize = useSelector((state) => getPageSize(state));
   const currentPage = useSelector((state) => getCurrentPage(state));
   const isFetching = useSelector((state) => getIsFetching(state));
   const users = useSelector((state) => getAllUsers(state));
-
   const dispatch = useDispatch();
 
   const [current, setCurrent] = useState(currentPage);
@@ -35,6 +34,11 @@ const Users = (props) => {
   useEffect(() => {
     dispatch(getUsers(currentPage, pageSize));
   }, [pageSize, currentPage]);
+
+  const [arrayUsers, setArrayUsers] = useState(users);
+  useEffect(() => {
+    setArrayUsers(users);
+  }, [users]);
 
   const onPageChanged = (page) => {
     setCurrent(page);
@@ -54,7 +58,7 @@ const Users = (props) => {
       </div>
       {isFetching ? <Preloader /> : null}
       <List
-        dataSource={users}
+        dataSource={arrayUsers}
         className={style.inner}
         renderItem={(user) => <User key={user.id} user={user} />}
       />
@@ -83,7 +87,6 @@ const User = ({ user }) => {
   const unfollowUser = (userId) => {
     dispatch(unfollow(userId));
   };
-  console.log(user);
   return (
     <List.Item
       className={style.item}

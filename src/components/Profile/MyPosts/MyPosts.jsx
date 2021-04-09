@@ -8,9 +8,9 @@ import style from "./MyPosts.module.scss";
 const MyPosts = () => {
   const posts = useSelector((state) => getPosts(state));
   const [myPosts, setMyPosts] = useState(posts);
-  useEffect(()=> {
-    setMyPosts(posts)
-  }, [posts])
+  useEffect(() => {
+    setMyPosts(posts);
+  }, [posts]);
   return (
     <div className={style.inner}>
       <List

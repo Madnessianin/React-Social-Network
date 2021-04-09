@@ -5,7 +5,7 @@ import {
   CommentOutlined,
   ShareAltOutlined,
   EditOutlined,
-  DeleteOutlined
+  DeleteOutlined,
 } from "@ant-design/icons";
 import Count from "../../Common/Count/Count";
 import { HeartOutlined } from "@ant-design/icons";
@@ -25,8 +25,7 @@ const Post = ({
     likes,
   },
 }) => {
-
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const setLike = () => {
     console.log("click!");
@@ -34,7 +33,7 @@ const Post = ({
 
   const deleteThisPost = () => {
     dispatch(deletePost(id));
-  }
+  };
 
   return (
     <List.Item
@@ -45,7 +44,12 @@ const Post = ({
         <RepostCount count={likes || 0} action={setLike} />,
       ]}
       extra={
-        <DropDownMenu deletePost={deleteThisPost} changePost={()=>{console.log('click')}} />
+        <DropDownMenu
+          deletePost={deleteThisPost}
+          changePost={() => {
+            console.log("click");
+          }}
+        />
       }
     >
       <List.Item.Meta
@@ -68,21 +72,15 @@ const RepostCount = Count(({ count, action }) => (
   <ShareAltOutlined count={count} action={action} />
 ));
 
-const DropDownMenu = ({deletePost, changePost}) => {
+const DropDownMenu = ({ deletePost, changePost }) => {
   return (
-    <Menu
-      mode="horizontal"
-      className={style.dropDownMenu}
-    >
-      <SubMenu
-        key="menu"
-        icon={<DownSquareOutlined />}
-      >
+    <Menu mode="horizontal" className={style.dropDownMenu}>
+      <SubMenu key="menu" icon={<DownSquareOutlined />}>
         <Menu.Item onClick={changePost} icon={<EditOutlined />} key="1">
           Изменить
         </Menu.Item>
         <Menu.Item onClick={deletePost} icon={<DeleteOutlined />} key="2">
-          Удалить 
+          Удалить
         </Menu.Item>
       </SubMenu>
     </Menu>

@@ -28,29 +28,9 @@
   background: none;
 }
 
-.additionalBtns {
-  margin-top: 7px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.previewBlock,
-.formBtnInner {
+.previewBlock {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.additionalBtn {
-  margin-left: 7px;
-
-  &:first-child {
-    margin-left: 0;
-  }
-}
-
-.form {
-  padding-left: 15px;
-  height: auto;
-}
