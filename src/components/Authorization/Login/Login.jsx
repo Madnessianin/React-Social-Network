@@ -1,16 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { Redirect } from "react-router-dom";
 import style from "./Login.module.scss";
-import logo from "../../assets/images/logo192.png";
 import { useDispatch, useSelector } from "react-redux";
-import { login, setCaptchaText } from "../../Redux/auth/auth-reducer";
-import { getCaptcha, getIsAuth } from "../../Redux/auth/auth-selectors";
+import { login, setCaptchaText } from "../../../Redux/auth/auth-reducer";
+import { getCaptcha } from "../../../Redux/auth/auth-selectors";
 import { Form, Input, Button, Checkbox, Modal, Image } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
+import Authorization from "../Authtorization";
 
-const LoginForm = ({ onSubmit, captchaURL, error }) => {
+const LoginForm = () => {
   const [visibleMode, setVisibleMode] = useState(false);
   const dispatch = useDispatch();
+  const captchaURL = useSelector((state) => getCaptcha(state));
+
+  const onSubmit = (data) => {
+    dispatch(login(data));
+  };
+
   useEffect(() => {
     if (captchaURL) {
       setVisibleMode(true);
@@ -113,31 +118,5 @@ const ModalForm = ({ visible, setCaptcha, captchaURL }) => {
   );
 };
 
-const Login = () => {
-  const dispatch = useDispatch();
 
-  const isAuth = useSelector((state) => getIsAuth(state));
-  const captchaURL = useSelector((state) => getCaptcha(state));
-
-  const onSubmit = (data) => {
-    console.log(data);
-    dispatch(login(data));
-  };
-
-  if (isAuth) {
-    return <Redirect to={"app/profile"} />;
-  }
-
-  return (
-    <div className={style.inner}>
-      <div className={style.logo}>
-        <img className={style.logoImg} src={logo} />
-      </div>
-      <div className={style.content}>
-        <h3 className={style.title}>Социальная сеть</h3>
-        <LoginForm onSubmit={onSubmit} captchaURL={captchaURL} />
-      </div>
-    </div>
-  );
-};
-export default Login;
+export default Authorization(LoginForm);

@@ -94,6 +94,7 @@ export const login = (data) => async (dispatch, getState) => {
   const response = await authAPI.postAuth(newData);
   if (response.data.resultCode === 0) {
     dispatch(setAuth());
+    dispatch(setCaptchaURL(null));
   } else {
     if (response.data.resultCode === 10) {
       dispatch(getCaptchaURL());

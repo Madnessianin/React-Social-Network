@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Preloader from "./Components/Common/Preloader/Preloader";
 import { getInitialized } from "./Redux/app/app-selectors";
 import Page from "./Components/Page/Page";
-import Login from "./components/Login/Login";
+import Login from "./Components/Authorization/Login/Login";
 
 const App = () => {
   const dispach = useDispatch();

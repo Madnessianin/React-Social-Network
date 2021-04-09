@@ -1,5 +1,5 @@
 import React from "react";
-import { Layout, Menu } from "antd";
+import { Layout } from "antd";
 import { Redirect, Route, Switch } from "react-router-dom";
 import News from "./../News/News";
 import Music from "./../Music/Music";
