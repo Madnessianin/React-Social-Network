@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Avatar, Menu, List } from "antd";
 import {
   DownSquareOutlined,
@@ -12,7 +12,8 @@ import { HeartOutlined } from "@ant-design/icons";
 import style from "./Post.module.scss";
 import userPhoto from "./../../../assets/images/user.png";
 import { useDispatch } from "react-redux";
-import { deletePost } from "../../../Redux/profile/profile-reducer";
+import { changePost, deletePost } from "../../../Redux/profile/profile-reducer";
+import PostForm from "../PostForm/PostForm";
 
 const { SubMenu } = Menu;
 
@@ -27,13 +28,30 @@ const Post = ({
 }) => {
   const dispatch = useDispatch();
 
+  const [changeMode, setChangeMode] = useState(false)
+
   const setLike = () => {
     console.log("click!");
   };
 
+  const changeThisPost = () => {
+    setChangeMode(true)
+  }
+
+  const sendUpdatedPost = (data) => {
+    dispatch(changePost(id, data))
+    setChangeMode(false)
+  }
+
   const deleteThisPost = () => {
     dispatch(deletePost(id));
   };
+
+  if (changeMode) {
+    return (
+      <PostForm onSubmit={sendUpdatedPost} />
+    )
+  }
 
   return (
     <List.Item
@@ -46,9 +64,7 @@ const Post = ({
       extra={
         <DropDownMenu
           deletePost={deleteThisPost}
-          changePost={() => {
-            console.log("click");
-          }}
+          changePost={changeThisPost}
         />
       }
     >

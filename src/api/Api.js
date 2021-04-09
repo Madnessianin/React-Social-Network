@@ -51,14 +51,17 @@ export const profileAPI = {
   async deleteUser(id) {
     return await instance.delete(`profile/follow/${id}`);
   },
-  async getPosts() {
-    return await instance.get(`profile/posts`);
+  async getPosts(id) {
+    return await instance.get(`profile/posts/${id}`);
   },
   async addPost(data) {
     return await instance.post(`profile/post`, data);
   },
   async deletePost(id) {
     return await instance.delete(`profile/post/${id}`);
+  },
+  async changePost(id, data) {
+    return await instance.put(`profile/post/${id}`, data);
   },
 };
 

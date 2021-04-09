@@ -124,8 +124,9 @@ export const getUser = (userId) => async (dispatch) => {
   dispatch(getAllPosts());
 };
 
-export const getAllPosts = () => async (dispatch) => {
-  const response = await profileAPI.getPosts();
+export const getAllPosts = () => async (dispatch, getState) => {
+  const id = getState().profilePage.id
+  const response = await profileAPI.getPosts(id);
   dispatch(setPosts(response.data.items));
 };
 
@@ -138,8 +139,17 @@ export const sendNewPost = (post) => async (dispatch) => {
 
 export const deletePost = (id) => async (dispatch) => {
   const response = await profileAPI.deletePost(id);
+  if (response.data.resultCode === 0) {
+    dispatch(getAllPosts());
+  }
+};
+
+export const changePost = (id, post) => async (dispatch) => {
+  const response = await profileAPI.changePost(id, post);
   console.log(response);
-  dispatch(getAllPosts());
+  if (response.data.resultCode === 0) {
+    dispatch(getAllPosts());
+  }
 };
 
 export const updateStatus = (status) => async (dispatch) => {
