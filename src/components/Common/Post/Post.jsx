@@ -7,7 +7,7 @@ import {
   EditOutlined,
   DeleteOutlined,
 } from "@ant-design/icons";
-import Count from "../../Common/Count/Count";
+import count from "../../Common/Count/Count";
 import { HeartOutlined } from "@ant-design/icons";
 import style from "./Post.module.scss";
 import userPhoto from "./../../../assets/images/user.png";
@@ -28,44 +28,39 @@ const Post = ({
 }) => {
   const dispatch = useDispatch();
 
-  const [changeMode, setChangeMode] = useState(false)
+  const [changeMode, setChangeMode] = useState(false);
 
   const setLike = () => {
     console.log("click!");
   };
 
   const changeThisPost = () => {
-    setChangeMode(true)
-  }
+    setChangeMode(true);
+  };
 
   const sendUpdatedPost = (data) => {
-    dispatch(changePost(id, data))
-    setChangeMode(false)
-  }
+    dispatch(changePost(id, data));
+    setChangeMode(false);
+  };
 
   const deleteThisPost = () => {
     dispatch(deletePost(id));
   };
 
   if (changeMode) {
-    return (
-      <PostForm onSubmit={sendUpdatedPost} />
-    )
+    return <PostForm onSubmit={sendUpdatedPost} userId={id} photo={large} name={fullName} textBtn={"Изменить"} />;
   }
 
   return (
     <List.Item
       className={style.item}
       actions={[
-        <LikeCount count={likes || 0} action={setLike} />,
-        <CommentsCount count={likes || 0} action={setLike} />,
-        <RepostCount count={likes || 0} action={setLike} />,
+        <LikeCount quantity={likes || 0} action={setLike} />,
+        <CommentsCount quantity={likes || 0} action={setLike} />,
+        <RepostCount quantity={likes || 0} action={setLike} />,
       ]}
       extra={
-        <DropDownMenu
-          deletePost={deleteThisPost}
-          changePost={changeThisPost}
-        />
+        <DropDownMenu deletePost={deleteThisPost} changePost={changeThisPost} />
       }
     >
       <List.Item.Meta
@@ -77,15 +72,15 @@ const Post = ({
   );
 };
 
-const LikeCount = Count(({ count, action }) => (
-  <HeartOutlined count={count} action={action} />
+const LikeCount = count(({ quantity, action }) => (
+  <HeartOutlined quantity={quantity} action={action} />
 ));
 
-const CommentsCount = Count(({ count, action }) => (
-  <CommentOutlined count={count} action={action} />
+const CommentsCount = count(({ quantity, action }) => (
+  <CommentOutlined quantity={quantity} action={action} />
 ));
-const RepostCount = Count(({ count, action }) => (
-  <ShareAltOutlined count={count} action={action} />
+const RepostCount = count(({ quantity, action }) => (
+  <ShareAltOutlined quantity={quantity} action={action} />
 ));
 
 const DropDownMenu = ({ deletePost, changePost }) => {

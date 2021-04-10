@@ -35,12 +35,11 @@ export const profileAPI = {
   async dispachPhoto(photo) {
     const formData = new FormData();
     formData.append("image", photo);
-    const response = await instance.put(`profile/photo`, formData, {
+    return await instance.put(`profile/photo`, formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
     });
-    return response.data;
   },
   async dispachProfileInfo(profile) {
     return await instance.put(`profile`, profile);

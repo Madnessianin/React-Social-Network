@@ -3,7 +3,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { saveProfileInfo } from "../../../../Redux/profile/profile-reducer";
 import { getProfile } from "../../../../Redux/profile/profile-selectors";
-import EditForm from "../EditForm";
+import editForm from "../EditForm";
 import style from "./../EditForm.module.scss";
 
 const GeneralForm = () => {
@@ -75,6 +75,6 @@ const GeneralForm = () => {
   );
 };
 
-const GeneralSettings = EditForm(({ title }) => <GeneralForm title={title} />);
+const GeneralSettings = editForm(({ title }) => <GeneralForm title={title} />);
 
 export default GeneralSettings;

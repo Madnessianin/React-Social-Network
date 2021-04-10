@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getContacts } from "../../../../Redux/profile/profile-selectors";
 import style from "./../EditForm.module.scss";
-import EditForm from "../EditForm";
+import editForm from "../EditForm";
 import { saveProfileInfo } from "../../../../Redux/profile/profile-reducer";
 import { Button, Form, Input } from "antd";
 
@@ -53,6 +53,6 @@ const ContactForm = (props) => {
   );
 };
 
-const ContactSettings = EditForm(({ title }) => <ContactForm title={title} />);
+const ContactSettings = editForm(({ title }) => <ContactForm title={title} />);
 
 export default ContactSettings;

@@ -7,6 +7,8 @@ const SET_USER_STATUS = "social-network/profile/SET_USER_STATUS";
 const SAVE_PHOTO_SUCSESS = "social-network/profile/SAVE_PHOTO_SUCSESS";
 const LIKEDISLAKEPOST = "social-network/profile/LIKEDISLAKEPOST";
 const SET_POSTS = "social-network/profile/SET_POSTS";
+const DELETE_POST = "social-network/profile/DELETE_POST";
+const CHANGE_POST = "social-network/profile/CHANGE_POST";
 
 const initialState = {
   userId: "",
@@ -32,15 +34,21 @@ const profileReducer = (state = initialState, action) => {
     case ADD_POST: {
       return {
         ...state,
+        posts: [...state.posts, action.newPost],
+      };
+    }
+    case CHANGE_POST: {
+      return {
+        ...state,
         posts: [
-          ...state.posts,
-          {
-            id: "3",
-            message: action.newPostText,
-            likesCount: "0",
-            isLikes: false,
-          },
+          ...state.posts.map((post) => post.id !== action.post.id ? post : action.post)
         ],
+      };
+    }
+    case DELETE_POST: {
+      return {
+        ...state,
+        posts: [...state.posts.filter((post) => post.id !== action.id)],
       };
     }
     case SET_USER_PROFILE: {
@@ -58,7 +66,7 @@ const profileReducer = (state = initialState, action) => {
     case SAVE_PHOTO_SUCSESS: {
       return {
         ...state,
-        profile: { ...state.profile, photos: action.photos },
+        photos: action.photos,
       };
     }
     case SET_POSTS: {
@@ -96,7 +104,9 @@ const profileReducer = (state = initialState, action) => {
   }
 };
 
-export const addPost = (newPostText) => ({ type: ADD_POST, newPostText });
+export const addPost = (newPost) => ({ type: ADD_POST, newPost });
+export const deleteThisPost = (id) => ({ type: DELETE_POST, id });
+export const changeThisPost = (post) => ({ type: CHANGE_POST, post });
 export const setUsersProfile = (profile) => ({
   type: SET_USER_PROFILE,
   profile,
@@ -125,7 +135,7 @@ export const getUser = (userId) => async (dispatch) => {
 };
 
 export const getAllPosts = () => async (dispatch, getState) => {
-  const id = getState().profilePage.id
+  const id = getState().profilePage.id;
   const response = await profileAPI.getPosts(id);
   dispatch(setPosts(response.data.items));
 };
@@ -133,22 +143,22 @@ export const getAllPosts = () => async (dispatch, getState) => {
 export const sendNewPost = (post) => async (dispatch) => {
   const response = await profileAPI.addPost(post);
   if (response.data.resultCode === 0) {
-    dispatch(getAllPosts());
+    dispatch(addPost(response.data.data));
   }
 };
 
 export const deletePost = (id) => async (dispatch) => {
   const response = await profileAPI.deletePost(id);
   if (response.data.resultCode === 0) {
-    dispatch(getAllPosts());
+    dispatch(deleteThisPost(id));
   }
 };
 
 export const changePost = (id, post) => async (dispatch) => {
   const response = await profileAPI.changePost(id, post);
-  console.log(response);
   if (response.data.resultCode === 0) {
-    dispatch(getAllPosts());
+    console.log(response.data.data);
+    dispatch(changeThisPost(response.data.data));
   }
 };
 
@@ -160,8 +170,8 @@ export const updateStatus = (status) => async (dispatch) => {
 };
 export const savePhoto = (photo) => async (dispatch) => {
   const response = await profileAPI.dispachPhoto(photo);
-  if (response.resultCode === 0) {
-    dispatch(savePhotosSucsess(response.data.photos));
+  if (response.data.resultCode === 0) {
+    dispatch(savePhotosSucsess(response.data.data));
   }
 };
 

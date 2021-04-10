@@ -5,12 +5,9 @@ import logo from "./../../assets/images/logo192.png";
 import { useSelector } from "react-redux";
 import { getIsAuth } from "../../Redux/auth/auth-selectors";
 
-
-
-const Authorization = (Component) => (props) => {
-
+const authorization = (Component) => (props) => {
   const isAuth = useSelector((state) => getIsAuth(state));
-  
+
   if (isAuth) {
     return <Redirect to={"app/profile"} />;
   }
@@ -27,4 +24,4 @@ const Authorization = (Component) => (props) => {
     </div>
   );
 };
-export default Authorization;
+export default authorization;

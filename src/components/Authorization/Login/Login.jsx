@@ -5,7 +5,7 @@ import { login, setCaptchaText } from "../../../Redux/auth/auth-reducer";
 import { getCaptcha } from "../../../Redux/auth/auth-selectors";
 import { Form, Input, Button, Checkbox, Modal, Image } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
-import Authorization from "../Authtorization";
+import authorization from "../Authtorization";
 
 const LoginForm = () => {
   const [visibleMode, setVisibleMode] = useState(false);
@@ -118,5 +118,4 @@ const ModalForm = ({ visible, setCaptcha, captchaURL }) => {
   );
 };
 
-
-export default Authorization(LoginForm);
+export default authorization(LoginForm);

@@ -1,8 +1,7 @@
-import React from 'react'
-
+import React from "react";
 
 const Registration = () => {
-    return (<div>Reg</div>)
-}
+  return <div>Reg</div>;
+};
 
 export default Registration;
