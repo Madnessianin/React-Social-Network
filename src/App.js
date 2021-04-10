@@ -7,6 +7,7 @@ import Preloader from "./Components/Common/Preloader/Preloader";
 import { getInitialized } from "./Redux/app/app-selectors";
 import Page from "./Components/Page/Page";
 import Login from "./Components/Authorization/Login/Login";
+import Registration from "./Components/Authorization/Registration/Registration";
 
 const App = () => {
   const dispach = useDispatch();
@@ -24,6 +25,7 @@ const App = () => {
       <Switch>
         <Route exact path="/" render={() => <Redirect to={"/app"} />} />
         <Route path="/login" render={() => <Login />} />
+        <Route path="/reg" render={() => <Registration />} />
         <Route path="/app" render={() => <Page />} />
       </Switch>
     </div>

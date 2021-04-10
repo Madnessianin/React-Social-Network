@@ -1,7 +1,7 @@
 import React from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import GeneralSettings from "./EditForms/GeneralSettings/GeneralSettings";
-import ContactSettings from "./EditForms/ContactSettings/ContactSettings";
+import ContactsSettings from "./EditForms/ContactsSettings/ContactsSettings";
 import AddSideBar from "./AddSideBar/AddSideBar";
 import { Layout } from "antd";
 
@@ -23,7 +23,7 @@ const Edit = (props) => {
           />
           <Route
             path="/app/edit/contacts"
-            render={() => <ContactSettings title="Контакты: " />}
+            render={() => <ContactsSettings title="Контакты: " />}
           />
         </Switch>
       </Content>

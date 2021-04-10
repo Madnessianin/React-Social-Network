@@ -1,4 +1,5 @@
 import * as axios from "axios";
+import Registration from "../Components/Authorization/Registration/Registration";
 
 let instance = axios.create({
   withCredentials: true,
@@ -17,12 +18,15 @@ export const authAPI = {
   async getAuth() {
     return await instance.get(`auth/me`);
   },
-  postAuth(data) {
-    return instance.post(`/auth/login`, data);
+  async postAuth(data) {
+    return await instance.post(`/auth/login`, data);
   },
-  deleteAuth() {
-    return instance.delete(`/auth/login`);
+  async deleteAuth() {
+    return await instance.delete(`/auth/login`);
   },
+  async registration(data) {
+    return await instance.post(`auth/registration`, data)
+  }
 };
 
 export const profileAPI = {

@@ -6,16 +6,12 @@ import { getProfile } from "../../../../Redux/profile/profile-selectors";
 import editForm from "../EditForm";
 import style from "./../EditForm.module.scss";
 
-const GeneralForm = () => {
+export const GeneralForm = ({ onSubmit }) => {
   const layout = {
     labelCol: { span: 8 },
     wrapperCol: { span: 16 },
   };
-  const dispatch = useDispatch();
   const profile = useSelector((state) => getProfile(state));
-  const onSubmit = (data) => {
-    dispatch(saveProfileInfo(data));
-  };
   return (
     <Form
       className={style.form}
@@ -75,6 +71,12 @@ const GeneralForm = () => {
   );
 };
 
-const GeneralSettings = editForm(({ title }) => <GeneralForm title={title} />);
+const GeneralSettings = editForm(({ title }) => {
+  const dispatch = useDispatch();
+  const onSubmit = (data) => {
+    dispatch(saveProfileInfo(data));
+  };
+  return <GeneralForm title={title} onSubmit={onSubmit} />;
+});
 
 export default GeneralSettings;

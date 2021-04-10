@@ -48,7 +48,15 @@ const Post = ({
   };
 
   if (changeMode) {
-    return <PostForm onSubmit={sendUpdatedPost} userId={id} photo={large} name={fullName} textBtn={"Изменить"} />;
+    return (
+      <PostForm
+        onSubmit={sendUpdatedPost}
+        userId={id}
+        photo={large}
+        name={fullName}
+        textBtn={"Изменить"}
+      />
+    );
   }
 
   return (

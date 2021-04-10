@@ -6,13 +6,8 @@ import editForm from "../EditForm";
 import { saveProfileInfo } from "../../../../Redux/profile/profile-reducer";
 import { Button, Form, Input } from "antd";
 
-const ContactForm = (props) => {
+export const ContactsForm = ({ onSubmit }) => {
   const contacts = useSelector((state) => getContacts(state));
-  const dispatch = useDispatch();
-  const keysContacts = Object.keys(contacts);
-  const onSubmit = (data) => {
-    dispatch(saveProfileInfo(data));
-  };
 
   const layout = {
     labelCol: { span: 8 },
@@ -53,6 +48,12 @@ const ContactForm = (props) => {
   );
 };
 
-const ContactSettings = editForm(({ title }) => <ContactForm title={title} />);
+const ContactsSettings = editForm(({ title }) => {
+  const dispatch = useDispatch();
+  const onSubmit = (data) => {
+    dispatch(saveProfileInfo(data));
+  };
+  return <ContactsForm title={title} onSubmit={onSubmit} />;
+});
 
-export default ContactSettings;
+export default ContactsSettings;

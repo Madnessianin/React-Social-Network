@@ -6,6 +6,7 @@ import { getCaptcha } from "../../../Redux/auth/auth-selectors";
 import { Form, Input, Button, Checkbox, Modal, Image } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import authorization from "../Authtorization";
+import { Link } from "react-router-dom";
 
 const LoginForm = () => {
   const [visibleMode, setVisibleMode] = useState(false);
@@ -68,7 +69,9 @@ const LoginForm = () => {
         <Button type="primary" htmlType="submit" className={style.formBtnsItem}>
           Войти
         </Button>
-        <Button className={style.formBtnsItem}>Зарегистрироваться</Button>
+        <Button className={style.formBtnsItem}>
+          <Link to="/reg">Зарегистрироваться</Link>
+        </Button>
       </div>
       <ModalForm
         visible={visibleMode}

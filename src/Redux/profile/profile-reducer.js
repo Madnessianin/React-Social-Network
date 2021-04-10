@@ -41,7 +41,9 @@ const profileReducer = (state = initialState, action) => {
       return {
         ...state,
         posts: [
-          ...state.posts.map((post) => post.id !== action.post.id ? post : action.post)
+          ...state.posts.map((post) =>
+            post.id !== action.post.id ? post : action.post
+          ),
         ],
       };
     }

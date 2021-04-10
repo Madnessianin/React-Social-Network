@@ -16,7 +16,7 @@ const NewPost = () => {
   const dispatch = useDispatch();
   const profilePhoto = useSelector((state) => getProfilePhoto(state));
   const authUserId = useSelector((state) => getAutorizedUserId(state));
-  const userName = useSelector(state => getProfileName(state))
+  const userName = useSelector((state) => getProfileName(state));
 
   const [newPostMode, setNewPostMode] = useState(false);
 
@@ -29,21 +29,37 @@ const NewPost = () => {
     setNewPostMode(true);
   };
   if (newPostMode) {
-    return (<PostForm onSubmit={onSubmit} name={userName} userId={authUserId} photo={profilePhoto} textBtn={"Добавить"} />);
+    return (
+      <PostForm
+        onSubmit={onSubmit}
+        name={userName}
+        userId={authUserId}
+        photo={profilePhoto}
+        textBtn={"Добавить"}
+      />
+    );
   }
-  return (<PreviewBlock setAddPostMode={setAddPostMode} photo={profilePhoto} userId={authUserId} />)
-
+  return (
+    <PreviewBlock
+      setAddPostMode={setAddPostMode}
+      photo={profilePhoto}
+      userId={authUserId}
+    />
+  );
 };
 
-const PreviewBlock = ({ setAddPostMode, photo,  userId}) => {
-
+const PreviewBlock = ({ setAddPostMode, photo, userId }) => {
   return (
     <div className={style.previewBlock}>
       <div className={style.previewBlockItem}>
-      <PhotoLogin photo={photo} link={`/app/profile/${userId}`} />
-      <Button type="text" className={style.visibleBtn} onClick={setAddPostMode}>
-        Что у вас нового?
-      </Button>
+        <PhotoLogin photo={photo} link={`/app/profile/${userId}`} />
+        <Button
+          type="text"
+          className={style.visibleBtn}
+          onClick={setAddPostMode}
+        >
+          Что у вас нового?
+        </Button>
       </div>
       <div className={style.previewBlockItem}>
         <AdditionalBtns />

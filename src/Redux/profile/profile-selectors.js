@@ -29,4 +29,3 @@ export const getFriends = (state) => {
 export const getProfileName = (state) => {
   return state.profilePage.fullName;
 };
-

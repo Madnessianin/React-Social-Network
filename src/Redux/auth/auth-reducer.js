@@ -120,4 +120,9 @@ export const getCaptchaURL = () => async (dispatch) => {
   dispatch(setCaptchaURL(responseCaptcha.data.url));
 };
 
+export const registration = (data) => async (dispatch) => {
+  const response = await authAPI.registration(data);
+  console.log(response)
+}
+
 export default authReducer;
