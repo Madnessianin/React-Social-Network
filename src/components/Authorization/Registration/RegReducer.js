@@ -3,6 +3,7 @@ const SET_DATA_GENERAL_FORM = "SET_DATA_GENERAL_FORM";
 const SET_DATA_CONTACTS_FORM = "SET_DATA_CONTACT_FORM";
 const SET_DATA_PHOTO_FORM = "SET_DATA_PHOTO_FORM";
 const SET_VISIBLE_MODE = "SET_VISIBLE_MODE";
+const SET_SUBTITLE = "SET_SUBTITLE";
 
 const regReducer = (state, action) => {
   switch (action.type) {
@@ -13,34 +14,37 @@ const regReducer = (state, action) => {
           ...state.dataForm,
           loginForm: action.data,
         },
-        login: false,
       };
     }
     case SET_VISIBLE_MODE: {
       return {
         ...state,
-        [action.key]: true,
+        [action.key]: action.isVisible,
+      };
+    }
+    case SET_SUBTITLE: {
+      return {
+        ...state,
+        subtitle: action.subtitle,
       };
     }
     case SET_DATA_GENERAL_FORM: {
-        return {
-            ...state,
-            dataForm: {
-              ...state.dataForm,
-              generalForm: action.data,
-            },
-            general: false,
-          };
+      return {
+        ...state,
+        dataForm: {
+          ...state.dataForm,
+          generalForm: action.data,
+        },
+      };
     }
     case SET_DATA_CONTACTS_FORM: {
-        return {
-            ...state,
-            dataForm: {
-              ...state.dataForm,
-              contactsForm: action.data,
-            },
-            contacts: false,
-          };
+      return {
+        ...state,
+        dataForm: {
+          ...state.dataForm,
+          contactsForm: action.data,
+        },
+      };
     }
     case SET_DATA_PHOTO_FORM: {
       return {
@@ -57,9 +61,15 @@ const regReducer = (state, action) => {
   }
 };
 
-export const setVisibleMode = (key) => ({
+export const setVisibleMode = (key, isVisible) => ({
   type: SET_VISIBLE_MODE,
   key,
+  isVisible,
+});
+
+export const setSubtitle = (subtitle) => ({
+  type: SET_SUBTITLE,
+  subtitle,
 });
 
 export const setDataLoginForm = (data) => ({
@@ -70,7 +80,7 @@ export const setDataGeneralForm = (data) => ({
   type: SET_DATA_GENERAL_FORM,
   data,
 });
-export const setDataContactForm = (data) => ({
+export const setDataContactsForm = (data) => ({
   type: SET_DATA_CONTACTS_FORM,
   data,
 });

@@ -3,7 +3,7 @@ import { authAPI, profileAPI, securityAPI } from "../../Api/Api.js";
 
 const SET_USER_DATA = "social-network/auth/SET_USER_DATA";
 const SET_CAPTCHA_URL = "social-network/auth/SET_CAPTCHA_URL";
-const SET_AUTORIZED_USER_PHOTO = "social-network/auth/SET_AUTORIZED_USER_PHOTO";
+const SET_AUTORIZED_USER = "social-network/auth/SET_AUTORIZED_USER";
 const SET_CAPTCHA_TEXT = "social-network/auth/SET_CAPTCHA_TEXT";
 
 const initialState = {
@@ -15,8 +15,13 @@ const initialState = {
     captchaURL: null,
     captchaText: null,
   },
-  userPhoto: null,
+  profile: null,
 };
+
+const setToken = (response) => {
+  const {data: {data: {token}}} = response;
+  localStorage.setItem("user", token);
+}
 
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -44,10 +49,12 @@ const authReducer = (state = initialState, action) => {
         },
       };
     }
-    case SET_AUTORIZED_USER_PHOTO: {
+    case SET_AUTORIZED_USER: {
       return {
         ...state,
-        userPhoto: action.photo,
+        profile: {
+          ...action.profile,
+        },
       };
     }
     default:
@@ -64,9 +71,9 @@ export const setCaptchaText = (captchaText) => ({
   type: SET_CAPTCHA_TEXT,
   captchaText,
 });
-export const setAuthUserPhoto = (photo) => ({
-  type: SET_AUTORIZED_USER_PHOTO,
-  photo,
+export const setAuthUser = (profile) => ({
+  type: SET_AUTORIZED_USER,
+  profile,
 });
 
 export const setAuth = () => async (dispatch) => {
@@ -74,13 +81,13 @@ export const setAuth = () => async (dispatch) => {
   if (response.data.resultCode === 0) {
     const { id, email, login } = response.data.data;
     dispatch(setAuthUserData(id, email, login, true));
-    dispatch(getAuthUserPhoto(id));
+    dispatch(getAuthUser(id));
   }
 };
 
-export const getAuthUserPhoto = (id) => async (dispatch) => {
+export const getAuthUser = (id) => async (dispatch) => {
   const response = await profileAPI.getUserProfile(id);
-  dispatch(setAuthUserPhoto(response.data.photos.large));
+  dispatch(setAuthUser(response.data));
 };
 
 export const login = (data) => async (dispatch, getState) => {
@@ -94,6 +101,7 @@ export const login = (data) => async (dispatch, getState) => {
   const response = await authAPI.postAuth(newData);
   if (response.data.resultCode === 0) {
     dispatch(setAuth());
+    setToken(response);
     dispatch(setCaptchaURL(null));
   } else {
     if (response.data.resultCode === 10) {
@@ -122,7 +130,9 @@ export const getCaptchaURL = () => async (dispatch) => {
 
 export const registration = (data) => async (dispatch) => {
   const response = await authAPI.registration(data);
-  console.log(response)
-}
+  if (response.data.resultCode === 0) {
+    setToken(response);
+  }
+};
 
 export default authReducer;

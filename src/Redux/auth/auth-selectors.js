@@ -9,7 +9,3 @@ export const getLogin = (state) => {
 export const getCaptcha = (state) => {
   return state.authPage.captcha.captchaURL;
 };
-
-export const getUserPhoto = (state) => {
-  return state.authPage.userPhoto;
-};

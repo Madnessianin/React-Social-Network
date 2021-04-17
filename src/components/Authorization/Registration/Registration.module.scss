@@ -1,9 +1,50 @@
 .inner {
-  width: 100%;
+  min-width: 600px;
+  padding: 20px;
+  background-color: #fff;
+}
+
+.header {
+  width: 80%;
+  margin: 0 auto 10px;
+}
+
+.titleLogo {
+  width: 50px;
+  height: 50px;
+}
+
+.titleText {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.subtitle {
+  margin-top: 5px;
+  font-size: 16px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.title,
+.formBtns {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .formBtns {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 60%;
+  margin: 0 auto;
+}
+.formBtnsItem {
+  height: 35px;
+  width: 150px;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.forms {
+  width: 100%;
 }

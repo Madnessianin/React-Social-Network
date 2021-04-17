@@ -40,6 +40,7 @@ const Profile = () => {
   if (!profile) {
     return <Preloader />;
   }
+  
   return (
     <Row>
       <Col flex="20%">

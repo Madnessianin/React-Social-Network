@@ -14,11 +14,15 @@
 
 .btnInner {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
+  width: 60%;
+  margin: 0 auto;
 }
 
 .formBtn {
-  width: 250px;
-  font-size: 14px;
+  width: 150px;
+  height: 35px;
+  font-size: 16px;
   font-weight: 400;
 }

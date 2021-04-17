@@ -6,15 +6,26 @@ import editForm from "../EditForm";
 import { saveProfileInfo } from "../../../../Redux/profile/profile-reducer";
 import { Button, Form, Input } from "antd";
 
-export const ContactsForm = ({ onSubmit }) => {
-  const contacts = useSelector((state) => getContacts(state));
-
+export const ContactsForm = ({
+  onSubmit,
+  contacts,
+  textBtn,
+  isAddBtn,
+  action,
+}) => {
   const layout = {
     labelCol: { span: 8 },
     wrapperCol: { span: 16 },
   };
-
-  const arrayContacts = Object.keys(contacts).map((item) => (
+  const contactsKey = {
+    youtube: null,
+    facebook: null,
+    vk: null,
+    github: null,
+    twitter: null,
+  }
+  
+  const arrayContacts = Object.keys(contactsKey).map((item) => (
     <Form.Item
       key={item}
       name={item}
@@ -40,8 +51,13 @@ export const ContactsForm = ({ onSubmit }) => {
     >
       {arrayContacts}
       <div className={style.btnInner}>
+        {isAddBtn ? (
+          <Button className={style.formBtn} onClick={action}>
+            {"Назад"}
+          </Button>
+        ) : null}
         <Button className={style.formBtn} htmlType="submit" type="primary">
-          Сохранить изменения
+          {textBtn || "Сохранить изменения"}
         </Button>
       </div>
     </Form>
@@ -50,10 +66,12 @@ export const ContactsForm = ({ onSubmit }) => {
 
 const ContactsSettings = editForm(({ title }) => {
   const dispatch = useDispatch();
+  const contacts = useSelector((state) => getContacts(state));
   const onSubmit = (data) => {
     dispatch(saveProfileInfo(data));
   };
-  return <ContactsForm title={title} onSubmit={onSubmit} />;
+
+  return <ContactsForm title={title} onSubmit={onSubmit} contacts={contacts} />;
 });
 
 export default ContactsSettings;

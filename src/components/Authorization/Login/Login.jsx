@@ -7,6 +7,7 @@ import { Form, Input, Button, Checkbox, Modal, Image } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import authorization from "../Authtorization";
 import { Link } from "react-router-dom";
+import logo from "./../../../assets/images/logo192.png";
 
 const LoginForm = () => {
   const [visibleMode, setVisibleMode] = useState(false);
@@ -121,4 +122,18 @@ const ModalForm = ({ visible, setCaptcha, captchaURL }) => {
   );
 };
 
-export default authorization(LoginForm);
+const Login = () => {
+  return (
+    <div className={style.inner}>
+      <div className={style.logo}>
+        <img className={style.logoImg} src={logo} />
+      </div>
+      <div className={style.content}>
+        <h3 className={style.title}>Социальная сеть</h3>
+        <LoginForm />
+      </div>
+    </div>
+  );
+};
+
+export default authorization(Login);

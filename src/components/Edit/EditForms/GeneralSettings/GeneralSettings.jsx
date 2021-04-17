@@ -2,22 +2,24 @@ import { Button, Form, Input, Select } from "antd";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { saveProfileInfo } from "../../../../Redux/profile/profile-reducer";
-import { getProfile } from "../../../../Redux/profile/profile-selectors";
+import {
+  getGeneralData,
+  getProfile,
+} from "../../../../Redux/profile/profile-selectors";
 import editForm from "../EditForm";
 import style from "./../EditForm.module.scss";
 
-export const GeneralForm = ({ onSubmit }) => {
+export const GeneralForm = ({ onSubmit, data, textBtn, isAddBtn, action }) => {
   const layout = {
     labelCol: { span: 8 },
     wrapperCol: { span: 16 },
   };
-  const profile = useSelector((state) => getProfile(state));
   return (
     <Form
       className={style.form}
       onFinish={onSubmit}
       name="general"
-      initialValues={profile}
+      initialValues={data}
       {...layout}
     >
       <Form.Item
@@ -60,11 +62,16 @@ export const GeneralForm = ({ onSubmit }) => {
           },
         ]}
       >
-        <Input.TextArea autoSize={{ minRows: 3, maxRows: 5 }} />
+        <Input.TextArea autoSize={{ minRows: 1, maxRows: 3 }} />
       </Form.Item>
       <div className={style.btnInner}>
+        {isAddBtn ? (
+          <Button className={style.formBtn} onClick={action}>
+            {"Назад"}
+          </Button>
+        ) : null}
         <Button className={style.formBtn} htmlType="submit" type="primary">
-          Сохранить изменения
+          {textBtn || "Сохранить изменения"}
         </Button>
       </div>
     </Form>
@@ -76,7 +83,8 @@ const GeneralSettings = editForm(({ title }) => {
   const onSubmit = (data) => {
     dispatch(saveProfileInfo(data));
   };
-  return <GeneralForm title={title} onSubmit={onSubmit} />;
+  const general = useSelector((state) => getGeneralData(state));
+  return <GeneralForm title={title} onSubmit={onSubmit} data={general} />;
 });
 
 export default GeneralSettings;

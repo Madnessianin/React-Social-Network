@@ -1,9 +1,14 @@
 import * as axios from "axios";
-import Registration from "../Components/Authorization/Registration/Registration";
 
-let instance = axios.create({
+
+const token = localStorage.getItem("user");
+
+const instance = axios.create({
   withCredentials: true,
-  headers: { "API-KEY": "17ce7864-7abb-4461-acc2-1f1b971290ad" },
+  headers: { 
+    "API-KEY": "17ce7864-7abb-4461-acc2-1f1b971290ad",
+    "token": token
+  },
   baseURL: "http://192.168.0.104:8000/",
   responseType: "json",
 });
@@ -25,16 +30,16 @@ export const authAPI = {
     return await instance.delete(`/auth/login`);
   },
   async registration(data) {
-    return await instance.post(`auth/registration`, data)
-  }
+    return await instance.post(`auth/reg`, data);
+  },
 };
 
 export const profileAPI = {
   async getUserProfile(id) {
     return await instance.get(`profile/` + id);
   },
-  updateStatus(status) {
-    return instance.put(`profile/status`, { status: status });
+  async updateStatus(status) {
+    return await instance.put(`profile/status`, { status: status });
   },
   async dispachPhoto(photo) {
     const formData = new FormData();
@@ -69,7 +74,7 @@ export const profileAPI = {
 };
 
 export const securityAPI = {
-  getCaptchaURL() {
-    return instance.get(`security/get-captcha-url`);
+  async getCaptchaURL() {
+    return await instance.get(`security/get-captcha-url`);
   },
 };
