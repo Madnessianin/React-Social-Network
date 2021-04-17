@@ -19,7 +19,7 @@ const initialState = {
 };
 
 const setToken = (response) => {
-  const {data: {data: {token}}} = response;
+  const {data: {token}} = response;
   localStorage.setItem("user", token);
 }
 
@@ -101,6 +101,7 @@ export const login = (data) => async (dispatch, getState) => {
   const response = await authAPI.postAuth(newData);
   if (response.data.resultCode === 0) {
     dispatch(setAuth());
+    console.log(response);
     setToken(response);
     dispatch(setCaptchaURL(null));
   } else {
@@ -131,7 +132,7 @@ export const getCaptchaURL = () => async (dispatch) => {
 export const registration = (data) => async (dispatch) => {
   const response = await authAPI.registration(data);
   if (response.data.resultCode === 0) {
-    setToken(response);
+    setToken(response.data);
   }
 };
 
