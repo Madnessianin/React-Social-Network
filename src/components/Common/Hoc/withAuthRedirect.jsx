@@ -1,9 +1,9 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { getIsAuth } from "../../Redux/auth/auth-selectors";
+import { getIsAuth } from "../../../Redux/auth/auth-selectors";
 
-export const withAuthRedirect = (Component) => {
+const withAuthRedirect = (Component) => {
   const RedirectComponent = (props) => {
     const isAuth = useSelector((state) => getIsAuth(state));
     if (!isAuth) return <Redirect to={"/login"} />;
@@ -13,3 +13,6 @@ export const withAuthRedirect = (Component) => {
 
   return RedirectComponent;
 };
+
+
+export default withAuthRedirect;

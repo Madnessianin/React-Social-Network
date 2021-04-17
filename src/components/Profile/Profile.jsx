@@ -3,7 +3,6 @@ import { Row, Col } from "antd";
 import Preloader from "../Common/Preloader/Preloader";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  getAutorizedUserId,
   getProfile,
 } from "../../Redux/profile/profile-selectors";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
@@ -14,15 +13,16 @@ import { getUser } from "../../Redux/profile/profile-reducer";
 import FriendsList from "./FriendsList/FriendsList";
 import MyPosts from "./MyPosts/MyPosts";
 import NewPost from "../Common/NewPost/NewPost";
+import { getAutorizedUserId } from "../../Redux/auth/auth-selectors";
+import isOwnerPage from "../Common/Hoc/isOwner";
 
-const Profile = () => {
+const Profile = isOwnerPage(({isOwner}) => {
   const profile = useSelector((state) => getProfile(state));
   const dispatch = useDispatch();
   let userId = useParams().userId;
   const autorizedUserId = useSelector((state) =>
     getAutorizedUserId(state)
   ).toString();
-  let isOwner = !userId || userId === autorizedUserId;
 
   const updateDataUser = () => {
     if (!userId) {
@@ -55,6 +55,6 @@ const Profile = () => {
       </Col>
     </Row>
   );
-};
+});
 
 export default Profile;

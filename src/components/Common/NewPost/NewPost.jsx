@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { sendNewPost } from "../../../Redux/profile/profile-reducer";
 import {
-  getAutorizedUserId,
   getProfileName,
   getProfilePhoto,
 } from "../../../Redux/profile/profile-selectors";
@@ -11,10 +10,11 @@ import style from "./NewPost.module.scss";
 import PhotoLogin from "../PhotoLogin/PhotoLogin";
 import AdditionalBtns from "../AdditionalBtns/AdditionalBtns";
 import PostForm from "../PostForm/PostForm";
+import { getAuthUserPhoto, getAutorizedUserId } from "../../../Redux/auth/auth-selectors";
 
 const NewPost = () => {
   const dispatch = useDispatch();
-  const profilePhoto = useSelector((state) => getProfilePhoto(state));
+  const profilePhoto = useSelector((state) => getAuthUserPhoto(state));
   const authUserId = useSelector((state) => getAutorizedUserId(state));
   const userName = useSelector((state) => getProfileName(state));
 

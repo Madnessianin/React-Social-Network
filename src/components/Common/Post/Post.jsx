@@ -11,9 +11,12 @@ import count from "../../Common/Count/Count";
 import { HeartOutlined } from "@ant-design/icons";
 import style from "./Post.module.scss";
 import userPhoto from "./../../../assets/images/user.png";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { changePost, deletePost } from "../../../Redux/profile/profile-reducer";
 import PostForm from "../PostForm/PostForm";
+import { getAutorizedUserId } from "../../../Redux/auth/auth-selectors";
+import { useParams } from "react-router";
+import isOwnerPage from "../Hoc/isOwner";
 
 const { SubMenu } = Menu;
 
@@ -91,10 +94,10 @@ const RepostCount = count(({ quantity, action }) => (
   <ShareAltOutlined quantity={quantity} action={action} />
 ));
 
-const DropDownMenu = ({ deletePost, changePost }) => {
+const DropDownMenu = isOwnerPage(({ deletePost, changePost, isOwner }) => {
   return (
     <Menu mode="horizontal" className={style.dropDownMenu}>
-      <SubMenu key="menu" icon={<DownSquareOutlined />}>
+      <SubMenu key="menu" icon={<DownSquareOutlined />} disabled={!isOwner}>
         <Menu.Item onClick={changePost} icon={<EditOutlined />} key="1">
           Изменить
         </Menu.Item>
@@ -104,6 +107,6 @@ const DropDownMenu = ({ deletePost, changePost }) => {
       </SubMenu>
     </Menu>
   );
-};
+});
 
 export default Post;

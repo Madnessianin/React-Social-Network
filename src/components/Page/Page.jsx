@@ -4,11 +4,11 @@ import { Redirect, Route, Switch } from "react-router-dom";
 import News from "./../News/News";
 import Music from "./../Music/Music";
 import Settings from "./../Settings/Settings";
-import withSuspense from "./../Hoc/withSuspense";
-import { withAuthRedirect } from "../Hoc/withAuthRedirect";
 import Header from "../Header/Header";
 import SideBar from "../SideBar/SideBar";
 import Edit from "../Edit/Edit";
+import withAuthRedirect from "../Common/Hoc/withAuthRedirect";
+import withSuspense from "../Common/Hoc/withSuspense";
 
 const { Content, Footer } = Layout;
 const Dialogs = React.lazy(() => import("../Dialogs/Dialogs"));
