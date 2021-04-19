@@ -2,9 +2,7 @@ import React, { useEffect } from "react";
 import { Row, Col } from "antd";
 import Preloader from "../Common/Preloader/Preloader";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getProfile,
-} from "../../Redux/profile/profile-selectors";
+import { getProfile } from "../../Redux/profile/profile-selectors";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import Avatar from "./Avatar/Avatar";
 import Contacts from "./Contacts/Contacts";
@@ -16,7 +14,7 @@ import NewPost from "../Common/NewPost/NewPost";
 import { getAutorizedUserId } from "../../Redux/auth/auth-selectors";
 import isOwnerPage from "../Common/Hoc/isOwner";
 
-const Profile = isOwnerPage(({isOwner}) => {
+const Profile = isOwnerPage(({ isOwner }) => {
   const profile = useSelector((state) => getProfile(state));
   const dispatch = useDispatch();
   let userId = useParams().userId;
@@ -40,7 +38,7 @@ const Profile = isOwnerPage(({isOwner}) => {
   if (!profile) {
     return <Preloader />;
   }
-  
+
   return (
     <Row>
       <Col flex="20%">

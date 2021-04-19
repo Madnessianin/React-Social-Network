@@ -10,7 +10,10 @@ import style from "./NewPost.module.scss";
 import PhotoLogin from "../PhotoLogin/PhotoLogin";
 import AdditionalBtns from "../AdditionalBtns/AdditionalBtns";
 import PostForm from "../PostForm/PostForm";
-import { getAuthUserPhoto, getAutorizedUserId } from "../../../Redux/auth/auth-selectors";
+import {
+  getAuthUserPhoto,
+  getAutorizedUserId,
+} from "../../../Redux/auth/auth-selectors";
 
 const NewPost = () => {
   const dispatch = useDispatch();

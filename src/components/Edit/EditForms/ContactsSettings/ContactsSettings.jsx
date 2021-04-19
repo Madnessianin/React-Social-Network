@@ -23,8 +23,8 @@ export const ContactsForm = ({
     vk: null,
     github: null,
     twitter: null,
-  }
-  
+  };
+
   const arrayContacts = Object.keys(contactsKey).map((item) => (
     <Form.Item
       key={item}

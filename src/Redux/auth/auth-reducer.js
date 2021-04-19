@@ -19,9 +19,11 @@ const initialState = {
 };
 
 const setToken = (response) => {
-  const {data: {token}} = response;
+  const {
+    data: { token },
+  } = response;
   localStorage.setItem("user", token);
-}
+};
 
 const authReducer = (state = initialState, action) => {
   switch (action.type) {

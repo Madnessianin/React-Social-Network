@@ -43,9 +43,9 @@ const Registration = () => {
 
   useEffect(() => {
     const {
-      dataForm: { loginForm, generalForm, contactsForm},
+      dataForm: { loginForm, generalForm, contactsForm },
     } = stateReg;
-    if (loginForm !== null && generalForm !== null &&  contactsForm !== null) {
+    if (loginForm !== null && generalForm !== null && contactsForm !== null) {
       dispatch(registration(stateReg.dataForm));
     }
   }, [stateReg]);
@@ -116,10 +116,7 @@ const Registration = () => {
             action={setGeneral}
           />
         ) : null}
-        {visibleSuccses ? (
-          <Succsess />
-        )
-        : null}
+        {visibleSuccses ? <Succsess /> : null}
       </div>
     </div>
   );
@@ -127,16 +124,17 @@ const Registration = () => {
 
 const Succsess = () => {
   return (
-  <Result
-    status="success"
-    title="Регистрация прошла успешно!"
-    extra={[
-      <Button type="primary" key="console">
-        <Link to="/login" >Авторизироваться</Link>
-      </Button>,]}
-  />)
-  
-}
+    <Result
+      status="success"
+      title="Регистрация прошла успешно!"
+      extra={[
+        <Button type="primary" key="console">
+          <Link to="/login">Авторизироваться</Link>
+        </Button>,
+      ]}
+    />
+  );
+};
 
 const CreateAuthData = ({ onSubmit, data }) => {
   return (

@@ -1,13 +1,12 @@
 import * as axios from "axios";
 
-
 const token = localStorage.getItem("user");
 
 const instance = axios.create({
   withCredentials: true,
-  headers: { 
+  headers: {
     "API-KEY": "17ce7864-7abb-4461-acc2-1f1b971290ad",
-    "token": token
+    token: token,
   },
   baseURL: "http://192.168.0.104:8000/",
   responseType: "json",

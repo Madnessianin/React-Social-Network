@@ -14,5 +14,4 @@ const withAuthRedirect = (Component) => {
   return RedirectComponent;
 };
 
-
 export default withAuthRedirect;
