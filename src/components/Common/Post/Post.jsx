@@ -11,11 +11,9 @@ import count from "../../Common/Count/Count";
 import { HeartOutlined } from "@ant-design/icons";
 import style from "./Post.module.scss";
 import userPhoto from "./../../../assets/images/user.png";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { changePost, deletePost } from "../../../Redux/profile/profile-reducer";
 import PostForm from "../PostForm/PostForm";
-import { getAutorizedUserId } from "../../../Redux/auth/auth-selectors";
-import { useParams } from "react-router";
 import isOwnerPage from "../Hoc/isOwner";
 
 const { SubMenu } = Menu;

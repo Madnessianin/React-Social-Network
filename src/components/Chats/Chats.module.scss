@@ -9,8 +9,7 @@
 }
 
 .dialogName {
-  margin-left: 20px;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 400;
   opacity: 0.8;
   color: #000;
@@ -23,4 +22,14 @@
   font-size: 12px;
   font-weight: 400;
   opacity: 0.3;
+}
+
+.messageAvatar {
+  width: 70px;
+  height: 70px;
+  margin: 0;
+}
+
+.lastMessage {
+  padding: 0;
 }
