@@ -10,7 +10,6 @@ import {
   getPageSize,
   getTotalUsersCount,
 } from "../../Redux/users/users-selectors";
-import { getAutorizedUserId } from "../../Redux/profile/profile-selectors";
 import { Link } from "react-router-dom";
 import userPhoto from "../../assets/images/user.png";
 import {
@@ -20,6 +19,7 @@ import {
   unfollow,
 } from "../../Redux/users/users-reducer";
 import { Avatar, Button, List, Pagination } from "antd";
+import isOwnerPage from "../Common/Hoc/isOwner";
 
 const Users = () => {
   const totalCount = useSelector((state) => getTotalUsersCount(state));
@@ -60,7 +60,7 @@ const Users = () => {
       <List
         dataSource={arrayUsers}
         className={style.inner}
-        renderItem={(user) => <User key={user.id} user={user} />}
+        renderItem={(user) => <User key={user.id} user={user} id={user.id} />}
       />
       <div className={style.pagination}>
         <Pagination
@@ -75,8 +75,7 @@ const Users = () => {
   );
 };
 
-const User = ({ user }) => {
-  const authId = useSelector((state) => getAutorizedUserId(state));
+const User = isOwnerPage(({ user, isOwner }) => {
   const followedProgres = useSelector((state) => getFollowingIsProgress(state));
   const dispatch = useDispatch();
 
@@ -90,7 +89,12 @@ const User = ({ user }) => {
   return (
     <List.Item
       className={style.item}
-      actions={[<Button onClick={followUser}>Добавить в друзья</Button>]}
+      actions={[
+        <Button onClick={followUser}>
+          {!isOwner ? "Добавить в друзья" : null}
+        </Button>,
+        <Button>{!isOwner ? "Написать сообщение" : null}</Button>,
+      ]}
     >
       <Link to={`/app/profile/${user.id}`}>
         <List.Item.Meta
@@ -101,6 +105,6 @@ const User = ({ user }) => {
       </Link>
     </List.Item>
   );
-};
+});
 
 export default Users;

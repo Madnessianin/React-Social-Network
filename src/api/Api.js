@@ -72,6 +72,12 @@ export const profileAPI = {
   },
 };
 
+export const ChatsAPI = {
+  async getChats() {
+    return await instance.get(`chats`)
+  }
+}
+
 export const securityAPI = {
   async getCaptchaURL() {
     return await instance.get(`security/get-captcha-url`);

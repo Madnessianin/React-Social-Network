@@ -11,7 +11,7 @@ import withAuthRedirect from "../Common/Hoc/withAuthRedirect";
 import withSuspense from "../Common/Hoc/withSuspense";
 
 const { Content, Footer } = Layout;
-const Dialogs = React.lazy(() => import("../Dialogs/Dialogs"));
+const Chats = React.lazy(() => import("../Chats/Chats"));
 const Profile = React.lazy(() => import("../Profile/Profile"));
 const Users = React.lazy(() => import("../Users/Users"));
 
@@ -33,7 +33,7 @@ const Page = () => {
                 path="/app/profile/:userId?"
                 render={withSuspense(Profile)}
               />
-              <Route path="/app/dialogs" render={withSuspense(Dialogs)} />
+              <Route path="/app/chats" render={withSuspense(Chats)} />
               <Route path="/app/news" component={News} />
               <Route path="/app/music" component={Music} />
               <Route path="/app/users" render={withSuspense(Users)} />

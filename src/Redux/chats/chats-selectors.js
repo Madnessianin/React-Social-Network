@@ -1,5 +1,5 @@
 export const getDialogs = (state) => {
-  return state.dialogsPage.dialogs;
+  return state.chatsPage.dialogs;
 };
 
 export const getMessages = (state) => {
