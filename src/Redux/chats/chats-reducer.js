@@ -2,9 +2,15 @@ import { ChatsAPI } from "../../Api/Api";
 
 const SEND_MESSAGE = "social-network/dialogs/SEND_MESSAGE";
 const SET_CHATS = "social-network/dialogs/SET_CHATS";
+const SET_ROOM = "social-network/dialogs/SET_ROOM";
 
 const initialState = {
   dialogs: [],
+  room: {
+    id: null,
+    members: [],
+    messages: [],
+  },
 };
 
 const chatsReducer = (state = initialState, action) => {
@@ -24,7 +30,16 @@ const chatsReducer = (state = initialState, action) => {
         dialogs: [...action.chats],
       };
     }
-
+    case SET_ROOM: {
+      return {
+        ...state,
+        room: {
+          id: action.data.id,
+          members: [...action.data.users],
+          messages: [...action.data.messages],
+        },
+      };
+    }
     default:
       return state;
   }
@@ -38,6 +53,10 @@ export const setChats = (chats) => ({
   type: SET_CHATS,
   chats,
 });
+export const setRoom = (data) => ({
+  type: SET_ROOM,
+  data,
+});
 
 /* Thunk */
 
@@ -46,6 +65,14 @@ export const getChats = () => async (dispatch) => {
   if (response.data.resultCode === 0) {
     dispatch(setChats(response.data.items));
   }
+};
+
+export const getMessages = (id, count = 100) => async (dispatch) => {
+  const response = await ChatsAPI.getMessages(id, count);
+  if (response.data.resultCode === 0) {
+    dispatch(setRoom(response.data.items));
+  }
+  console.log(response);
 };
 
 export default chatsReducer;

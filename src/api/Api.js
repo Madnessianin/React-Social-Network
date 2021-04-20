@@ -1,4 +1,5 @@
 import * as axios from "axios";
+import { getMessages } from "../Redux/chats/chats-reducer";
 
 const token = localStorage.getItem("user");
 
@@ -75,6 +76,9 @@ export const profileAPI = {
 export const ChatsAPI = {
   async getChats() {
     return await instance.get(`chats`);
+  },
+  async getMessages(id, count) {
+    return await instance.get(`chats?room=${id}&count=${count}`);
   },
 };
 

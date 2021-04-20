@@ -5,9 +5,9 @@ import { getAutorizedUserId } from "../../../Redux/auth/auth-selectors";
 
 const pageId = (Component) => () => {
   let pageId = useParams().userId;
-  const authId = useSelector(state => getAutorizedUserId(state)).toString();
+  const authId = useSelector((state) => getAutorizedUserId(state)).toString();
   if (!pageId) {
-    pageId = authId
+    pageId = authId;
   }
   return <Component pageId={pageId} />;
 };

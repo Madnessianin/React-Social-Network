@@ -14,7 +14,7 @@ import userPhoto from "./../../../assets/images/user.png";
 import PhotoAvatar from "../PhotoAvatar/PhotoAvatar";
 import pageId from "../Hoc/pageId";
 
-const NewPost = pageId(({pageId}) => {
+const NewPost = pageId(({ pageId }) => {
   const dispatch = useDispatch();
   const profilePhoto = useSelector((state) => getAuthUserPhoto(state));
   const authUserId = useSelector((state) => getAutorizedUserId(state));

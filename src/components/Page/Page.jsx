@@ -33,7 +33,7 @@ const Page = () => {
                 path="/app/profile/:userId?"
                 render={withSuspense(Profile)}
               />
-              <Route path="/app/chats" render={withSuspense(Chats)} />
+              <Route path="/app/dialogs" render={withSuspense(Chats)} />
               <Route path="/app/news" component={News} />
               <Route path="/app/music" component={Music} />
               <Route path="/app/users" render={withSuspense(Users)} />

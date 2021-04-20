@@ -70,7 +70,11 @@ const Post = ({
         <RepostCount quantity={likes || 0} action={setLike} />,
       ]}
       extra={
-        <DropDownMenu deletePost={deleteThisPost} changePost={changeThisPost} name={author} />
+        <DropDownMenu
+          deletePost={deleteThisPost}
+          changePost={changeThisPost}
+          name={author}
+        />
       }
     >
       <List.Item.Meta
@@ -93,20 +97,26 @@ const RepostCount = count(({ quantity, action }) => (
   <ShareAltOutlined quantity={quantity} action={action} />
 ));
 
-const DropDownMenu = isOwnerPage(({ deletePost, changePost, isOwner, name }) => {
-  const authUserName = useSelector(state => getAuthUserName(state))
-  return (
-    <Menu mode="horizontal" className={style.dropDownMenu}>
-      <SubMenu key="menu" icon={<DownSquareOutlined />} disabled={!isOwner && name !== authUserName}>
-        <Menu.Item onClick={changePost} icon={<EditOutlined />} key="1">
-          Изменить
-        </Menu.Item>
-        <Menu.Item onClick={deletePost} icon={<DeleteOutlined />} key="2">
-          Удалить
-        </Menu.Item>
-      </SubMenu>
-    </Menu>
-  );
-});
+const DropDownMenu = isOwnerPage(
+  ({ deletePost, changePost, isOwner, name }) => {
+    const authUserName = useSelector((state) => getAuthUserName(state));
+    return (
+      <Menu mode="horizontal" className={style.dropDownMenu}>
+        <SubMenu
+          key="menu"
+          icon={<DownSquareOutlined />}
+          disabled={!isOwner && name !== authUserName}
+        >
+          <Menu.Item onClick={changePost} icon={<EditOutlined />} key="1">
+            Изменить
+          </Menu.Item>
+          <Menu.Item onClick={deletePost} icon={<DeleteOutlined />} key="2">
+            Удалить
+          </Menu.Item>
+        </SubMenu>
+      </Menu>
+    );
+  }
+);
 
 export default Post;

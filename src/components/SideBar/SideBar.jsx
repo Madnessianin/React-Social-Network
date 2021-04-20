@@ -21,8 +21,8 @@ const SideBar = () => {
         <Menu.Item key="profile">
           <Link to="/app/profile">Моя страница</Link>
         </Menu.Item>
-        <Menu.Item key="chats">
-          <Link to="/app/chats">Мои сообщения</Link>
+        <Menu.Item key="dialogs">
+          <Link to="/app/dialogs">Мои сообщения</Link>
         </Menu.Item>
         <Menu.Item key="news">
           <Link to="/app/news">Новости</Link>
