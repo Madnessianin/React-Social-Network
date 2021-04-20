@@ -10,6 +10,12 @@ import { getDialogs } from "./../../Redux/chats/chats-selectors";
 import { getAutorizedUserId } from "../../Redux/auth/auth-selectors";
 import Preloader from "../Common/Preloader/Preloader";
 
+const getInterlocutor = (users) => {
+  const authId = useSelector((state) => getAutorizedUserId(state));
+  const interlocutors = users.filter((user) => user.id !== authId);
+  return interlocutors[0];
+}
+
 const Chats = () => {
   const chats = useSelector((state) => getDialogs(state));
   const dispatch = useDispatch();
@@ -20,38 +26,31 @@ const Chats = () => {
   if (!chats) {
     return <Preloader />;
   }
-
   return (
     <div className={style.inner}>
       <List
         dataSource={chats}
         className={style.list}
         renderItem={(item) => (
-          <ChatItem users={item.users} messages={item.messages} />
+          <ChatItem key={item.id} id={item.id} users={item.users} messages={item.messages} />
         )}
       />
     </div>
   );
 };
 
-const ChatItem = ({ users, messages }) => {
-  const linkUrl = `/app/chats/${"1"}`;
+const ChatItem = ({ users, messages, id }) => {
   const lastMessage = messages[messages.length - 1];
-  const authId = useSelector((state) => getAutorizedUserId(state));
-  let interlocutor;
-  users.forEach((user) => {
-    if (user.id !== authId) {
-      interlocutor = user;
-    }
-  });
+  const interlocutor = getInterlocutor(users);
+ 
   return (
-    <Link to={linkUrl}>
+    <Link to={`/app/chats/${id}`}>
       <List.Item className={style.listItem}>
         <List.Item.Meta
           avatar={
             <Avatar
               className={style.messageAvatar}
-              src={interlocutor.photos || userPhoto}
+              src={interlocutor.photo || userPhoto}
             />
           }
           title={
@@ -60,8 +59,8 @@ const ChatItem = ({ users, messages }) => {
           description={
             <ul className={style.lastMessage}>
               <MessageItem
-                message={lastMessage.message_text}
-                photo={lastMessage.author_photo}
+                message={lastMessage.text}
+                photo={lastMessage.photo}
               />
             </ul>
           }

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { getPosts } from "../../../Redux/profile/profile-selectors";
 import Post from "../../Common/Post/Post";
+import Preloader from "../../Common/Preloader/Preloader";
 import style from "./MyPosts.module.scss";
 
 const MyPosts = () => {
@@ -11,6 +12,10 @@ const MyPosts = () => {
   useEffect(() => {
     setMyPosts(posts);
   }, [posts]);
+  
+  if (posts.length === 0) {
+    return <Preloader />
+  }
   return (
     <div className={style.inner}>
       <List

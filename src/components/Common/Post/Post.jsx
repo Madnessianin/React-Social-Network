@@ -20,10 +20,10 @@ const { SubMenu } = Menu;
 
 const Post = ({
   post: {
-    fullName,
+    author,
     id,
-    author_photo: { large },
-    post_text,
+    photo: { large },
+    text,
     likes,
   },
 }) => {
@@ -54,7 +54,7 @@ const Post = ({
         onSubmit={sendUpdatedPost}
         userId={id}
         photo={large}
-        name={fullName}
+        name={author}
         textBtn={"Изменить"}
       />
     );
@@ -74,8 +74,8 @@ const Post = ({
     >
       <List.Item.Meta
         avatar={<Avatar src={large || userPhoto} />}
-        title={fullName}
-        description={post_text}
+        title={author}
+        description={text}
       />
     </List.Item>
   );
