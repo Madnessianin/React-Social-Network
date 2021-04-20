@@ -1,5 +1,4 @@
 import * as axios from "axios";
-import { getMessages } from "../Redux/chats/chats-reducer";
 
 const token = localStorage.getItem("user");
 
@@ -15,7 +14,7 @@ const instance = axios.create({
 
 export const usersAPI = {
   async getUsers(currentPage, pageSize) {
-    return await instance.get(`users?page=${currentPage}&count=${pageSize}`);
+    return await instance.get(`profile/users?page=${currentPage}&count=${pageSize}`);
   },
 };
 

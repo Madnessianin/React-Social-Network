@@ -7,9 +7,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { getMessages } from "../../../Redux/chats/chats-reducer";
 import { getMessagesRoom } from "../../../Redux/chats/chats-selectors";
 import MessagesTitle from "./MessagesTitle/MessagesTitle";
+import io from 'socket.io-client'
 
 const MessagesList = () => {
   const messages = useSelector((state) => getMessagesRoom(state));
+  const socket = io('ws://192.168.0.104:8000/')
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getMessages("1"));
