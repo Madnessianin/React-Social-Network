@@ -142,8 +142,12 @@ export const getAllPosts = () => async (dispatch, getState) => {
   dispatch(setPosts(response.data.items));
 };
 
-export const sendNewPost = (post) => async (dispatch) => {
-  const response = await profileAPI.addPost(post);
+export const sendNewPost = (post, pageId) => async (dispatch) => {
+  const newPost = {
+    ...post,
+    userPage: pageId
+  }
+  const response = await profileAPI.addPost(newPost);
   if (response.data.resultCode === 0) {
     dispatch(addPost(response.data.data));
   }

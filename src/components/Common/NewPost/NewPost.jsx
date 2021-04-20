@@ -1,30 +1,28 @@
-import { Button, Form, Input } from "antd";
+import { Avatar, Button, Form, Input, List } from "antd";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { sendNewPost } from "../../../Redux/profile/profile-reducer";
-import {
-  getProfileName,
-  getProfilePhoto,
-} from "../../../Redux/profile/profile-selectors";
 import style from "./NewPost.module.scss";
-import PhotoLogin from "../PhotoLogin/PhotoLogin";
 import AdditionalBtns from "../AdditionalBtns/AdditionalBtns";
 import PostForm from "../PostForm/PostForm";
 import {
+  getAuthUserName,
   getAuthUserPhoto,
   getAutorizedUserId,
 } from "../../../Redux/auth/auth-selectors";
+import userPhoto from "./../../../assets/images/user.png";
+import PhotoAvatar from "../PhotoAvatar/PhotoAvatar";
+import pageId from "../Hoc/pageId";
 
-const NewPost = () => {
+const NewPost = pageId(({pageId}) => {
   const dispatch = useDispatch();
   const profilePhoto = useSelector((state) => getAuthUserPhoto(state));
   const authUserId = useSelector((state) => getAutorizedUserId(state));
-  const userName = useSelector((state) => getProfileName(state));
-
+  const userName = useSelector((state) => getAuthUserName(state));
   const [newPostMode, setNewPostMode] = useState(false);
 
   const onSubmit = (newPostText) => {
-    dispatch(sendNewPost(newPostText));
+    dispatch(sendNewPost(newPostText, pageId));
     setNewPostMode(false);
   };
 
@@ -33,13 +31,19 @@ const NewPost = () => {
   };
   if (newPostMode) {
     return (
-      <PostForm
-        onSubmit={onSubmit}
-        name={userName}
-        userId={authUserId}
-        photo={profilePhoto}
-        textBtn={"Добавить"}
-      />
+      <ul className={style.inner}>
+        <List.Item>
+          <List.Item.Meta
+            avatar={<PhotoAvatar photo={profilePhoto} />}
+            title={<span className={style.name}>{userName}</span>}
+          />
+        </List.Item>
+        <PostForm
+          onSubmit={onSubmit}
+          userId={authUserId}
+          textBtn={"Добавить"}
+        />
+      </ul>
     );
   }
   return (
@@ -49,13 +53,13 @@ const NewPost = () => {
       userId={authUserId}
     />
   );
-};
+});
 
 const PreviewBlock = ({ setAddPostMode, photo, userId }) => {
   return (
     <div className={style.previewBlock}>
       <div className={style.previewBlockItem}>
-        <PhotoLogin photo={photo} link={`/app/profile/${userId}`} />
+        <Avatar src={photo || userPhoto} />
         <Button
           type="text"
           className={style.visibleBtn}

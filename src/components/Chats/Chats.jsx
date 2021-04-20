@@ -14,7 +14,7 @@ const getInterlocutor = (users) => {
   const authId = useSelector((state) => getAutorizedUserId(state));
   const interlocutors = users.filter((user) => user.id !== authId);
   return interlocutors[0];
-}
+};
 
 const Chats = () => {
   const chats = useSelector((state) => getDialogs(state));
@@ -32,7 +32,12 @@ const Chats = () => {
         dataSource={chats}
         className={style.list}
         renderItem={(item) => (
-          <ChatItem key={item.id} id={item.id} users={item.users} messages={item.messages} />
+          <ChatItem
+            key={item.id}
+            id={item.id}
+            users={item.users}
+            messages={item.messages}
+          />
         )}
       />
     </div>
@@ -42,7 +47,7 @@ const Chats = () => {
 const ChatItem = ({ users, messages, id }) => {
   const lastMessage = messages[messages.length - 1];
   const interlocutor = getInterlocutor(users);
- 
+
   return (
     <Link to={`/app/chats/${id}`}>
       <List.Item className={style.listItem}>

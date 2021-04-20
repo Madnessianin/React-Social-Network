@@ -8,7 +8,7 @@ import style from "./Messages.module.scss";
 
 const Messages = () => {
   const messages = useSelector((state) => getMessages(state));
-  
+
   const dispatch = useDispatch();
   const addMessage = (data) => {
     dispatch(sendMessage(data.newMessageText));
@@ -29,6 +29,5 @@ export const MessageItem = ({ message, photo, user }) => {
     </List.Item>
   );
 };
-
 
 export default Messages;

@@ -12,9 +12,8 @@ const MyPosts = () => {
   useEffect(() => {
     setMyPosts(posts);
   }, [posts]);
-  
-  if (posts.length === 0) {
-    return <Preloader />
+  if (!posts) {
+    return <Preloader />;
   }
   return (
     <div className={style.inner}>

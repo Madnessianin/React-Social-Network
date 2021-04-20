@@ -17,3 +17,7 @@ export const getCaptcha = (state) => {
 export const getAuthUserPhoto = (state) => {
   return state.authPage.profile.photos.large;
 };
+
+export const getAuthUserName = (state) => {
+  return state.authPage.profile.fullName;
+};
