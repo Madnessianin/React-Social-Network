@@ -1,4 +1,6 @@
 import * as axios from "axios";
+import io from 'socket.io-client'
+
 
 const token = localStorage.getItem("user");
 
@@ -79,6 +81,14 @@ export const ChatsAPI = {
   async getMessages(id, count) {
     return await instance.get(`chats?room=${id}&count=${count}`);
   },
+  async sendMessage(message, userId, room) {
+    const socket = io('ws://192.168.0.104:8000/')
+    return socket.emit("sendMessage", {
+      message,
+      userId,
+      room
+    })
+  }
 };
 
 export const securityAPI = {

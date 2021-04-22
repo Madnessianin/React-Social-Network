@@ -1,12 +1,17 @@
 import { Button, Form, Input } from "antd";
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { SendOutlined, PaperClipOutlined } from "@ant-design/icons";
 import style from "./NewMessage.module.scss";
+import {sendMessage} from "./../../../Redux/chats/chats-reducer"
+import { getAutorizedUserId } from "../../../Redux/auth/auth-selectors";
 
-const NewMessage = () => {
+const NewMessage = ({chatId}) => {
   const dispatch = useDispatch();
-  const onSubmit = (data) => {};
+  const authUserId = useSelector(state => getAutorizedUserId(state))
+  const onSubmit = (data) => {
+    dispatch(sendMessage(data.newMessage, authUserId, chatId))
+  };
   return (
     <div className={style.inner}>
       <Button
@@ -22,6 +27,7 @@ const MessageForm = ({ onSubmit }) => {
   return (
     <Form className={style.form} onFinish={onSubmit}>
       <Form.Item
+        name="newMessage"
         rules={[{ required: true, message: "Пожалуйста, введите что-нибудь!" }]}
       >
         <Input className={style.input} placeholder="Напишите что-нибудь..." />

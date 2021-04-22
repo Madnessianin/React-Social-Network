@@ -1,5 +1,5 @@
 import { Avatar, Button, List } from "antd";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import userPhoto from "./../../../assets/images/user.png";
 import style from "./Messages.module.scss";
 import NewMessage from "../../Common/NewMessage/NewMessage";
@@ -7,22 +7,31 @@ import { useDispatch, useSelector } from "react-redux";
 import { getMessages } from "../../../Redux/chats/chats-reducer";
 import { getMessagesRoom } from "../../../Redux/chats/chats-selectors";
 import MessagesTitle from "./MessagesTitle/MessagesTitle";
-import io from 'socket.io-client'
+import { useParams } from "react-router";
+
 
 const MessagesList = () => {
   const messages = useSelector((state) => getMessagesRoom(state));
-  const socket = io('ws://192.168.0.104:8000/')
+  const chatId = useParams().chatId
+  console.log(chatId)
+  //console.log(socket)
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getMessages("1"));
+    dispatch(getMessages(chatId));
   }, []);
+  const [allMessages, setAllMessage] = useState(messages)
+
+  useEffect(()=>{
+    setAllMessage(messages)
+  },[messages])
+  console.log(allMessages)
   return (
     <div className={style.inner}>
       <MessagesTitle />
       <div className={style.content}>
         <List
           className={style.messages}
-          dataSource={messages}
+          dataSource={allMessages}
           renderItem={(item) => (
             <MessageItem
               key={item.id}
@@ -34,7 +43,7 @@ const MessagesList = () => {
         />
       </div>
       <div className={style.footer}>
-        <NewMessage />
+        <NewMessage chatId={chatId} />
       </div>
     </div>
   );
