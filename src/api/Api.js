@@ -1,6 +1,5 @@
 import * as axios from "axios";
-import io from 'socket.io-client'
-
+import io from "socket.io-client";
 
 const token = localStorage.getItem("user");
 
@@ -16,7 +15,9 @@ const instance = axios.create({
 
 export const usersAPI = {
   async getUsers(currentPage, pageSize) {
-    return await instance.get(`profile/users?page=${currentPage}&count=${pageSize}`);
+    return await instance.get(
+      `profile/users?page=${currentPage}&count=${pageSize}`
+    );
   },
 };
 
@@ -82,13 +83,18 @@ export const ChatsAPI = {
     return await instance.get(`chats?room=${id}&count=${count}`);
   },
   async sendMessage(message, userId, room) {
-    const socket = io('ws://192.168.0.104:8000/')
-    return socket.emit("sendMessage", {
+    const socket = io("ws://192.168.0.104:8000/");
+    socket.emit("sendMessage", {
       message,
       userId,
-      room
-    })
-  }
+      room,
+    });
+    let response;
+    socket.on("responseSendMessage", data => {
+      console.log(data);
+    });
+    return response;
+  },
 };
 
 export const securityAPI = {

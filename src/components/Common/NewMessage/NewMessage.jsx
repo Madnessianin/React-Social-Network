@@ -3,14 +3,14 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { SendOutlined, PaperClipOutlined } from "@ant-design/icons";
 import style from "./NewMessage.module.scss";
-import {sendMessage} from "./../../../Redux/chats/chats-reducer"
+import { sendMessage } from "./../../../Redux/chats/chats-reducer";
 import { getAutorizedUserId } from "../../../Redux/auth/auth-selectors";
 
-const NewMessage = ({chatId}) => {
+const NewMessage = ({ chatId }) => {
   const dispatch = useDispatch();
-  const authUserId = useSelector(state => getAutorizedUserId(state))
+  const authUserId = useSelector((state) => getAutorizedUserId(state));
   const onSubmit = (data) => {
-    dispatch(sendMessage(data.newMessage, authUserId, chatId))
+    dispatch(sendMessage(data.newMessage, authUserId, chatId));
   };
   return (
     <div className={style.inner}>

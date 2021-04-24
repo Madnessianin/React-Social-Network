@@ -9,22 +9,19 @@ import { getMessagesRoom } from "../../../Redux/chats/chats-selectors";
 import MessagesTitle from "./MessagesTitle/MessagesTitle";
 import { useParams } from "react-router";
 
-
 const MessagesList = () => {
-  const messages = useSelector((state) => getMessagesRoom(state));
-  const chatId = useParams().chatId
-  console.log(chatId)
-  //console.log(socket)
+  const chatId = useParams().chatId;
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getMessages(chatId));
   }, []);
-  const [allMessages, setAllMessage] = useState(messages)
-
-  useEffect(()=>{
-    setAllMessage(messages)
-  },[messages])
-  console.log(allMessages)
+  
+  const messages = useSelector((state) => getMessagesRoom(state));
+  const [allMessages, setAllMessage] = useState(messages);
+  console.log(messages)
+  useEffect(() => {
+    setAllMessage(messages);
+  }, [messages]);
   return (
     <div className={style.inner}>
       <MessagesTitle />

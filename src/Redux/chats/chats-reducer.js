@@ -1,6 +1,5 @@
 import { ChatsAPI } from "../../Api/Api";
 
-
 const SEND_MESSAGE = "social-network/dialogs/SEND_MESSAGE";
 const SET_CHATS = "social-network/dialogs/SET_CHATS";
 const SET_ROOM = "social-network/dialogs/SET_ROOM";
@@ -31,6 +30,12 @@ const chatsReducer = (state = initialState, action) => {
           messages: [...action.data.messages],
         },
       };
+    }
+    case SEND_MESSAGE: {
+      return {
+        ...state,
+        messages: [...action.data.messages]
+      }
     }
     default:
       return state;
@@ -67,8 +72,9 @@ export const getMessages = (id, count = 100) => async (dispatch) => {
 };
 
 export const sendMessage = (message, userId, room) => async (dispatch) => {
-  const response = await ChatsAPI.sendMessage(message, userId, room)
-  dispatch(getMessages(room))
-}
+  const response = await ChatsAPI.sendMessage(message, userId, room);
+  console.log(response)
+  dispatch(getMessages(room));
+};
 
 export default chatsReducer;
