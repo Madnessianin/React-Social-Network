@@ -21,3 +21,7 @@ export const getAuthUserPhoto = (state) => {
 export const getAuthUserName = (state) => {
   return state.authPage.profile.fullName;
 };
+
+export const getAuthUserProfile = (state) => {
+  return state.authPage.profile;
+};

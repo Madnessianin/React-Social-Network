@@ -76,7 +76,6 @@ export const getMessages = (id, count = 100) => async (dispatch) => {
 };
 
 export const sendMessage = (message, userId, room) => async (dispatch) => {
-  //await ChatsAPI.sendMessage(message, userId, room);
   const socket = io("ws://192.168.0.104:8000/");
   socket.emit("join", {
     userId,

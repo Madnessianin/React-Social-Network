@@ -6,21 +6,19 @@ import style from "./NewPost.module.scss";
 import AdditionalBtns from "../AdditionalBtns/AdditionalBtns";
 import PostForm from "../PostForm/PostForm";
 import {
-  getAuthUserName,
-  getAuthUserPhoto,
+  getAuthUserProfile,
   getAutorizedUserId,
 } from "../../../Redux/auth/auth-selectors";
 import userPhoto from "./../../../assets/images/user.png";
 import PhotoAvatar from "../PhotoAvatar/PhotoAvatar";
 import pageId from "../Hoc/pageId";
+import Preloader from "../Preloader/Preloader";
 
 const NewPost = pageId(({ pageId }) => {
   const dispatch = useDispatch();
-  const profilePhoto = useSelector((state) => getAuthUserPhoto(state));
   const authUserId = useSelector((state) => getAutorizedUserId(state));
-  const userName = useSelector((state) => getAuthUserName(state));
   const [newPostMode, setNewPostMode] = useState(false);
-
+  const profile = useSelector((state) => getAuthUserProfile(state));
   const onSubmit = (newPostText) => {
     dispatch(sendNewPost(newPostText, pageId));
     setNewPostMode(false);
@@ -29,30 +27,38 @@ const NewPost = pageId(({ pageId }) => {
   const setAddPostMode = () => {
     setNewPostMode(true);
   };
-  if (newPostMode) {
-    return (
-      <ul className={style.inner}>
-        <List.Item>
-          <List.Item.Meta
-            avatar={<PhotoAvatar photo={profilePhoto} />}
-            title={<span className={style.name}>{userName}</span>}
+
+  if (profile !== null) {
+    const {
+      fullName,
+      photos: { large },
+    } = profile;
+    if (newPostMode) {
+      return (
+        <ul className={style.inner}>
+          <List.Item>
+            <List.Item.Meta
+              avatar={<PhotoAvatar photo={large} />}
+              title={<span className={style.name}>{fullName}</span>}
+            />
+          </List.Item>
+          <PostForm
+            onSubmit={onSubmit}
+            userId={authUserId}
+            textBtn={"Добавить"}
           />
-        </List.Item>
-        <PostForm
-          onSubmit={onSubmit}
-          userId={authUserId}
-          textBtn={"Добавить"}
-        />
-      </ul>
+        </ul>
+      );
+    }
+    return (
+      <PreviewBlock
+        setAddPostMode={setAddPostMode}
+        photo={large}
+        userId={authUserId}
+      />
     );
   }
-  return (
-    <PreviewBlock
-      setAddPostMode={setAddPostMode}
-      photo={profilePhoto}
-      userId={authUserId}
-    />
-  );
+  return <Preloader />;
 });
 
 const PreviewBlock = ({ setAddPostMode, photo, userId }) => {
