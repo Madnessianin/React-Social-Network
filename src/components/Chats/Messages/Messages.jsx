@@ -15,13 +15,12 @@ const MessagesList = () => {
   useEffect(() => {
     dispatch(getMessages(chatId));
   }, []);
-  
   const messages = useSelector((state) => getMessagesRoom(state));
   const [allMessages, setAllMessage] = useState(messages);
-  console.log(messages)
   useEffect(() => {
     setAllMessage(messages);
   }, [messages]);
+  //console.log(messages)
   return (
     <div className={style.inner}>
       <MessagesTitle />

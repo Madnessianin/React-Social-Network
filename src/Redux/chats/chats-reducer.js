@@ -1,4 +1,5 @@
 import { ChatsAPI } from "../../Api/Api";
+import io from "socket.io-client";
 
 const SEND_MESSAGE = "social-network/dialogs/SEND_MESSAGE";
 const SET_CHATS = "social-network/dialogs/SET_CHATS";
@@ -34,7 +35,13 @@ const chatsReducer = (state = initialState, action) => {
     case SEND_MESSAGE: {
       return {
         ...state,
-        messages: [...action.data.messages]
+        room: {
+          ...state.room,
+          messages: [
+            ...state.room.messages,
+            action.newMessage
+          ] 
+        }
       }
     }
     default:
@@ -42,9 +49,9 @@ const chatsReducer = (state = initialState, action) => {
   }
 };
 
-export const addMessage = (newMessageText) => ({
+export const addMessage = (newMessage) => ({
   type: SEND_MESSAGE,
-  newMessageText,
+  newMessage,
 });
 export const setChats = (chats) => ({
   type: SET_CHATS,
@@ -72,9 +79,21 @@ export const getMessages = (id, count = 100) => async (dispatch) => {
 };
 
 export const sendMessage = (message, userId, room) => async (dispatch) => {
-  const response = await ChatsAPI.sendMessage(message, userId, room);
-  console.log(response)
-  dispatch(getMessages(room));
+  //await ChatsAPI.sendMessage(message, userId, room);
+  const socket = io("ws://192.168.0.104:8000/");
+  socket.emit("join", {
+    userId,
+    room,
+  });
+  await socket.emit("sendMessage", {
+    message,
+    userId,
+    room,
+  });
+  await socket.on("responseSendMessage", ({data}) => {
+    dispatch(addMessage(data));
+  });
 };
+
 
 export default chatsReducer;

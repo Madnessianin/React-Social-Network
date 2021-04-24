@@ -15,6 +15,7 @@ const MyPosts = () => {
   if (!posts) {
     return <Preloader />;
   }
+  //console.log(myPosts)
   return (
     <div className={style.inner}>
       <List

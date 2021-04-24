@@ -82,19 +82,6 @@ export const ChatsAPI = {
   async getMessages(id, count) {
     return await instance.get(`chats?room=${id}&count=${count}`);
   },
-  async sendMessage(message, userId, room) {
-    const socket = io("ws://192.168.0.104:8000/");
-    socket.emit("sendMessage", {
-      message,
-      userId,
-      room,
-    });
-    let response;
-    socket.on("responseSendMessage", data => {
-      console.log(data);
-    });
-    return response;
-  },
 };
 
 export const securityAPI = {
