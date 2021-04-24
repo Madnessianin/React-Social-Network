@@ -37,12 +37,9 @@ const chatsReducer = (state = initialState, action) => {
         ...state,
         room: {
           ...state.room,
-          messages: [
-            ...state.room.messages,
-            action.newMessage
-          ] 
-        }
-      }
+          messages: [...state.room.messages, action.newMessage],
+        },
+      };
     }
     default:
       return state;
@@ -90,10 +87,9 @@ export const sendMessage = (message, userId, room) => async (dispatch) => {
     userId,
     room,
   });
-  await socket.on("responseSendMessage", ({data}) => {
+  await socket.on("responseSendMessage", ({ data }) => {
     dispatch(addMessage(data));
   });
 };
-
 
 export default chatsReducer;

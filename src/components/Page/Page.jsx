@@ -16,8 +16,6 @@ const Chats = React.lazy(() => import("../Chats/Chats"));
 const Profile = React.lazy(() => import("../Profile/Profile"));
 const Users = React.lazy(() => import("../Users/Users"));
 
-
-
 const Page = () => {
   return (
     <Layout style={{ minHeight: "100vh" }}>
