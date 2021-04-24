@@ -9,11 +9,14 @@ import SideBar from "../SideBar/SideBar";
 import Edit from "../Edit/Edit";
 import withAuthRedirect from "../Common/Hoc/withAuthRedirect";
 import withSuspense from "../Common/Hoc/withSuspense";
+import io from "socket.io-client";
 
 const { Content, Footer } = Layout;
 const Chats = React.lazy(() => import("../Chats/Chats"));
 const Profile = React.lazy(() => import("../Profile/Profile"));
 const Users = React.lazy(() => import("../Users/Users"));
+
+
 
 const Page = () => {
   return (

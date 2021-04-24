@@ -1,7 +1,7 @@
 import * as axios from "axios";
 import io from "socket.io-client";
 
-const token = localStorage.getItem("user");
+export const token = localStorage.getItem("user");
 
 const instance = axios.create({
   withCredentials: true,
@@ -9,7 +9,7 @@ const instance = axios.create({
     "API-KEY": "17ce7864-7abb-4461-acc2-1f1b971290ad",
     token: token,
   },
-  baseURL: "http://192.168.0.104:8000/",
+  baseURL: "https://d6ea6c2d1ec6.ngrok.io/",
   responseType: "json",
 });
 
