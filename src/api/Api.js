@@ -1,6 +1,4 @@
 import * as axios from "axios";
-import io from "socket.io-client";
-import { getFriends } from "../Redux/profile/profile-selectors";
 
 export const token = localStorage.getItem("user");
 

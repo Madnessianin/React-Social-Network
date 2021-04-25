@@ -117,7 +117,7 @@ const DropDownMenu = isAuthor(
           </Menu.Item>
           <Menu.Item
             onClick={deletePost}
-            disabled={!isAuthor}
+            disabled={!isAuthor && !isOwner}
             icon={<DeleteOutlined />}
             key="2"
           >
