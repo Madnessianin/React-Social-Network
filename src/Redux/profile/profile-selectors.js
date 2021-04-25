@@ -31,3 +31,7 @@ export const getGeneralData = ({
 }) => {
   return { fullName, aboutMe, lookingForAJob, lookingForAJobDescription };
 };
+
+export const getFollowed = (state) => {
+  return state.profilePage.followed;
+};

@@ -2,12 +2,16 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { savePhoto } from "../../../Redux/profile/profile-reducer";
 import userPhoto from "../../../assets/images/user.png";
-import { getProfilePhoto } from "../../../Redux/profile/profile-selectors";
+import {
+  getFollowed,
+  getProfilePhoto,
+} from "../../../Redux/profile/profile-selectors";
 import { Upload, Image, Button, message } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import style from "./Avatar.module.scss";
 import { Link, useParams } from "react-router-dom";
 import SendMessage from "../../Common/SendMessage/SendMessage";
+import FollowBtn from "../../Common/FollowBtn/FollowBtn";
 
 const MyAvatar = ({ isOwner }) => {
   const photos = useSelector((state) => getProfilePhoto(state));
@@ -57,12 +61,11 @@ const EditBlock = () => {
 
 const UserBlock = () => {
   const userId = useParams().userId;
+  const followed = useSelector((state) => getFollowed(state));
   return (
     <div className={style.btnBlock}>
       <SendMessage userId={userId} className={style.firstBtn} />
-      <Button className={style.lastBtn} type="primary">
-        Добавить в друзья
-      </Button>
+      <FollowBtn userId={userId} followed={followed} className={style.lastBtn} />
     </div>
   );
 };

@@ -17,7 +17,6 @@ const SendMessage = ({ userId, className }) => {
   const closeMessageForm = () => {
     setVisibleModal(false);
   };
-  console.log(visibleModal)
   const authId = useSelector((state) => getAutorizedUserId(state));
   const dispatch = useDispatch();
 
@@ -34,7 +33,7 @@ const SendMessage = ({ userId, className }) => {
         visible={visibleModal}
         onCancel={closeMessageForm}
       >
-        <PostForm textBtn="Отправить" onSubmit={sendMessage}  />
+        <PostForm textBtn="Отправить" onSubmit={sendMessage} />
       </ModalWindow>
     </Button>
   );

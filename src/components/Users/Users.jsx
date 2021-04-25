@@ -25,6 +25,7 @@ import PostForm from "../Common/PostForm/PostForm";
 import { getAutorizedUserId } from "../../Redux/auth/auth-selectors";
 import { sendNewMessage } from "../../Redux/chats/chats-reducer";
 import SendMessage from "../Common/SendMessage/SendMessage";
+import FollowBtn from "../Common/FollowBtn/FollowBtn";
 
 const Users = () => {
   const totalCount = useSelector((state) => getTotalUsersCount(state));
@@ -80,38 +81,18 @@ const Users = () => {
   );
 };
 
-const generatorTextBtn = (isOwner, followed) =>
-  !isOwner ? `${followed ? "Вы подписанны" : "Добавить в друзья"}` : null;
-
 const User = isOwnerPage(({ user, isOwner }) => {
-  const followed = useSelector((state) => getFollowingIsProgress(state));
-  const [followProgress, setFollowProgress] = useState(followed[0]);
-  useEffect(() => {
-    setFollowProgress(followed[0]);
-  }, [followed]);
-
-  const dispatch = useDispatch();
-  const followUser = () => {
-    dispatch(follow(user.id));
-  };
-  const unfollowUser = (userId) => {
-    dispatch(unfollow(userId));
-  };
-
+  
   return (
     <List.Item
       className={style.item}
       actions={[
         <div className={style.actionBtns}>
-          <Button
-            onClick={followUser}
-            className={style.actionBtn}
-            disabled={followProgress}
-          >
-            {generatorTextBtn(isOwner, user.followed)}
-          </Button>
           {!isOwner ? (
-            <SendMessage userId={user.id} className={style.actionBtn} />
+            <React.Fragment>
+              <FollowBtn className={style.actionBtn} userId={user.id} followed={user.followed} />
+              <SendMessage userId={user.id} className={style.actionBtn} />
+            </React.Fragment>
           ) : null}
         </div>,
       ]}
