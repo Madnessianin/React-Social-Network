@@ -9,7 +9,7 @@ const instance = axios.create({
     "API-KEY": "17ce7864-7abb-4461-acc2-1f1b971290ad",
     token: token,
   },
-  baseURL: "https://41c857ea7ebb.ngrok.io/",
+  baseURL: "http://192.168.0.104:8000/",
   responseType: "json",
 });
 

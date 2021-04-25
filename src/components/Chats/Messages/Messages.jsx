@@ -20,10 +20,9 @@ const MessagesList = () => {
   useEffect(() => {
     setAllMessage(messages);
   }, [messages]);
-  //console.log(messages)
   return (
     <div className={style.inner}>
-      <MessagesTitle />
+      <MessagesTitle chatId={chatId} />
       <div className={style.content}>
         <List
           className={style.messages}

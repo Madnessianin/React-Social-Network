@@ -7,3 +7,13 @@
   justify-content: center;
   margin-bottom: 20px;
 }
+.actionBtns {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-wrap: wrap;
+  height: 100px;
+}
+.actionBtn {
+  width: 55%;
+}

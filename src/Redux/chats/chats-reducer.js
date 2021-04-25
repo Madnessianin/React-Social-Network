@@ -8,11 +8,12 @@ const SET_ROOM = "social-network/dialogs/SET_ROOM";
 const initialState = {
   dialogs: [],
   room: {
-    id: null,
+    chatInfo: {},
     members: [],
     messages: [],
   },
 };
+
 
 const chatsReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -26,7 +27,9 @@ const chatsReducer = (state = initialState, action) => {
       return {
         ...state,
         room: {
-          id: action.data.id,
+          chatInfo: {
+            ...action.chatInfo
+          },
           members: [...action.data.users],
           messages: [...action.data.messages],
         },
@@ -54,10 +57,12 @@ export const setChats = (chats) => ({
   type: SET_CHATS,
   chats,
 });
-export const setRoom = (data) => ({
+export const setRoom = (data, chatInfo) => ({
   type: SET_ROOM,
   data,
+  chatInfo
 });
+
 
 /* Thunk */
 
@@ -68,10 +73,11 @@ export const getChats = () => async (dispatch) => {
   }
 };
 
-export const getMessages = (id, count = 100) => async (dispatch) => {
+export const getMessages = (id, count = 100) => async (dispatch, getState) => {
   const response = await ChatsAPI.getMessages(id, count);
   if (response.data.resultCode === 0) {
-    dispatch(setRoom(response.data.items));
+    const chatInfo = getState().chatsPage.dialogs[id - 1];
+    dispatch(setRoom(response.data.items, chatInfo));
   }
 };
 
@@ -90,5 +96,15 @@ export const sendMessage = (message, userId, room) => async (dispatch) => {
     dispatch(addMessage(data));
   });
 };
+
+export const sendNewMessage = (message, from, to) => async (dispatch) => {
+  console.log(message, from, to)
+  const socket = io("ws://192.168.0.104:8000/");
+  await socket.emit("sendMessage", {
+    message,
+    from,
+    to,
+  });
+}
 
 export default chatsReducer;

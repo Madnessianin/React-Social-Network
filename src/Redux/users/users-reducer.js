@@ -21,11 +21,15 @@ const initialState = {
 const usersReducer = (state = initialState, action) => {
   switch (action.type) {
     case FOLLOW:
+      console.log(action);
       return {
         ...state,
         users: state.users.map((user) => {
           if (user.id === action.userId) {
-            return { ...user, followed: true };
+            return {
+              ...user,
+              followed: true,
+            };
           }
           return user;
         }),
@@ -88,7 +92,6 @@ export const getUsers = (currentPage, pageSize) => async (dispatch) => {
   dispatch(toggleIsFetching(true));
   const response = await usersAPI.getUsers(currentPage, pageSize);
   dispatch(toggleIsFetching(false));
-  console.log(response);
   dispatch(setUsers(response.data.items));
   dispatch(setTotalUsersCount(response.data.totalCount));
 };

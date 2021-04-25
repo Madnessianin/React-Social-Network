@@ -7,3 +7,9 @@ export const getMembers = (state) => {
 export const getMessagesRoom = (state) => {
   return state.chatsPage.room.messages;
 };
+export const getTitleRoom = (state) => {
+  return state.chatsPage.room.chatInfo.title;
+}
+export const getPhotoRoom = (state) => {
+  return state.chatsPage.room.chatInfo.photo;
+}

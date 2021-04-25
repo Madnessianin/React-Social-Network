@@ -20,6 +20,10 @@ import {
 } from "../../Redux/users/users-reducer";
 import { Avatar, Button, List, Pagination } from "antd";
 import isOwnerPage from "../Common/Hoc/isOwner";
+import ModalWindow from "../Common/ModalWindow/ModalWindow";
+import PostForm from "../Common/PostForm/PostForm";
+import { getAutorizedUserId } from "../../Redux/auth/auth-selectors";
+import { sendNewMessage } from "../../Redux/chats/chats-reducer";
 
 const Users = () => {
   const totalCount = useSelector((state) => getTotalUsersCount(state));
@@ -75,25 +79,57 @@ const Users = () => {
   );
 };
 
+const generatorTextBtn = (isOwner, followed) =>
+  !isOwner ? `${followed ? "Вы подписанны" : "Добавить в друзья"}` : null;
+
 const User = isOwnerPage(({ user, isOwner }) => {
-  const followedProgres = useSelector((state) => getFollowingIsProgress(state));
+  const followed = useSelector((state) => getFollowingIsProgress(state));
+  const [followProgress, setFollowProgress] = useState(followed[0]);
+  useEffect(() => {
+    setFollowProgress(followed[0]);
+  }, [followed]);
+
   const dispatch = useDispatch();
-
-  const followUser = (userId) => {
-    dispatch(follow(userId));
+  const followUser = () => {
+    dispatch(follow(user.id));
   };
-
   const unfollowUser = (userId) => {
     dispatch(unfollow(userId));
   };
+
+  const [visibleModal, setVisibleModal] = useState(false);
+
+  const openMessageForm = () => {
+    setVisibleModal(true);
+  };
+
+  const closeMessageForm = () => {
+    setVisibleModal(false)
+  }
+
+  const authId = useSelector(state => getAutorizedUserId(state));
+
+  const sendMessage = (data) => {
+    dispatch(sendNewMessage(data.newPostText, authId, user.id))
+    closeMessageForm()
+  };
+
   return (
     <List.Item
       className={style.item}
       actions={[
-        <Button onClick={followUser}>
-          {!isOwner ? "Добавить в друзья" : null}
-        </Button>,
-        <Button>{!isOwner ? "Написать сообщение" : null}</Button>,
+        <div className={style.actionBtns}>
+          <Button
+            onClick={followUser}
+            className={style.actionBtn}
+            disabled={followProgress}
+          >
+            {generatorTextBtn(isOwner, user.followed)}
+          </Button>
+          <Button className={style.actionBtn} onClick={openMessageForm}>
+            {!isOwner ? "Написать сообщение" : null}
+          </Button>
+        </div>,
       ]}
     >
       <Link to={`/app/profile/${user.id}`}>
@@ -103,6 +139,9 @@ const User = isOwnerPage(({ user, isOwner }) => {
           description={user.status}
         />
       </Link>
+      <ModalWindow title="Написать сообщение: " visible={visibleModal} onCancel={closeMessageForm}>
+        <PostForm textBtn="Отправить" onSubmit={sendMessage} />
+      </ModalWindow>
     </List.Item>
   );
 });

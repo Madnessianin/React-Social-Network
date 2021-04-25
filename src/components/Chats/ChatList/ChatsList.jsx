@@ -14,7 +14,7 @@ const ChatsList = () => {
   useEffect(() => {
     dispatch(getChats());
   }, []);
-  console.log(chats);
+
   if (!chats) {
     return <Preloader />;
   }
