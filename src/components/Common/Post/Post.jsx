@@ -16,6 +16,7 @@ import { changePost, deletePost } from "../../../Redux/profile/profile-reducer";
 import PostForm from "../PostForm/PostForm";
 import isOwnerPage from "../Hoc/isOwner";
 import { getAuthUserName } from "../../../Redux/auth/auth-selectors";
+import isAuthor from "../Hoc/isAutor";
 
 const { SubMenu } = Menu;
 
@@ -97,26 +98,25 @@ const RepostCount = count(({ quantity, action }) => (
   <ShareAltOutlined quantity={quantity} action={action} />
 ));
 
-const DropDownMenu = isOwnerPage(
-  ({ deletePost, changePost, isOwner, name }) => {
-    const authUserName = useSelector((state) => getAuthUserName(state));
+const DropDownMenu = isAuthor(isOwnerPage(
+  ({ deletePost, changePost, isOwner, name, isAuthor }) => {
     return (
       <Menu mode="horizontal" className={style.dropDownMenu}>
         <SubMenu
           key="menu"
           icon={<DownSquareOutlined />}
-          disabled={!isOwner && name !== authUserName}
+          disabled={!isOwner && !isAuthor}
         >
-          <Menu.Item onClick={changePost} icon={<EditOutlined />} key="1">
+          <Menu.Item onClick={changePost} disabled={!isAuthor} icon={<EditOutlined />} key="1">
             Изменить
           </Menu.Item>
-          <Menu.Item onClick={deletePost} icon={<DeleteOutlined />} key="2">
+          <Menu.Item onClick={deletePost} disabled={!isAuthor} icon={<DeleteOutlined />} key="2">
             Удалить
           </Menu.Item>
         </SubMenu>
       </Menu>
     );
   }
-);
+));
 
 export default Post;
