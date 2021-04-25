@@ -19,7 +19,7 @@ const FriendAvatar = ({ name, photo, description }) => {
 
 const FriendsList = ({ isOwner }) => {
   const friends = useSelector((state) => getFriends(state));
-  console.log(friends)
+  console.log(friends);
   return (
     <div className={style.wrapper}>
       <div className={style.btns}>
