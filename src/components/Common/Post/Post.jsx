@@ -98,8 +98,8 @@ const RepostCount = count(({ quantity, action }) => (
   <ShareAltOutlined quantity={quantity} action={action} />
 ));
 
-const DropDownMenu = isAuthor(isOwnerPage(
-  ({ deletePost, changePost, isOwner, name, isAuthor }) => {
+const DropDownMenu = isAuthor(
+  isOwnerPage(({ deletePost, changePost, isOwner, name, isAuthor }) => {
     return (
       <Menu mode="horizontal" className={style.dropDownMenu}>
         <SubMenu
@@ -107,16 +107,26 @@ const DropDownMenu = isAuthor(isOwnerPage(
           icon={<DownSquareOutlined />}
           disabled={!isOwner && !isAuthor}
         >
-          <Menu.Item onClick={changePost} disabled={!isAuthor} icon={<EditOutlined />} key="1">
+          <Menu.Item
+            onClick={changePost}
+            disabled={!isAuthor}
+            icon={<EditOutlined />}
+            key="1"
+          >
             Изменить
           </Menu.Item>
-          <Menu.Item onClick={deletePost} disabled={!isAuthor} icon={<DeleteOutlined />} key="2">
+          <Menu.Item
+            onClick={deletePost}
+            disabled={!isAuthor}
+            icon={<DeleteOutlined />}
+            key="2"
+          >
             Удалить
           </Menu.Item>
         </SubMenu>
       </Menu>
     );
-  }
-));
+  })
+);
 
 export default Post;

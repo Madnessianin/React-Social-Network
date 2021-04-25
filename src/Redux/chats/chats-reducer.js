@@ -49,9 +49,11 @@ const chatsReducer = (state = initialState, action) => {
         ...state,
         room: {
           ...state.room,
-          messages: state.room.messages.filter(message => message.id !== action.messageId)
-        }
-      }
+          messages: state.room.messages.filter(
+            (message) => message.id !== action.messageId
+          ),
+        },
+      };
     }
     default:
       return state;
@@ -73,8 +75,8 @@ export const setRoom = (data, chatInfo) => ({
 });
 export const removeMessege = (messageId) => ({
   type: DELETE_MESSAGE,
-  messageId
-})
+  messageId,
+});
 
 /* Thunk */
 
@@ -122,11 +124,11 @@ export const deleteMessage = (id, room) => async (dispatch) => {
   const socket = io("ws://192.168.0.104:8000/");
   await socket.emit("removeMessage", {
     room,
-    id
+    id,
   });
-  await socket.on("responseRemoveMessage", ({data}) => {
-    dispatch(getMessages(room))
-  })
-}
+  await socket.on("responseRemoveMessage", ({ data }) => {
+    dispatch(getMessages(room));
+  });
+};
 
 export default chatsReducer;

@@ -9,6 +9,7 @@ const LIKEDISLAKEPOST = "social-network/profile/LIKEDISLAKEPOST";
 const SET_POSTS = "social-network/profile/SET_POSTS";
 const DELETE_POST = "social-network/profile/DELETE_POST";
 const CHANGE_POST = "social-network/profile/CHANGE_POST";
+const SET_FRIENDS = "social-network/profile/SET_FRIENDS";
 
 const initialState = {
   userId: "",
@@ -100,7 +101,12 @@ const profileReducer = (state = initialState, action) => {
         }),
       };
     }
-
+    case SET_FRIENDS: {
+      return {
+        ...state,
+        friends: action.friends,
+      };
+    }
     default:
       return state;
   }
@@ -127,6 +133,7 @@ export const setPosts = (posts) => ({
   type: SET_POSTS,
   posts,
 });
+export const setFriends = (friends) => ({ type: SET_FRIENDS, friends });
 
 /* Thunk */
 
@@ -134,6 +141,12 @@ export const getUser = (userId) => async (dispatch) => {
   const response = await profileAPI.getUserProfile(userId);
   dispatch(setUsersProfile(response.data));
   dispatch(getAllPosts());
+  dispatch(getFriendList());
+};
+
+export const getFriendList = () => async (dispatch) => {
+  const response = await profileAPI.getFriends();
+  dispatch(setFriends(response.data.items));
 };
 
 export const getAllPosts = () => async (dispatch, getState) => {

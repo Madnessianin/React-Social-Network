@@ -1,30 +1,25 @@
-import { Button } from "antd";
+import { Avatar, Button, List } from "antd";
 import React from "react";
 import { useSelector } from "react-redux";
 import { getFriends } from "../../../Redux/profile/profile-selectors";
 import style from "./FriendsList.module.scss";
-import { Avatar } from "antd";
-import { UserOutlined } from "@ant-design/icons";
+import PhotoAvatar from "../../Common/PhotoAvatar/PhotoAvatar";
 
-const FriendAvatar = ({ name }) => {
+const FriendAvatar = ({ name, photo, description }) => {
   return (
-    <div className={style.friendsListItem}>
-      <Avatar
-        className={style.friendAvatar}
-        shape="circle"
-        size={50}
-        icon={<UserOutlined />}
+    <List.Item>
+      <List.Item.Meta
+        avatar={<Avatar src={photo} size={60} />}
+        title={<span className={style.friendName}>{name}</span>}
+        description={description}
       />
-      <span className={style.friendName}>{name}</span>
-    </div>
+    </List.Item>
   );
 };
 
 const FriendsList = ({ isOwner }) => {
   const friends = useSelector((state) => getFriends(state));
-  const friendsList = friends.map((item) => {
-    return <FriendAvatar key={item.fullName} name={item.fullName} />;
-  });
+  console.log(friends)
   return (
     <div className={style.wrapper}>
       <div className={style.btns}>
@@ -35,7 +30,19 @@ const FriendsList = ({ isOwner }) => {
           {isOwner ? "обновления" : "новости"}
         </Button>
       </div>
-      <div className={style.friendsList}>{friendsList}</div>
+      <List
+        className={style.friendsList}
+        dataSource={friends}
+        itemLayout="horizontal"
+        renderItem={(item) => (
+          <FriendAvatar
+            key={item.id}
+            name={item.name}
+            photo={item.photos.large}
+            description={item.lookingForAJobDescription}
+          />
+        )}
+      />
     </div>
   );
 };

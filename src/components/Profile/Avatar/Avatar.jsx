@@ -65,7 +65,11 @@ const UserBlock = () => {
   return (
     <div className={style.btnBlock}>
       <SendMessage userId={userId} className={style.firstBtn} />
-      <FollowBtn userId={userId} followed={followed} className={style.lastBtn} />
+      <FollowBtn
+        userId={userId}
+        followed={followed}
+        className={style.lastBtn}
+      />
     </div>
   );
 };

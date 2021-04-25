@@ -1,5 +1,6 @@
 import * as axios from "axios";
 import io from "socket.io-client";
+import { getFriends } from "../Redux/profile/profile-selectors";
 
 export const token = localStorage.getItem("user");
 
@@ -72,6 +73,9 @@ export const profileAPI = {
   },
   async changePost(id, data) {
     return await instance.put(`profile/post/${id}`, data);
+  },
+  async getFriends() {
+    return await instance.get(`profile/followers`);
   },
 };
 

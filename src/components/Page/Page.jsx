@@ -20,7 +20,7 @@ const Page = () => {
   return (
     <Layout style={{ minHeight: "100vh" }}>
       <Header />
-      <Layout style={{ padding: "15px 200px" }}>
+      <Layout style={{ padding: "15px 7%" }}>
         <SideBar />
         <Layout style={{ padding: "0 24px 24px" }}>
           <Content>

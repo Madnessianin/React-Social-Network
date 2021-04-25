@@ -21,31 +21,14 @@
 }
 
 .friendsList {
-  display: grid;
-  grid-template-columns: repeat(3, 90px);
-  grid-template-rows: repeat(2, 70px);
-  grid-gap: 5px;
-}
-
-.friendsListItem {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
+  margin-top: 20px;
 }
 
 .friendName {
-  width: 100%;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 400;
   line-height: 16px;
   text-align: center;
 }
 
-.friendAvatar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  background-color: #ccc;
-}
+

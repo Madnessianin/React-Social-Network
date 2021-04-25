@@ -8,10 +8,7 @@ import { deleteMessage, getMessages } from "../../../Redux/chats/chats-reducer";
 import { getMessagesRoom } from "../../../Redux/chats/chats-selectors";
 import MessagesTitle from "./MessagesTitle/MessagesTitle";
 import { useParams } from "react-router";
-import {
-  EditOutlined,
-  DeleteOutlined,
-} from "@ant-design/icons";
+import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 
 const MessagesList = () => {
   const chatId = useParams().chatId;
@@ -51,20 +48,26 @@ const MessagesList = () => {
 };
 
 export const MessageItem = ({ message, photo, user, isLast, chatId, id }) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const removeMessage = () => {
-    dispatch(deleteMessage(id, chatId))
-  }
+    dispatch(deleteMessage(id, chatId));
+  };
   return (
-    <List.Item 
+    <List.Item
       className={style.message}
       actions={[
         <React.Fragment>
-          {!isLast 
-          ? <Button style={{background: 'none'}} type="link" onClick={removeMessage} icon={<DeleteOutlined />} />
-          : null}
-        </React.Fragment> 
-      ]}>
+          {!isLast ? (
+            <Button
+              style={{ background: "none" }}
+              type="link"
+              onClick={removeMessage}
+              icon={<DeleteOutlined />}
+            />
+          ) : null}
+        </React.Fragment>,
+      ]}
+    >
       <List.Item.Meta
         avatar={
           <Avatar className={style.messageAvatar} src={photo || userPhoto} />

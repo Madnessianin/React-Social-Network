@@ -82,7 +82,6 @@ const Users = () => {
 };
 
 const User = isOwnerPage(({ user, isOwner }) => {
-  
   return (
     <List.Item
       className={style.item}
@@ -90,7 +89,11 @@ const User = isOwnerPage(({ user, isOwner }) => {
         <div className={style.actionBtns}>
           {!isOwner ? (
             <React.Fragment>
-              <FollowBtn className={style.actionBtn} userId={user.id} followed={user.followed} />
+              <FollowBtn
+                className={style.actionBtn}
+                userId={user.id}
+                followed={user.followed}
+              />
               <SendMessage userId={user.id} className={style.actionBtn} />
             </React.Fragment>
           ) : null}

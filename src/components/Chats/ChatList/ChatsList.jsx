@@ -38,7 +38,7 @@ const ChatsList = () => {
 };
 
 const ChatItem = ({ photo, message, id, title }) => {
-  if (message.author === null) return <React.Fragment />
+  if (message.author === null) return <React.Fragment />;
 
   return (
     <Link to={`/app/dialogs/room/${id}`}>
@@ -48,7 +48,11 @@ const ChatItem = ({ photo, message, id, title }) => {
           title={<span className={style.dialogName}>{title}</span>}
           description={
             <ul className={style.lastMessage}>
-              <MessageItem message={message.text} photo={message.photo} isLast={true} />
+              <MessageItem
+                message={message.text}
+                photo={message.photo}
+                isLast={true}
+              />
             </ul>
           }
         />
