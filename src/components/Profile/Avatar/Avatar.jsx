@@ -6,7 +6,8 @@ import { getProfilePhoto } from "../../../Redux/profile/profile-selectors";
 import { Upload, Image, Button, message } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import style from "./Avatar.module.scss";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import SendMessage from "../../Common/SendMessage/SendMessage";
 
 const MyAvatar = ({ isOwner }) => {
   const photos = useSelector((state) => getProfilePhoto(state));
@@ -55,9 +56,10 @@ const EditBlock = () => {
 };
 
 const UserBlock = () => {
+  const userId = useParams().userId;
   return (
     <div className={style.btnBlock}>
-      <Button className={style.firstBtn}>Написать сообщение</Button>
+      <SendMessage userId={userId} className={style.firstBtn} />
       <Button className={style.lastBtn} type="primary">
         Добавить в друзья
       </Button>

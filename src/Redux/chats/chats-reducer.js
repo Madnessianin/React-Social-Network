@@ -14,7 +14,6 @@ const initialState = {
   },
 };
 
-
 const chatsReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_CHATS: {
@@ -28,7 +27,7 @@ const chatsReducer = (state = initialState, action) => {
         ...state,
         room: {
           chatInfo: {
-            ...action.chatInfo
+            ...action.chatInfo,
           },
           members: [...action.data.users],
           messages: [...action.data.messages],
@@ -60,9 +59,8 @@ export const setChats = (chats) => ({
 export const setRoom = (data, chatInfo) => ({
   type: SET_ROOM,
   data,
-  chatInfo
+  chatInfo,
 });
-
 
 /* Thunk */
 
@@ -98,13 +96,12 @@ export const sendMessage = (message, userId, room) => async (dispatch) => {
 };
 
 export const sendNewMessage = (message, from, to) => async (dispatch) => {
-  console.log(message, from, to)
   const socket = io("ws://192.168.0.104:8000/");
   await socket.emit("sendMessage", {
     message,
     from,
     to,
   });
-}
+};
 
 export default chatsReducer;

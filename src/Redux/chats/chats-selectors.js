@@ -9,7 +9,7 @@ export const getMessagesRoom = (state) => {
 };
 export const getTitleRoom = (state) => {
   return state.chatsPage.room.chatInfo.title;
-}
+};
 export const getPhotoRoom = (state) => {
   return state.chatsPage.room.chatInfo.photo;
-}
+};

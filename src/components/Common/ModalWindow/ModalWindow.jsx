@@ -8,10 +8,10 @@ const ModalWindow = ({ children, visible, title, onCancel }) => {
   }, [visible]);
 
   return (
-    <Modal 
-      title={title} 
-      visible={visibleMode} 
-      footer={null} 
+    <Modal
+      title={title}
+      visible={visibleMode}
+      footer={null}
       centered
       onCancel={onCancel}
     >

@@ -1,11 +1,11 @@
 import { Button, Form, Input, List } from "antd";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AdditionalBtns from "../AdditionalBtns/AdditionalBtns";
 import PhotoAvatar from "../PhotoAvatar/PhotoAvatar";
 import style from "./PostForm.module.scss";
 
-const PostForm = ({ onSubmit, photo, textBtn, name }) => {
-  const [value, setValue] = useState("Что нового? ");
+const PostForm = ({ onSubmit, textBtn }) => {
+  const [value, setValue] = useState("Напишите что-нибудь...");
 
   const onChange = ({ target: { value } }) => {
     setValue(value);
@@ -14,6 +14,7 @@ const PostForm = ({ onSubmit, photo, textBtn, name }) => {
   return (
     <Form className={style.form} onFinish={onSubmit} name="newPost">
       <Form.Item
+        initialValue={value}
         name="newPostText"
         rules={[
           {

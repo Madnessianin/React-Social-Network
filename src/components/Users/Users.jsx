@@ -24,6 +24,7 @@ import ModalWindow from "../Common/ModalWindow/ModalWindow";
 import PostForm from "../Common/PostForm/PostForm";
 import { getAutorizedUserId } from "../../Redux/auth/auth-selectors";
 import { sendNewMessage } from "../../Redux/chats/chats-reducer";
+import SendMessage from "../Common/SendMessage/SendMessage";
 
 const Users = () => {
   const totalCount = useSelector((state) => getTotalUsersCount(state));
@@ -97,23 +98,6 @@ const User = isOwnerPage(({ user, isOwner }) => {
     dispatch(unfollow(userId));
   };
 
-  const [visibleModal, setVisibleModal] = useState(false);
-
-  const openMessageForm = () => {
-    setVisibleModal(true);
-  };
-
-  const closeMessageForm = () => {
-    setVisibleModal(false)
-  }
-
-  const authId = useSelector(state => getAutorizedUserId(state));
-
-  const sendMessage = (data) => {
-    dispatch(sendNewMessage(data.newPostText, authId, user.id))
-    closeMessageForm()
-  };
-
   return (
     <List.Item
       className={style.item}
@@ -126,9 +110,9 @@ const User = isOwnerPage(({ user, isOwner }) => {
           >
             {generatorTextBtn(isOwner, user.followed)}
           </Button>
-          <Button className={style.actionBtn} onClick={openMessageForm}>
-            {!isOwner ? "Написать сообщение" : null}
-          </Button>
+          {!isOwner ? (
+            <SendMessage userId={user.id} className={style.actionBtn} />
+          ) : null}
         </div>,
       ]}
     >
@@ -139,9 +123,6 @@ const User = isOwnerPage(({ user, isOwner }) => {
           description={user.status}
         />
       </Link>
-      <ModalWindow title="Написать сообщение: " visible={visibleModal} onCancel={closeMessageForm}>
-        <PostForm textBtn="Отправить" onSubmit={sendMessage} />
-      </ModalWindow>
     </List.Item>
   );
 });

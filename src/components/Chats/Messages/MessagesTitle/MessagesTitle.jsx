@@ -5,11 +5,14 @@ import PhotoAvatar from "../../../Common/PhotoAvatar/PhotoAvatar";
 import { Link } from "react-router-dom";
 import { Button } from "antd";
 import { useSelector } from "react-redux";
-import { getPhotoRoom, getTitleRoom } from "../../../../Redux/chats/chats-selectors";
+import {
+  getPhotoRoom,
+  getTitleRoom,
+} from "../../../../Redux/chats/chats-selectors";
 
-const MessagesTitle = ({chatId}) => {
-  const title = useSelector(state => getTitleRoom(state))
-  const photo = useSelector(state => getPhotoRoom(state))
+const MessagesTitle = ({ chatId }) => {
+  const title = useSelector((state) => getTitleRoom(state));
+  const photo = useSelector((state) => getPhotoRoom(state));
   return (
     <div className={style.header}>
       <Button icon={<LeftOutlined />} type="link" className={style.headerBtn}>
