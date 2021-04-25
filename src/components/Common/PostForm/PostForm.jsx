@@ -5,7 +5,7 @@ import PhotoAvatar from "../PhotoAvatar/PhotoAvatar";
 import style from "./PostForm.module.scss";
 
 const PostForm = ({ onSubmit, textBtn }) => {
-  const [value, setValue] = useState("Напишите что-нибудь...");
+  const [value, setValue] = useState("");
 
   const onChange = ({ target: { value } }) => {
     setValue(value);

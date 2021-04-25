@@ -1,9 +1,10 @@
 import { ChatsAPI } from "../../Api/Api";
 import io from "socket.io-client";
 
-const SEND_MESSAGE = "social-network/dialogs/SEND_MESSAGE";
-const SET_CHATS = "social-network/dialogs/SET_CHATS";
-const SET_ROOM = "social-network/dialogs/SET_ROOM";
+const SEND_MESSAGE = "social-network/chats/SEND_MESSAGE";
+const SET_CHATS = "social-network/chats/SET_CHATS";
+const SET_ROOM = "social-network/chats/SET_ROOM";
+const DELETE_MESSAGE = "social-network/chats/DELETE_MESSAGE";
 
 const initialState = {
   dialogs: [],
@@ -43,6 +44,15 @@ const chatsReducer = (state = initialState, action) => {
         },
       };
     }
+    case DELETE_MESSAGE: {
+      return {
+        ...state,
+        room: {
+          ...state.room,
+          messages: state.room.messages.filter(message => message.id !== action.messageId)
+        }
+      }
+    }
     default:
       return state;
   }
@@ -61,6 +71,10 @@ export const setRoom = (data, chatInfo) => ({
   data,
   chatInfo,
 });
+export const removeMessege = (messageId) => ({
+  type: DELETE_MESSAGE,
+  messageId
+})
 
 /* Thunk */
 
@@ -103,5 +117,16 @@ export const sendNewMessage = (message, from, to) => async (dispatch) => {
     to,
   });
 };
+
+export const deleteMessage = (id, room) => async (dispatch) => {
+  const socket = io("ws://192.168.0.104:8000/");
+  await socket.emit("removeMessage", {
+    room,
+    id
+  });
+  await socket.on("responseRemoveMessage", ({data}) => {
+    dispatch(getMessages(room))
+  })
+}
 
 export default chatsReducer;
