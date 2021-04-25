@@ -72,8 +72,8 @@ export const profileAPI = {
   async changePost(id, data) {
     return await instance.put(`profile/post/${id}`, data);
   },
-  async getFriends() {
-    return await instance.get(`profile/followers`);
+  async getFriends(id) {
+    return await instance.get(`profile/followers/${id}`);
   },
 };
 

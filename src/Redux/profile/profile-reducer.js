@@ -141,11 +141,11 @@ export const getUser = (userId) => async (dispatch) => {
   const response = await profileAPI.getUserProfile(userId);
   dispatch(setUsersProfile(response.data));
   dispatch(getAllPosts());
-  dispatch(getFriendList());
+  dispatch(getFriendList(userId));
 };
 
-export const getFriendList = () => async (dispatch) => {
-  const response = await profileAPI.getFriends();
+export const getFriendList = (userId) => async (dispatch) => {
+  const response = await profileAPI.getFriends(userId);
   dispatch(setFriends(response.data.items));
 };
 
