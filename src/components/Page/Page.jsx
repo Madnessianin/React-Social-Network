@@ -14,7 +14,7 @@ import io from "socket.io-client";
 const { Content, Footer } = Layout;
 const Chats = React.lazy(() => import("../Chats/Chats"));
 const Profile = React.lazy(() => import("../Profile/Profile"));
-const Users = React.lazy(() => import("../Users/Users"));
+import Users from "../Users/Users";
 
 const Page = () => {
   return (
@@ -37,7 +37,7 @@ const Page = () => {
               <Route path="/app/dialogs" render={withSuspense(Chats)} />
               <Route path="/app/news" component={News} />
               <Route path="/app/music" component={Music} />
-              <Route path="/app/users" render={withSuspense(Users)} />
+              <Route path="/app/users" render={() => <Users />} />
               <Route path="/app/settings" component={Settings} />
               <Route path="/app/edit" render={() => <Edit />} />
             </Switch>
